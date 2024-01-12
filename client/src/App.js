@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import Starfield from "react-starfield";
-
+import MainPage from "./components/MainPage";
 const App = () => {
   return (
     <div>
@@ -13,7 +13,7 @@ const App = () => {
         speedFactor={0.05}
         backgroundColor="black"
       />
-      <p>There's gonna be some stuff here</p>
+      <MainPage />
     </div>
   );
 };
