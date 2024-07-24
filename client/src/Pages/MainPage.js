@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import LinkBoxContainer from "../components/LinkBoxes";
 
 const MainPage = () => {
   return (
     <MainPageWrapper>
-      <TitleWrapper>
-        <Title1>Ryan Gosine,</Title1>
-        <Title2>Web Developer</Title2>
-      </TitleWrapper>
+      <LinkBoxContainer />
     </MainPageWrapper>
   );
 };
