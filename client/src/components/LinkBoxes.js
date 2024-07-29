@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const Container = styled.div`
   position: relative;
@@ -7,6 +7,7 @@ export const Container = styled.div`
   max-width: 1000px;
   text-align: center;
   margin-top: 50px;
+  border: 1px solid red;
 `;
 
 export const LinkBox = styled.a`

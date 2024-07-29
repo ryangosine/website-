@@ -1,15 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Tabs from "./Tabs";
 
-const Header = () => {
+const Header = ({ value, handleChange }) => {
   return (
     <HeaderWrapper>
-      {/* <NavLinks>
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/about">About</NavLink>
-        <NavLink href="/products">Products</NavLink>
-        <NavLink href="/contact">Contact</NavLink>
-      </NavLinks> */}
+      <Tabs value={value} handleChange={handleChange} />
     </HeaderWrapper>
   );
 };
