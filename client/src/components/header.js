@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Tabs from "./Tabs";
 
-const Header = ({ value, handleChange }) => {
+const Header = () => {
   return (
     <HeaderWrapper>
-      <Tabs value={value} handleChange={handleChange} />
+      <Link1>link1 | </Link1>
+      <Link2> link2 | </Link2>
+      <Link3> link3</Link3>
     </HeaderWrapper>
   );
 };
@@ -14,29 +15,16 @@ const HeaderWrapper = styled.header`
   background-color: #282c34;
   color: white;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  justify-content: flex-end;
+  padding-top: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
-const NavLinks = styled.nav`
-  display: flex;
-  gap: 20px;
-  /* border: 1px solid red; */
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const NavLink = styled.a`
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-`;
+const Link1 = styled.div``;
+const Link2 = styled.div``;
+const Link3 = styled.div``;
 
 export default Header;
