@@ -13,6 +13,8 @@ import PythonIcon from "./Icons/PythonIcon";
 import MongoDBIcon from "./Icons/MongoDbIcon";
 import JavaIcon from "./Icons/JavaIcon";
 import CSSIcon from "./Icons/CssIcon";
+import BashIcon from "./Icons/BashIcon";
+import StyledComponentsLogo from "./Icons/StyledComponentsIcon";
 // Import other icons similarly
 
 const IconsContainer = () => {
@@ -25,6 +27,7 @@ const IconsContainer = () => {
         <JSIcon />
         <ReactIcon />
         <CSSIcon />
+        <StyledComponentsLogo width="100" height="100" />
         <AngularIcon />
         <TSLogo />
         <NPMIcon />
@@ -34,9 +37,10 @@ const IconsContainer = () => {
       <ItemsContBkEnd>
         <NodeIcon />
         <PythonIcon />
+        <BashIcon />
         <MongoDBIcon />
+        <JavaIcon />
       </ItemsContBkEnd>
-      <JavaIcon />
       {/* Render other icons similarly */}
     </Container>
   );

@@ -4,10 +4,12 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import AboutMeSection from "../components/AboutMeSection";
+import StarField from "../components/Starfield";
 
 const MainPage = () => {
   return (
     <StyledMainPage>
+      <StarField starCount={50} />
       <SideOneContainer>
         <Title>Ryan Gosine.</Title>
       </SideOneContainer>
