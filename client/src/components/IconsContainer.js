@@ -15,24 +15,33 @@ import JavaIcon from "./Icons/JavaIcon";
 import CSSIcon from "./Icons/CssIcon";
 import BashIcon from "./Icons/BashIcon";
 import StyledComponentsLogo from "./Icons/StyledComponentsIcon";
+import ExpressIcon from "./Icons/ExpressIcon";
+import YarnIcon from "./Icons/YarnIcon";
+import GitIcon from "./Icons/GitIcon";
+import VSCIcon from "./Icons/VSCIcon";
+import InsomniaIcon from "./Icons/InsomniaIcon";
+import PostManIcon from "./Icons/PostManIcon";
 // Import other icons similarly
 
 const IconsContainer = () => {
   return (
     <Container>
       <Title1>Technologies I Enjoy Using</Title1>
+
       <Head1>Front End</Head1>
       <ItemsContFrEnd>
         <HTMLIcon />
         <JSIcon />
         <ReactIcon />
         <CSSIcon />
-        <StyledComponentsLogo width="100" height="100" />
+        <StyledComponentsLogo width="80" height="80" />
         <AngularIcon />
         <TSLogo />
+        <YarnIcon width="80" height="80" />
         <NPMIcon />
         <BootStrapLogo />
       </ItemsContFrEnd>
+
       <Head2>Back End</Head2>
       <ItemsContBkEnd>
         <NodeIcon />
@@ -40,7 +49,16 @@ const IconsContainer = () => {
         <BashIcon />
         <MongoDBIcon />
         <JavaIcon />
+        <ExpressIcon />
       </ItemsContBkEnd>
+
+      <Head3>Other Technologies</Head3>
+      <OtherTech>
+        <GitIcon />
+        <VSCIcon />
+        <InsomniaIcon width="80" height="80" />
+        <PostManIcon />
+      </OtherTech>
       {/* Render other icons similarly */}
     </Container>
   );
@@ -53,6 +71,8 @@ const Container = styled.div`
   align-items: center;
   gap: 20px; // Adjust as needed
   flex-direction: column;
+  height: 100vh;
+  overflow: auto;
 `;
 
 const Title1 = styled.h1`
@@ -73,6 +93,12 @@ const Head2 = styled.div`
   font-style: normal; // or italic
 `;
 
+const Head3 = styled.div`
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400; // Adjust weight as needed
+  font-style: normal; // or italic
+`;
+
 const ItemsContFrEnd = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -82,6 +108,14 @@ const ItemsContFrEnd = styled.div`
 `;
 
 const ItemsContBkEnd = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; // Adjust as needed
+`;
+
+const OtherTech = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
