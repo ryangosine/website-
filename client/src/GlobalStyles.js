@@ -7,21 +7,56 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  background: #0a0b1e;
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
   color: #e0e1dd;
+  background: 
+    /* Intense highlight */
+    radial-gradient(circle at -12% 48%, 
+      rgba(255,255,255,0.8) 0%, 
+      rgba(255,255,255,0) 50%
+    ),
+    /* Subtle highlight edge */
+    radial-gradient(circle at -8.9% 51.2%, 
+      rgba(255,255,255,0.4) 0%, 
+      rgba(255,255,255,0) 16.9%
+    ),
+    /* Deep shadow */
+    radial-gradient(circle at -5% 54%, 
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0) 45%
+    ),
+    /* Base orange gradient */
+    radial-gradient(circle at -8.9% 51.2%, 
+      rgb(255, 100, 0) 0%, 
+      rgb(255, 124, 0) 15.9%, 
+      rgb(255, 163, 77) 15.9%, 
+      rgb(255, 163, 77) 24.4%, 
+      rgb(19, 30, 37) 24.5%, 
+      rgb(19, 30, 37) 66%
+    );
+  background-color: #0a0b1e;
+  position: relative;
 }
 
-.container {
-  position: relative;
-  width: 80%;
-  max-width: 1000px;
-  text-align: center;
+/* Optional: Add a pseudo-element for an extra glossy effect */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at -8.9% 51.2%, 
+      rgba(255,255,255,0.1) 0%, 
+      rgba(255,255,255,0) 60%
+    );
+  pointer-events: none;
 }
+
+
+
 
 h1 {
   font-size: 3em;
@@ -34,23 +69,7 @@ p {
   color: #a1a1aa;
 }
 
-.accent-line {
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(187, 134, 252, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-  margin: 20px auto;
-}
 
-.background-accent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(10, 11, 30, 0) 0%, rgba(10, 11, 30, 0.8) 50%, rgba(10, 11, 30, 0) 100%);
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
 `;
 
 export default GlobalStyles;
