@@ -1,44 +1,15 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import IconsContainer from "./IconsContainer";
+import IntroSection from "./IntroSection";
+import WorkExperience from "./WorkExperience";
 
 const AboutMeSection = () => {
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const glowingCursor = document.querySelector("a:hover::after");
-      if (glowingCursor) {
-        glowingCursor.style.left = `${e.clientX}px`;
-        glowingCursor.style.top = `${e.clientY}px`;
-      }
-    };
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
   return (
     <SectionContainer>
-      <Title>About Me</Title>
-      <BlurbSection>
-        <Blurb>
-          Graduate from the Concordia University Full-Stack Web Development
-          Program that specialized in the key modern fundamentals of designing
-          and building websites and applications. Focused on learning both
-          Front-End and Back-End development to ensure a strong foundation in
-          programming. Passionate about building web applications and eager to
-          learn, work and develop and expand current skills and knowledge.
-          <br />
-          <br />
-          Working in school environments has cultivated my capacity to think
-          outside the box, analyze complex problems, and deliver effective
-          solutions to meet daily challenges. I am ready to embark on a new
-          professional chapter, bringing not only technical proficiency but also
-          a creative mindset, problem-solving abilities, and a strong work
-          ethic.
-          <br />
-        </Blurb>
+      <ContentWrapper>
+        <IntroSection />
+        <WorkExperience />
         <Resume
           href="https://pdfupload.io/docs/2ac25379"
           target="_blank"
@@ -47,7 +18,7 @@ const AboutMeSection = () => {
           Check Out My Resume!
         </Resume>
         <IconsContainer />
-      </BlurbSection>
+      </ContentWrapper>
     </SectionContainer>
   );
 };
@@ -61,6 +32,14 @@ const SectionContainer = styled.div`
   padding: 20px;
   margin-top: 50px;
 `;
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  gap: 40px; // This creates space between all direct children
+`;
 
 const Title = styled.h1`
   font-family: "Source Code Pro", monospace;
@@ -68,41 +47,38 @@ const Title = styled.h1`
   font-style: normal; // or italic
   margin-bottom: 20px;
 `;
-const BlurbSection = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-`;
 
-const Blurb = styled.p`
-  text-align: left;
-  line-height: 1.4;
-  color: inherit;
-`;
 const Resume = styled.a`
   color: inherit;
   font-family: "Source Code Pro", monospace;
-  font-weight: 400;
-  text-decoration: none;
-  text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.7);
   position: relative;
+  font-weight: 200;
+  text-decoration: none;
   font-size: 20px;
+  margin: 20px;
 
-  &:hover {
-    text-decoration: none;
-  }
-  &:hover::after {
+  &::before {
     content: "";
     position: absolute;
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
-    background: rgba(255, 255, 0, 0.5); /* Yellow glow */
-    border-radius: 50%;
-    pointer-events: none;
-    box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.5); /* Glow effect */
-    transform: translate(-50%, -50%);
-    margin-left: 30px;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(
+      112.7deg,
+      rgb(162, 247, 241) 0.3%,
+      rgb(199, 146, 255) 88.7%
+    );
+    bottom: -2px; /* Adjust as needed */
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
   }
 `;
-const Qualifications = styled.p``;
 
 export default AboutMeSection;

@@ -41,6 +41,7 @@ const SMIconsContainer = () => {
 const IconList = styled.ul`
   margin: 0;
   padding: 0;
+
   display: flex;
   list-style: none;
 `;
@@ -56,7 +57,7 @@ const IconLink = styled.a`
   align-items: center;
   width: 50px;
   height: 50px;
-  background: #333;
+  background: rgba(51, 51, 51, 0.2);
   border-radius: 50%;
   color: #666;
   transition: 0.5s;
@@ -77,8 +78,7 @@ const IconLink = styled.a`
 
   &:hover::before {
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(238, 238, 255, 0.7),
-      0 0 30px rgba(238, 238, 255, 0.5);
+    box-shadow: 0 0 20px rgba(100, 0, 200, 0.7), 0 0 30px rgba(100, 0, 200, 0.5);
   }
 
   &:hover {

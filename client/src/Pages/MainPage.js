@@ -35,6 +35,7 @@ const SideOneContainer = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: space-between;
+  height: 96vh;
 `;
 
 const SideTwoContainer = styled.div`
@@ -55,6 +56,9 @@ const Title = styled(Link)`
   color: inherit;
   font-family: "Courier New", Courier, monospace;
   font-size: 50px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-left: 10px;
 `;
 
 export default MainPage;
