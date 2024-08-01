@@ -76,6 +76,7 @@ const BlurbSection = styled.div`
 const Blurb = styled.p`
   text-align: left;
   line-height: 1.4;
+  color: inherit;
 `;
 const Resume = styled.a`
   color: inherit;
