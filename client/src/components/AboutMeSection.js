@@ -29,6 +29,8 @@ const AboutMeSection = () => {
           Front-End and Back-End development to ensure a strong foundation in
           programming. Passionate about building web applications and eager to
           learn, work and develop and expand current skills and knowledge.
+          <br />
+          <br />
           Working in school environments has cultivated my capacity to think
           outside the box, analyze complex problems, and deliver effective
           solutions to meet daily challenges. I am ready to embark on a new
@@ -72,7 +74,7 @@ const BlurbSection = styled.div`
 `;
 
 const Blurb = styled.p`
-  text-align: justify;
+  text-align: left;
   line-height: 1.4;
 `;
 const Resume = styled.a`

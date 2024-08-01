@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import AboutMeSection from "../components/AboutMeSection";
 import StarField from "../components/Starfield";
+import SMIconsContainer from "../components/SMIconsContainer";
 
 const MainPage = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage = () => {
       <StarField starCount={50} />
       <SideOneContainer>
         <Title>Ryan Gosine.</Title>
+        <SMIconsContainer />
       </SideOneContainer>
       <SideTwoContainer>
         <AboutMeSection />
@@ -31,6 +33,8 @@ const SideOneContainer = styled.div`
   display: flex;
   padding: 20px;
   position: relative;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const SideTwoContainer = styled.div`
