@@ -80,6 +80,7 @@ const Title1 = styled.h1`
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
   text-align: center;
+  font-size: 35px;
 `;
 
 const Head1 = styled.div`

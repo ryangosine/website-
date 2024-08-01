@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import IconsContainer from "./IconsContainer";
 
 const AboutMeSection = () => {
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const glowingCursor = document.querySelector("a:hover::after");
+      if (glowingCursor) {
+        glowingCursor.style.left = `${e.clientX}px`;
+        glowingCursor.style.top = `${e.clientY}px`;
+      }
+    };
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   return (
     <SectionContainer>
       <Title>About Me</Title>
@@ -22,6 +37,13 @@ const AboutMeSection = () => {
           ethic.
           <br />
         </Blurb>
+        <Resume
+          href="https://pdfupload.io/docs/2ac25379"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Check Out My Resume!
+        </Resume>
         <IconsContainer />
       </BlurbSection>
     </SectionContainer>
@@ -53,7 +75,31 @@ const Blurb = styled.p`
   text-align: justify;
   line-height: 1.4;
 `;
+const Resume = styled.a`
+  color: inherit;
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400;
+  text-decoration: none;
+  text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.7);
+  position: relative;
+  font-size: 20px;
 
+  &:hover {
+    text-decoration: none;
+  }
+  &:hover::after {
+    content: "";
+    position: absolute;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    background: rgba(255, 255, 0, 0.5); /* Yellow glow */
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.5); /* Glow effect */
+    transform: translate(-50%, -50%);
+    margin-left: 30px;
+  }
+`;
 const Qualifications = styled.p``;
 
 export default AboutMeSection;

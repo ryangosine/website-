@@ -1,4 +1,5 @@
 // GlobalStyles.js
+
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -64,6 +65,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.2em;
     color: #a1a1aa;
   }
+
 `;
 
 export default GlobalStyles;
