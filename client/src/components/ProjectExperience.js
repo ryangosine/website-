@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import ArrowIcon from "./Icons/ArrowIcon";
 
 const ProjectExperience = () => {
+  const [hoveredCard, setHoveredCard] = useState(null);
   return (
     <Container>
+      <Title>Project Experience</Title>
+      <ExperienceCard
+        href="https://github.com/ryangosine/website-"
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setHoveredCard("website")}
+        onMouseLeave={() => setHoveredCard(null)}
+      >
+        <ProjectName>This Website!</ProjectName>
+        <ProjectDescription>
+          <SecondTitle>
+            <Repo>Click Card For REPO</Repo>
+            <ArrowIcon isHovered={hoveredCard === "website"} />
+          </SecondTitle>
+
+          <Details>
+            Built this interactive website from the ground up to highlight my
+            skills and qualifications. Built without the use of starters or
+            templates.
+          </Details>
+        </ProjectDescription>
+      </ExperienceCard>
+
       <ExperienceCard
         href="https://github.com/ryangosine/shop"
         target="_blank"
         rel="noopener noreferrer"
+        onMouseEnter={() => setHoveredCard("website")}
+        onMouseLeave={() => setHoveredCard(null)}
       >
         <ProjectName>Full-Stack Ecommerce Store</ProjectName>
         <ProjectDescription>
-          <Repo>Click Card For REPO</Repo>
+          <SecondTitle>
+            <Repo>Click Card For REPO</Repo>
+            <ArrowIcon isHovered={hoveredCard === "website"} />
+          </SecondTitle>
           <BulletList>
             <BulletPoint>
               Developed a full stack "CRUD" webstore front utilizing a variety
@@ -38,6 +68,12 @@ const Container = styled.div`
   max-width: 600px;
 `;
 
+const Title = styled.h3`
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
 const ExperienceCard = styled.a`
   display: flex;
   align-items: flex-start;
@@ -50,9 +86,13 @@ const ExperienceCard = styled.a`
 
   &:hover {
     border: 1px solid rgba(0, 0, 0, 0.1); /* Faint border */
-    box-shadow: 0 8px 16px rgba(192, 148, 255, 0.5); /* Increased shadow for more depth /* Shadow effect */
-    transform: translateY(-4px); /* Slightly raised */
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5); /* Green glow shadow */
+    transform: translateY(-2px); /* Slightly raised */
   }
+`;
+
+const SecondTitle = styled.div`
+  display: flex;
 `;
 
 const ProjectDescription = styled.div`
@@ -74,6 +114,12 @@ const Repo = styled.p`
 const BulletList = styled.ul`
   margin: 0;
   padding-left: 20px;
+`;
+
+const Details = styled.div`
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.4;
 `;
 
 const BulletPoint = styled.li`

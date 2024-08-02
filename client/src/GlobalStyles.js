@@ -61,6 +61,12 @@ const GlobalStyles = createGlobalStyle`
     color: #bb86fc;
   }
 
+  h3 {
+    font-size: 2em;
+    margin: 0;
+    color: #2E8B57;
+  }
+
   p {
     font-size: 1.2em;
     color: #a1a1aa;

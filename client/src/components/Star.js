@@ -3,9 +3,9 @@ import styled, { keyframes } from "styled-components";
 
 const fadeInOut = keyframes`
   0% { opacity: 0; }
-  20% { opacity: 1; }
-  40% { opacity: 1; }
-  80% { opacity: 0; }
+  20% { opacity: 0/5; }
+  40% { opacity: 0.5; }
+  80% {opacity: 1;}
   100% { opacity: 0; }
 `;
 
