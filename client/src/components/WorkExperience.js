@@ -44,8 +44,8 @@ const JobCard = styled.a`
 
   &:hover {
     border: 1px solid rgba(0, 0, 0, 0.1); /* Faint border */
-    box-shadow: 0 4px 8px rgba(192, 148, 255, 0.5); /* Shadow effect */
-    transform: translateY(-2px); /* Slightly raised */
+    box-shadow: 0 8px 16px rgba(192, 148, 255, 0.5); /* Increased shadow for more depth /* Shadow effect */
+    transform: translateY(-4px); /* Slightly raised */
   }
 `;
 

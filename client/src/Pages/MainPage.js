@@ -12,7 +12,7 @@ const MainPage = () => {
     <StyledMainPage>
       <StarField starCount={50} />
       <SideOneContainer>
-        <Title>Ryan Gosine.</Title>
+        <Title>.ryanGosine</Title>
         <SMIconsContainer />
       </SideOneContainer>
       <SideTwoContainer>

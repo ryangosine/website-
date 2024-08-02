@@ -3,6 +3,7 @@ import styled from "styled-components";
 import IconsContainer from "./IconsContainer";
 import IntroSection from "./IntroSection";
 import WorkExperience from "./WorkExperience";
+import ProjectExperience from "./ProjectExperience";
 
 const AboutMeSection = () => {
   return (
@@ -10,6 +11,7 @@ const AboutMeSection = () => {
       <ContentWrapper>
         <IntroSection />
         <WorkExperience />
+        <ProjectExperience />
         <Resume
           href="https://pdfupload.io/docs/2ac25379"
           target="_blank"
