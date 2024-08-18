@@ -9,38 +9,14 @@ const GlobalStyles = createGlobalStyle`
     height: 100vh;
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
-    color: #e0e1dd;
-    background: 
-      /* Subtle center highlight */
-      radial-gradient(circle at -12% 48%, 
-        rgba(255,255,255,0.4) 0%, 
-        rgba(255,255,255,0) 50%
-      ),
-      /* Subtle highlight edge */
-      radial-gradient(circle at -8.9% 51.2%, 
-        rgba(255,255,255,0.2) 0%, 
-        rgba(255,255,255,0) 16.9%
-      ),
-      /* Deep shadow */
-      radial-gradient(circle at -5% 54%, 
-        rgba(0,0,0,0.5) 0%,
-        rgba(0,0,0,0) 45%
-      ),
-      /* Base orange gradient */
-      radial-gradient(circle at -8.9% 51.2%, 
-        rgb(255, 100, 0) 0%, 
-        rgb(255, 124, 0) 15.9%, 
-        rgb(255, 163, 77) 15.9%, 
-        rgb(255, 163, 77) 24.4%, 
-        rgb(19, 30, 37) 24.5%, 
-        rgb(19, 30, 37) 66%
-      );
-    background-color: #0a0b1e;
+    color: #F0EAD6;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+    /* background-color: #0a0b1e; */
     position: relative;
   }
 
   /* Optional: Add a pseudo-element for an extra glossy effect */
-  body::after {
+  /* body::after {
     content: '';
     position: absolute;
     top: 0;
@@ -53,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
         rgba(255,255,255,0) 60%
       );
     pointer-events: none;
-  }
+  } */
 
   h1 {
     font-size: 3em;
@@ -69,7 +45,7 @@ const GlobalStyles = createGlobalStyle`
 
   p {
     font-size: 1.2em;
-    color: #a1a1aa;
+    color: #F0EAD6;
   }
 
 `;

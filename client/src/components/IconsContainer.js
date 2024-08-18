@@ -66,13 +66,16 @@ const IconsContainer = () => {
 
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px;
   justify-content: center;
   align-items: center;
   gap: 20px; // Adjust as needed
   flex-direction: column;
-  height: 100vh;
-  overflow: auto;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
 `;
 
 const Title1 = styled.h1`

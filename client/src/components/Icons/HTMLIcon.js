@@ -18,8 +18,8 @@ const HTMLIcon = () => (
       y2="46.236"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#f09701"></stop>
-      <stop offset="1" stop-color="#e36001"></stop>
+      <stop offset="0" stopColor="#f09701"></stop>
+      <stop offset="1" stopColor="#e36001"></stop>
     </linearGradient>
     <path
       fill="url(#SNASnMitCxQrIYk4GDibta_v8RpPQUwv0N8_gr1)"

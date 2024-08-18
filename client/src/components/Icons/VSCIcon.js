@@ -17,8 +17,8 @@ const VSCIcon = () => (
       y2="44.487"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#c391f7"></stop>
-      <stop offset="1" stop-color="#b579f4"></stop>
+      <stop offset="0" stopColor="#c391f7"></stop>
+      <stop offset="1" stopColor="#b579f4"></stop>
     </linearGradient>
     <path
       fill="url(#~jm6wMmI3aADOIa51_ZGPa_ezj3zaVtImPg_gr1)"
@@ -32,21 +32,21 @@ const VSCIcon = () => (
       y2="4.842"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset=".019" stop-color="#742fb6"></stop>
-      <stop offset=".32" stop-color="#702db5"></stop>
-      <stop offset=".364" stop-color="#5d2596"></stop>
-      <stop offset=".38" stop-color="#5d2596"></stop>
-      <stop offset=".48" stop-color="#5d2596"></stop>
-      <stop offset=".485" stop-color="#60279a"></stop>
-      <stop offset=".517" stop-color="#6f2dab"></stop>
-      <stop offset=".556" stop-color="#7932b6"></stop>
-      <stop offset=".61" stop-color="#7e34bd"></stop>
-      <stop offset=".762" stop-color="#8035bf"></stop>
-      <stop offset=".806" stop-color="#7d34bb"></stop>
-      <stop offset=".851" stop-color="#7530ae"></stop>
-      <stop offset=".897" stop-color="#66299a"></stop>
-      <stop offset=".943" stop-color="#52207d"></stop>
-      <stop offset=".963" stop-color="#481b6e"></stop>
+      <stop offset=".019" stopColor="#742fb6"></stop>
+      <stop offset=".32" stopColor="#702db5"></stop>
+      <stop offset=".364" stopColor="#5d2596"></stop>
+      <stop offset=".38" stopColor="#5d2596"></stop>
+      <stop offset=".48" stopColor="#5d2596"></stop>
+      <stop offset=".485" stopColor="#60279a"></stop>
+      <stop offset=".517" stopColor="#6f2dab"></stop>
+      <stop offset=".556" stopColor="#7932b6"></stop>
+      <stop offset=".61" stopColor="#7e34bd"></stop>
+      <stop offset=".762" stopColor="#8035bf"></stop>
+      <stop offset=".806" stopColor="#7d34bb"></stop>
+      <stop offset=".851" stopColor="#7530ae"></stop>
+      <stop offset=".897" stopColor="#66299a"></stop>
+      <stop offset=".943" stopColor="#52207d"></stop>
+      <stop offset=".963" stopColor="#481b6e"></stop>
     </linearGradient>
     <path
       fill="url(#~jm6wMmI3aADOIa51_ZGPb_ezj3zaVtImPg_gr2)"
@@ -60,15 +60,15 @@ const VSCIcon = () => (
       y2="30.112"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset=".002" stop-color="#9c55d4"></stop>
-      <stop offset=".003" stop-color="#9c55d4"></stop>
-      <stop offset=".337" stop-color="#9751d2"></stop>
-      <stop offset=".737" stop-color="#8847cb"></stop>
-      <stop offset=".848" stop-color="#8343c8"></stop>
-      <stop offset=".89" stop-color="#8042c3"></stop>
-      <stop offset=".938" stop-color="#773db6"></stop>
-      <stop offset=".988" stop-color="#68369f"></stop>
-      <stop offset="1" stop-color="#643499"></stop>
+      <stop offset=".002" stopColor="#9c55d4"></stop>
+      <stop offset=".003" stopColor="#9c55d4"></stop>
+      <stop offset=".337" stopColor="#9751d2"></stop>
+      <stop offset=".737" stopColor="#8847cb"></stop>
+      <stop offset=".848" stopColor="#8343c8"></stop>
+      <stop offset=".89" stopColor="#8042c3"></stop>
+      <stop offset=".938" stopColor="#773db6"></stop>
+      <stop offset=".988" stopColor="#68369f"></stop>
+      <stop offset="1" stopColor="#643499"></stop>
     </linearGradient>
     <path
       fill="url(#~jm6wMmI3aADOIa51_ZGPc_ezj3zaVtImPg_gr3)"
@@ -82,8 +82,8 @@ const VSCIcon = () => (
       y2="14.799"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#5c1d9c"></stop>
-      <stop offset="1" stop-color="#561b90"></stop>
+      <stop offset="0" stopColor="#5c1d9c"></stop>
+      <stop offset="1" stopColor="#561b90"></stop>
     </linearGradient>
     <path
       fill="url(#~jm6wMmI3aADOIa51_ZGPd_ezj3zaVtImPg_gr4)"

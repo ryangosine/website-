@@ -17,16 +17,16 @@ const BootStrapLogo = () => (
       y2="7"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#643499"></stop>
-      <stop offset=".011" stop-color="#68369f"></stop>
-      <stop offset=".135" stop-color="#773db6"></stop>
-      <stop offset=".193" stop-color="#8042c3"></stop>
-      <stop offset=".248" stop-color="#8343c8"></stop>
-      <stop offset=".388" stop-color="#8444c9"></stop>
-      <stop offset=".732" stop-color="#9751d2"></stop>
-      <stop offset=".997" stop-color="#9c55d4"></stop>
-      <stop offset=".998" stop-color="#9c55d4"></stop>
-      <stop offset="1" stop-color="#9c55d4"></stop>
+      <stop offset="0" stopColor="#643499"></stop>
+      <stop offset=".011" stopColor="#68369f"></stop>
+      <stop offset=".135" stopColor="#773db6"></stop>
+      <stop offset=".193" stopColor="#8042c3"></stop>
+      <stop offset=".248" stopColor="#8343c8"></stop>
+      <stop offset=".388" stopColor="#8444c9"></stop>
+      <stop offset=".732" stopColor="#9751d2"></stop>
+      <stop offset=".997" stopColor="#9c55d4"></stop>
+      <stop offset=".998" stopColor="#9c55d4"></stop>
+      <stop offset="1" stopColor="#9c55d4"></stop>
     </linearGradient>
     <path
       fill="url(#Q_pn21O5LDDqwJlze0Upoa_g9mmSxx3SwAI_gr1)"

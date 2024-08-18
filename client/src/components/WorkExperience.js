@@ -59,6 +59,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: #efebdd;
 `;
 
 const JobTitle = styled.div`

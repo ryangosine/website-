@@ -8,7 +8,7 @@ const ArrowIcon = ({ className, isHovered }) => (
     xmlns="http://www.w3.org/2000/svg"
     width="20"
     height="20"
-    fill="white"
+    fill="#C0C0C0"
     viewBox="0 0 24 24"
     isHovered={isHovered}
   >
@@ -19,6 +19,8 @@ const ArrowIcon = ({ className, isHovered }) => (
 const StyledArrowIcon = styled.svg`
   transition: transform 0.3s ease;
   transform: ${(props) => (props.isHovered ? "translate(5px, -5px)" : "none")};
+  display: inline-block;
+  vertical-align: middle;
 `;
 
 export default ArrowIcon;

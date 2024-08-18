@@ -40,7 +40,7 @@ const BlurbSection = styled.div`
 const Blurb = styled.p`
   text-align: left;
   line-height: 1.4;
-  color: inherit;
+  color: #efebdd;
 `;
 
 export default IntroSection;

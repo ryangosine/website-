@@ -33,14 +33,14 @@ const ProjectExperience = () => {
         href="https://github.com/ryangosine/shop"
         target="_blank"
         rel="noopener noreferrer"
-        onMouseEnter={() => setHoveredCard("website")}
+        onMouseEnter={() => setHoveredCard("shop")}
         onMouseLeave={() => setHoveredCard(null)}
       >
         <ProjectName>Full-Stack Ecommerce Store</ProjectName>
         <ProjectDescription>
           <SecondTitle>
             <Repo>Click Card For REPO</Repo>
-            <ArrowIcon isHovered={hoveredCard === "website"} />
+            <ArrowIcon isHovered={hoveredCard === "shop"} />
           </SecondTitle>
           <BulletList>
             <BulletPoint>
@@ -109,6 +109,7 @@ const Repo = styled.p`
   margin: 0;
   font-style: italic;
   font-size: 0.9em;
+  padding-right: 5px;
 `;
 
 const BulletList = styled.ul`

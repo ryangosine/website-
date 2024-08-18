@@ -17,8 +17,8 @@ const ExpressIcon = () => (
       y2="43.514"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#6dc7ff"></stop>
-      <stop offset="1" stop-color="#e6abff"></stop>
+      <stop offset="0" stopColor="#6dc7ff"></stop>
+      <stop offset="1" stopColor="#e6abff"></stop>
     </linearGradient>
     <path
       fill="url(#Ptgyoqd6DQJu9ZUJIh3sLa_2ZOaTclOqD4q_gr1)"
@@ -32,8 +32,8 @@ const ExpressIcon = () => (
       y2="49"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#1a6dff"></stop>
-      <stop offset="1" stop-color="#c822ff"></stop>
+      <stop offset="0" stopColor="#1a6dff"></stop>
+      <stop offset="1" stopColor="#c822ff"></stop>
     </linearGradient>
     <path
       fill="url(#Ptgyoqd6DQJu9ZUJIh3sLb_2ZOaTclOqD4q_gr2)"
@@ -47,8 +47,8 @@ const ExpressIcon = () => (
       y2="50"
       gradientUnits="userSpaceOnUse"
     >
-      <stop offset="0" stop-color="#1a6dff"></stop>
-      <stop offset="1" stop-color="#c822ff"></stop>
+      <stop offset="0" stopColor="#1a6dff"></stop>
+      <stop offset="1" stopColor="#c822ff"></stop>
     </linearGradient>
     <path
       fill="url(#Ptgyoqd6DQJu9ZUJIh3sLc_2ZOaTclOqD4q_gr3)"
