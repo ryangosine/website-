@@ -4,6 +4,7 @@ import styled from "styled-components";
 const WorkExperience = () => {
   return (
     <Container>
+      <Title>Work Experience</Title>
       <JobCard
         href="https://www.segalcentre.org"
         target="_blank"
@@ -31,6 +32,12 @@ const Container = styled.div`
   gap: 20px;
   width: 100%;
   max-width: 600px;
+`;
+
+const Title = styled.h3`
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 `;
 const JobCard = styled.a`
   display: flex;

@@ -41,6 +41,8 @@ const Blurb = styled.p`
   text-align: left;
   line-height: 1.4;
   color: #efebdd;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 `;
 
 export default IntroSection;
