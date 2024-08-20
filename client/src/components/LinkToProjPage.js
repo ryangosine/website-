@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ArrowRightIcon from "./Icons/ArrowRightIcon";
 
 const LinkToProjectPage = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
   return (
-    <GlobalWrapper
-      onMouseEnter={() => setHoveredLink("projectPage")}
-      onMouseLeave={() => setHoveredLink(null)}
-    >
-      <Prompt>Projects I've Worked On!</Prompt>
-      {/* <ArrowRightIcon isHovered={hoveredLink === "projectPage"} /> */}
-    </GlobalWrapper>
+    <StyledLink to="/projectPage">
+      <GlobalWrapper
+        onMouseEnter={() => setHoveredLink("projectPage")}
+        onMouseLeave={() => setHoveredLink(null)}
+      >
+        <Prompt>Projects I've Worked On!</Prompt>
+        {/* <ArrowRightIcon isHovered={hoveredLink === "projectPage"} /> */}
+      </GlobalWrapper>
+    </StyledLink>
   );
 };
 
 const GlobalWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const Prompt = styled.a`
