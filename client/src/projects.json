@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "This Website!",
+    "repoUrl": "https://github.com/ryangosine/website-",
+    "description": "Built this interactive website from the ground up to highlight my skills and qualifications. Built without the use of starters or templates.",
+    "bulletPoints": []
+  },
+  {
+    "id": 2,
+    "name": "Full-Stack Ecommerce Store",
+    "repoUrl": "https://github.com/ryangosine/shop",
+    "description": "",
+    "bulletPoints": [
+      "Developed a full stack \"CRUD\" webstore front utilizing a variety of technologies and databases",
+      "Customer information was stored using a database developed in MongoDB",
+      "Cart is designed in Redux",
+      "React.js, JS, CSS, HTML, Node.JS, Express"
+    ]
+  }
+]

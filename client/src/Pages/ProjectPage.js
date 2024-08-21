@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import BackButtonComponent from "../components/BackButtonComponent";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -26,7 +27,10 @@ const ProjectsPage = () => {
 
   return (
     <GlobalWrapper>
-      <Title>My Projects</Title>
+      <HeaderSection>
+        <BackButtonComponent />
+        <Title>MY PROJECTS</Title>
+      </HeaderSection>
       <ProjectList>
         {projects.map((project) => (
           <ProjectItem key={project.id}>
@@ -41,11 +45,55 @@ const ProjectsPage = () => {
 
 const GlobalWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+const HeaderSection = styled.div`
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+`;
+
+const shakeAnimation = keyframes`
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
 `;
 
 const Title = styled.h1`
-  color: #333;
-  font-size: 24px;
+  color: #6082b6;
+  font-size: 48px;
+  margin-left: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  // 3D effect
+  text-shadow: 0 1px 0 #4a6285, 0 2px 0 #3d5270, 0 3px 0 #30425a,
+    0 4px 0 #243245, 0 5px 0 #182230, 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px); // Reduced raise effect
+    animation: ${shakeAnimation} 0.5s ease;
+    text-shadow: 0 1px 0 #4a6285, 0 2px 0 #3d5270, 0 3px 0 #30425a,
+      0 4px 0 #243245, 0 5px 0 #182230, 0 6px 1px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+      0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
+      0 22px 22px rgba(0, 0, 0, 0.1); // Slightly increased shadow
+  }
 `;
 
 const ProjectList = styled.ul`

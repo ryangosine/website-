@@ -40,15 +40,6 @@ app.get("/api/projects", async (req, res) => {
 // ---------------------------------
 
 // this is our catch all endpoint.
-app.get("/api/projects", async (req, res) => {
-  try {
-    const { rows } = await pool.query("SELECT * FROM projects");
-    res.json(rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 // Node spins up our server and sets it to listen on port 8000.
 const PORT = process.env.PORT || 8000;

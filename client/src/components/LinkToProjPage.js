@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import ArrowRightIcon from "./Icons/ArrowRightIcon";
 
 const LinkToProjectPage = () => {
-  const [hoveredLink, setHoveredLink] = useState(null);
+  const [isHovered, setIsHovered] = useState(null);
   return (
-    <StyledLink to="/projectPage">
-      <GlobalWrapper
-        onMouseEnter={() => setHoveredLink("projectPage")}
-        onMouseLeave={() => setHoveredLink(null)}
-      >
-        <Prompt>Projects I've Worked On!</Prompt>
-        {/* <ArrowRightIcon isHovered={hoveredLink === "projectPage"} /> */}
+    <StyledLink
+      to="/projectPage"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <GlobalWrapper>
+        <Prompt $isHovered={isHovered}> Projects I've Worked On!</Prompt>
       </GlobalWrapper>
     </StyledLink>
   );
@@ -27,23 +26,14 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Prompt = styled.a`
-  color: inherit;
+const Prompt = styled.span`
+  color: ${({ $isHovered }) => ($isHovered ? "#4CAF50" : "#F0EAD6")};
   font-family: "Source Code Pro", monospace;
   position: relative;
-  font-weight: 200;
-  text-decoration: none;
+  font-weight: ${({ $isHovered }) => ($isHovered ? "bold" : "normal")};
   font-size: 20px;
   margin: 10px;
-
-  transition: color 0.3s ease;
-  color: ${({ active }) =>
-    active ? "#4CAF50" : "#F0EAD6"}; // Change colors as needed
-  font-weight: ${({ active }) => (active ? "bold" : "normal")};
-
-  &:hover {
-    color: #4caf50;
-  }
+  transition: color 0.3s ease, font-weight 0.3s ease;
 `;
 
 export default LinkToProjectPage;

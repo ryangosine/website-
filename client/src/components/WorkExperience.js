@@ -1,27 +1,27 @@
 import React from "react";
 import styled from "styled-components";
+import workExperienceData from "../workEXP.json"; // Import the JSON file
 
 const WorkExperience = () => {
   return (
     <Container>
       <Title>Work Experience</Title>
-      <JobCard
-        href="https://www.segalcentre.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Years>2023 - Present</Years>
-        <Details>
-          <JobTitle>
-            Full-Stack Web Developer - Segal Centre for the Performing Arts
-          </JobTitle>
-          <Position>
-            Responsible for maintaining and optimizing the Segal Centre Website.
-            Working with JavaScript, HTML5 and CSS to create a seamless and
-            exceptional experience for the customer base.
-          </Position>
-        </Details>
-      </JobCard>
+      {workExperienceData.map((job) => (
+        <JobCard
+          key={job.id}
+          href={job.companyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Years>{job.years}</Years>
+          <Details>
+            <JobTitle>
+              {job.jobTitle} - {job.company}
+            </JobTitle>
+            <Position>{job.description}</Position>
+          </Details>
+        </JobCard>
+      ))}
     </Container>
   );
 };
@@ -38,7 +38,12 @@ const Title = styled.h3`
   margin-top: 50px;
   display: flex;
   justify-content: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: #6082b6;
 `;
+
 const JobCard = styled.a`
   display: flex;
   align-items: flex-start;
@@ -73,6 +78,7 @@ const JobTitle = styled.div`
   font-style: italic;
   font-size: 0.9em;
 `;
+
 const Position = styled.div`
   line-height: 1.4; // Match line-height with IntroSection
 `;

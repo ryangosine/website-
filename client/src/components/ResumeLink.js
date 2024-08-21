@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ArrowIcon from "./Icons/ArrowIcon";
 
 const ResumeLink = () => {
-  const [hoveredLink, setHoveredLink] = useState(null);
   return (
     <Container>
-      <Resume
+      <StyledLink
         href="https://pdfupload.io/docs/2ac25379"
         target="_blank"
         rel="noopener noreferrer"
-        onMouseEnter={() => setHoveredLink("resume")}
-        onMouseLeave={() => setHoveredLink(null)}
       >
         Check Out My Resume!
-      </Resume>
-      {/* <ArrowIcon isHovered={hoveredLink === "resume"} /> */}
+      </StyledLink>
     </Container>
   );
 };
@@ -25,22 +20,19 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Resume = styled.a`
-  color: inherit;
+const StyledLink = styled.a`
+  color: #f0ead6;
   font-family: "Source Code Pro", monospace;
   position: relative;
-  font-weight: 200;
-  text-decoration: none;
+  font-weight: normal;
   font-size: 20px;
   margin: 10px;
-
-  transition: color 0.3s ease;
-  color: ${({ active }) =>
-    active ? "#4CAF50" : "#F0EAD6"}; // Change colors as needed
-  font-weight: ${({ active }) => (active ? "bold" : "normal")};
+  text-decoration: none;
+  transition: color 0.3s ease, font-weight 0.3s ease;
 
   &:hover {
     color: #4caf50;
+    font-weight: bold;
   }
 `;
 

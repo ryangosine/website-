@@ -15,14 +15,11 @@ const MainPage = () => {
     const container = document.getElementById("side-two-container");
     const sections = container.querySelectorAll("section");
     const scrollPosition = container.scrollTop;
-    const containerHeight = container.clientHeight;
 
     if (scrollPosition < 50) {
       setActiveSection(null);
       return;
     }
-
-    let currentSection = null;
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
@@ -85,13 +82,13 @@ const MainPage = () => {
           <Title src={Ryan} alt="Ryan" />
           <List>
             <ListItem
-              active={activeSection === "work-experience"}
+              $active={activeSection === "work-experience"}
               onClick={() => scrollToSection("work-experience")}
             >
               Work Experience
             </ListItem>
             <ListItem
-              active={activeSection === "project-experience"}
+              $active={activeSection === "project-experience"}
               onClick={() => scrollToSection("project-experience")}
             >
               Projects
@@ -131,12 +128,11 @@ const ListItem = styled.li`
   cursor: pointer;
   padding: 10px;
   transition: color 0.3s ease;
-  color: ${({ active }) =>
-    active ? "#4CAF50" : "#F0EAD6"}; // Change colors as needed
-  font-weight: ${({ active }) => (active ? "bold" : "normal")};
+  color: ${({ $active }) => ($active ? "#6082B6" : "#F0EAD6")};
+  font-weight: ${({ $active }) => ($active ? "bold" : "normal")};
   font-family: "Lato", sans-serif;
   &:hover {
-    color: #4caf50;
+    color: #6082b6;
   }
 `;
 

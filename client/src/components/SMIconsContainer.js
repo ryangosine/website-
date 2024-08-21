@@ -41,13 +41,12 @@ const SMIconsContainer = () => {
 const IconList = styled.ul`
   margin: 0;
   padding: 0;
-
   display: flex;
   list-style: none;
 `;
 
 const IconItem = styled.li`
-  margin: 0 5px;
+  margin: 0 10px;
 `;
 
 const IconLink = styled.a`
@@ -58,9 +57,10 @@ const IconLink = styled.a`
   width: 50px;
   height: 50px;
   background: rgba(51, 51, 51, 0.2);
-  border-radius: 50%;
+  border-radius: 8px; // Changed from 50% to 8px for a box shape
   color: #666;
-  transition: 0.5s;
+  transition: 0.3s;
+  overflow: hidden;
 
   &::before {
     content: "";
@@ -69,29 +69,30 @@ const IconLink = styled.a`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background: rgba(238, 238, 255, 0.5);
-    transition: 0.5s;
-    transform: scale(0.9);
-    z-index: -1;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 105, 180, 0.3),
+      rgba(147, 112, 219, 0.3)
+    );
+    opacity: 0;
+    transition: 0.3s;
   }
 
   &:hover::before {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(100, 0, 200, 0.7), 0 0 30px rgba(100, 0, 200, 0.5);
+    opacity: 1;
   }
 
   &:hover {
-    color: rgba(238, 238, 255, 0.9); /* Light purple color on hover */
-    box-shadow: 0 0 10px rgba(238, 238, 255, 0.7),
-      0 0 20px rgba(238, 238, 255, 0.5); /* Nebula shadow */
-    text-shadow: 0 0 10px rgba(238, 238, 255, 0.7); /* Light purple text shadow */
+    color: #fff;
+    background: rgba(51, 51, 51, 0.4);
+    transform: translateY(-2px);
   }
 
   svg {
     width: 30px;
     height: 30px;
     fill: currentColor;
+    transition: 0.3s;
   }
 `;
 

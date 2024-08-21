@@ -1,61 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ArrowIcon from "./Icons/ArrowIcon";
+import projectData from "../projects.json";
 
 const ProjectExperience = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
   return (
     <Container>
       <Title>Project Experience</Title>
-      <ExperienceCard
-        href="https://github.com/ryangosine/website-"
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setHoveredCard("website")}
-        onMouseLeave={() => setHoveredCard(null)}
-      >
-        <ProjectName>This Website!</ProjectName>
-        <ProjectDescription>
-          <SecondTitle>
-            <Repo>Click Card For REPO</Repo>
-            <ArrowIcon isHovered={hoveredCard === "website"} />
-          </SecondTitle>
-
-          <Details>
-            Built this interactive website from the ground up to highlight my
-            skills and qualifications. Built without the use of starters or
-            templates.
-          </Details>
-        </ProjectDescription>
-      </ExperienceCard>
-
-      <ExperienceCard
-        href="https://github.com/ryangosine/shop"
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setHoveredCard("shop")}
-        onMouseLeave={() => setHoveredCard(null)}
-      >
-        <ProjectName>Full-Stack Ecommerce Store</ProjectName>
-        <ProjectDescription>
-          <SecondTitle>
-            <Repo>Click Card For REPO</Repo>
-            <ArrowIcon isHovered={hoveredCard === "shop"} />
-          </SecondTitle>
-          <BulletList>
-            <BulletPoint>
-              Developed a full stack "CRUD" webstore front utilizing a variety
-              of technologies and databases
-            </BulletPoint>
-            <BulletPoint>
-              Customer information was stored using a database developed in
-              MongoDB
-            </BulletPoint>
-            <BulletPoint>Cart is designed in Redux </BulletPoint>
-            <BulletPoint>React.js, JS, CSS, HTML, Node.JS, Express</BulletPoint>
-          </BulletList>
-        </ProjectDescription>
-      </ExperienceCard>
+      {projectData.map((project) => (
+        <ExperienceCard
+          key={project.id}
+          href={project.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ProjectName>{project.name}</ProjectName>
+          <ProjectDescription>
+            <SecondTitle>
+              <Repo>Click Card For REPO</Repo>
+            </SecondTitle>
+            {project.bulletPoints.length > 0 ? (
+              <BulletList>
+                {project.bulletPoints.map((point, index) => (
+                  <BulletPoint key={index}>{point}</BulletPoint>
+                ))}
+              </BulletList>
+            ) : (
+              <Details>{project.description}</Details>
+            )}
+          </ProjectDescription>
+        </ExperienceCard>
+      ))}
     </Container>
   );
 };
@@ -72,6 +46,10 @@ const Title = styled.h3`
   margin-top: 50px;
   display: flex;
   justify-content: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: #6082b6;
 `;
 
 const ExperienceCard = styled.a`
@@ -81,13 +59,16 @@ const ExperienceCard = styled.a`
   text-decoration: none;
   color: inherit;
   padding: 20px;
-  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: ${(props) =>
+    props.$isHovered ? "0 4px 8px rgba(0, 255, 0, 0.5)" : "none"};
+  transform: ${(props) => (props.$isHovered ? "translateY(-2px)" : "none")};
   transition: all 0.3s ease;
 
   &:hover {
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Faint border */
-    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5); /* Green glow shadow */
-    transform: translateY(-2px); /* Slightly raised */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px);
   }
 `;
 
