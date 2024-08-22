@@ -31,6 +31,7 @@ const pool = new Pool({
 app.get("/api/projects", async (req, res) => {
   try {
     const { rows } = await pool.query("SELECT * FROM projects");
+    console.log("Rows", rows);
     res.json(rows);
   } catch (error) {
     console.error(error);

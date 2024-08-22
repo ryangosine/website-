@@ -3,50 +3,92 @@ import styled from "styled-components";
 import LinkedInIcon from "./Icons/LinkedInIcon";
 import GitHubIcon from "./Icons/GitHubIcon";
 import FaceBookIcon from "./Icons/FacebookIcon";
+import GmailIcon from "./Icons/GmailIcon";
+import XIcon from "./Icons/Xicon";
 
 const SMIconsContainer = () => {
   return (
-    <IconList>
-      <IconItem>
-        <IconLink
-          href="https://www.linkedin.com/in/ryangosine/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <LinkedInIcon />
-        </IconLink>
-      </IconItem>
-      <IconItem>
-        <IconLink
-          href="https://github.com/ryangosine"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GitHubIcon />
-        </IconLink>
-      </IconItem>
-      <IconItem>
-        <IconLink
-          href="https://www.facebook.com/removedfromgame"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaceBookIcon />
-        </IconLink>
-      </IconItem>
-    </IconList>
+    <GlobalWrapper>
+      <IconList>
+        <IconItem>
+          <IconLink
+            href="https://www.linkedin.com/in/ryangosine/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedInIcon />
+          </IconLink>
+        </IconItem>
+
+        <IconItem>
+          <IconLink
+            href="https://github.com/ryangosine"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubIcon />
+          </IconLink>
+        </IconItem>
+
+        <IconItem>
+          <IconLink
+            href="https://x.com/removedfromgame"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <XIcon />
+          </IconLink>
+        </IconItem>
+
+        <IconItem>
+          <IconLink
+            href="https://www.facebook.com/removedfromgame"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaceBookIcon />
+          </IconLink>
+        </IconItem>
+
+        <IconItem>
+          <IconLink
+            href="mailto:ryanganeshgosine@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GmailIcon />
+          </IconLink>
+        </IconItem>
+      </IconList>
+      <TextElement>Shoot me a message! I'd love to collaborate!</TextElement>
+    </GlobalWrapper>
   );
 };
 
+const GlobalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TextElement = styled.div`
+  margin-top: 20px; // Adjust as needed
+`;
+
+const EmailSVG = styled.img`
+  width: 200px; // Adjust the size as needed
+  height: auto;
+`;
+
 const IconList = styled.ul`
-  margin: 0;
+  margin: 10;
   padding: 0;
   display: flex;
   list-style: none;
 `;
 
 const IconItem = styled.li`
-  margin: 0 10px;
+  margin: 5px;
 `;
 
 const IconLink = styled.a`

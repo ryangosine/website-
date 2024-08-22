@@ -55,9 +55,9 @@ const JobCard = styled.a`
   transition: all 0.3s ease;
 
   &:hover {
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Faint border */
-    box-shadow: 0 4px 8px rgba(192, 148, 255, 0.5); /* Increased shadow for more depth /* Shadow effect */
-    transform: translateY(-2px); /* Slightly raised */
+    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
+    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
+    transition: all 0.3s ease; /* Smooth transition for the effect */
   }
 `;
 

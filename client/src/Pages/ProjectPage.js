@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
 import BackButtonComponent from "../components/BackButtonComponent";
+import ProjectTools from "../components/ProjectTools";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -34,8 +35,11 @@ const ProjectsPage = () => {
       <ProjectList>
         {projects.map((project) => (
           <ProjectItem key={project.id}>
-            <ProjectName>{project.name}</ProjectName>
-            <ProjectTools>Tools: {project.tools.join(", ")}</ProjectTools>
+            <NameButtonContainer>
+              <ProjectName>{project.name}</ProjectName>
+              <ProjectTools tools={project.tools} />
+            </NameButtonContainer>
+            <ProjectDescription>{project.Description}</ProjectDescription>
           </ProjectItem>
         ))}
       </ProjectList>
@@ -102,10 +106,24 @@ const ProjectList = styled.ul`
 `;
 
 const ProjectItem = styled.li`
+  display: flex;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 5px;
+
+  &:hover {
+    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
+    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
+    transition: all 0.3s ease; /* Smooth transition for the effect */
+  }
+`;
+
+const NameButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-right: 1px solid white;
 `;
 
 const ProjectName = styled.h2`
@@ -114,10 +132,12 @@ const ProjectName = styled.h2`
   margin-bottom: 10px;
 `;
 
-const ProjectTools = styled.p`
-  color: #666;
-  font-size: 14px;
-`;
+// const ProjectTools = styled.p`
+//   color: #666;
+//   font-size: 14px;
+// `;
+
+const ProjectDescription = styled.div``;
 
 const LoadingMessage = styled.div`
   font-size: 18px;

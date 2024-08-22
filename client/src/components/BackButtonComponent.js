@@ -29,7 +29,7 @@ const BackButtonComponent = ({ to = "/main", ariaLabel = "Go back" }) => {
       onMouseEnter={handleMouseEnter}
       onAnimationEnd={handleAnimationEnd}
       aria-label={ariaLabel}
-      shouldBounce={shouldBounce}
+      $shouldBounce={shouldBounce}
     >
       <BackButtonImage src={BackButtonSVG} alt="Back" />
     </BackButtonContainer>
@@ -69,9 +69,8 @@ const BackButtonContainer = styled.button`
   top: 0;
 
   &:hover {
-    animation: ${bounce} 0.5s ease infinite;
-  }
-  &:hover {
+    animation: ${(props) => (props.$shouldBounce ? bounce : "none")} 0.5s ease
+      infinite; // Use $shouldBounce here
     background-color: #e8e8e8;
   }
 

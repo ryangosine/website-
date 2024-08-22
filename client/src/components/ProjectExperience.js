@@ -57,18 +57,13 @@ const ExperienceCard = styled.a`
   align-items: flex-start;
   gap: 20px;
   text-decoration: none;
-  color: inherit;
   padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: ${(props) =>
-    props.$isHovered ? "0 4px 8px rgba(0, 255, 0, 0.5)" : "none"};
-  transform: ${(props) => (props.$isHovered ? "translateY(-2px)" : "none")};
-  transition: all 0.3s ease;
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
 
   &:hover {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.5);
-    transform: translateY(-2px);
+    border: 1px solid rgba(0, 184, 255, 0.5);
+    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
+    transition: all 0.3s ease; /* Smooth transition for the effect */
   }
 `;
 
@@ -80,11 +75,13 @@ const ProjectDescription = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: #f0ead6;
 `;
 
 const ProjectName = styled.div`
   min-width: 120px;
   text-align: left;
+  color: #f0ead6;
 `;
 const Repo = styled.p`
   margin: 0;

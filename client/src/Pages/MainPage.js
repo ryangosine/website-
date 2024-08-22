@@ -78,24 +78,28 @@ const MainPage = () => {
       animate="visible"
     >
       <SideOneContainer variants={childVariants}>
-        <TextContainer>
-          <Title src={Ryan} alt="Ryan" />
-          <List>
-            <ListItem
-              $active={activeSection === "work-experience"}
-              onClick={() => scrollToSection("work-experience")}
-            >
-              Work Experience
-            </ListItem>
-            <ListItem
-              $active={activeSection === "project-experience"}
-              onClick={() => scrollToSection("project-experience")}
-            >
-              Projects
-            </ListItem>
-          </List>
-        </TextContainer>
-        <SMIconsContainer />
+        <ContentWrapper>
+          <TextContainer>
+            <Title src={Ryan} alt="Ryan" />
+            <List>
+              <ListItem
+                $active={activeSection === "work-experience"}
+                onClick={() => scrollToSection("work-experience")}
+              >
+                Work Experience
+              </ListItem>
+              <ListItem
+                $active={activeSection === "project-experience"}
+                onClick={() => scrollToSection("project-experience")}
+              >
+                Projects
+              </ListItem>
+            </List>
+          </TextContainer>
+        </ContentWrapper>
+        <SMIconsWrapper>
+          <SMIconsContainer />
+        </SMIconsWrapper>
       </SideOneContainer>
 
       <SideTwoContainer id="side-two-container" variants={childVariants}>
@@ -148,10 +152,11 @@ const StyledMainPage = styled(motion.div)`
 `;
 
 const SideOneContainer = styled(motion.div)`
+  position: relative;
+  height: 100vh;
   width: 33.33%;
   display: flex;
   padding: 20px;
-  position: relative;
   flex-direction: column;
   justify-content: space-between;
   height: 96vh;
@@ -161,6 +166,29 @@ const SideOneContainer = styled(motion.div)`
     height: auto;
     padding: 10px;
   }
+`;
+
+const ContentWrapper = styled.div`
+  // Wrap your main content (excluding social media buttons) in this
+  padding: 20px;
+  flex-grow: 1; // Allow this to grow and push buttons to bottom
+  overflow-y: auto;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+`;
+
+const SMIconsWrapper = styled.div`
+  position: sticky; // Make this stick to the bottom
+  bottom: 0;
+  background-color: inherit; // Match the container background
+  padding: 10px 0;
+  width: 100%;
 `;
 
 const SideTwoContainer = styled(motion.div)`
