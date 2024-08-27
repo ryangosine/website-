@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const StyledLink = styled.a`
   color: #f0ead6;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Space Grotesk", sans-serif;
   position: relative;
   font-weight: normal;
   font-size: 20px;
@@ -31,8 +31,7 @@ const StyledLink = styled.a`
   transition: color 0.3s ease, font-weight 0.3s ease;
 
   &:hover {
-    color: #4caf50;
-    font-weight: bold;
+    color: #b967ff;
   }
 `;
 

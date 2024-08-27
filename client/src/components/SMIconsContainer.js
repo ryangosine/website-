@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
 import LinkedInIcon from "./Icons/LinkedInIcon";
 import GitHubIcon from "./Icons/GitHubIcon";
 import FaceBookIcon from "./Icons/FacebookIcon";
@@ -7,6 +7,8 @@ import GmailIcon from "./Icons/GmailIcon";
 import XIcon from "./Icons/Xicon";
 
 const SMIconsContainer = () => {
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <GlobalWrapper>
       <IconList>
@@ -60,8 +62,28 @@ const SMIconsContainer = () => {
           </IconLink>
         </IconItem>
       </IconList>
-      <TextElement>Shoot me a message! I'd love to collaborate!</TextElement>
+      <TextElement>
+        Shoot me an e-mail! I'd{" "}
+        <ColoredSpan
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          love
+          {isHovering && <Hearts />}
+        </ColoredSpan>{" "}
+        to collaborate!
+      </TextElement>
     </GlobalWrapper>
+  );
+};
+
+const Hearts = () => {
+  return (
+    <>
+      {[...Array(5)].map((_, i) => (
+        <Heart key={i} style={{ left: `${Math.random() * 100}%` }} />
+      ))}
+    </>
   );
 };
 
@@ -69,15 +91,48 @@ const GlobalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 `;
 
 const TextElement = styled.div`
-  margin-top: 20px; // Adjust as needed
+  font-family: "Caveat", cursive;
+  font-weight: 100;
+  position: relative;
 `;
 
-const EmailSVG = styled.img`
-  width: 200px; // Adjust the size as needed
-  height: auto;
+const floatAnimation = keyframes`
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(0.7);
+    opacity: 0;
+  }
+`;
+
+const Heart = styled.div`
+  position: absolute;
+  font-size: 30px; /* Increased size */
+  color: #ff71ce;
+  animation: ${floatAnimation} 2s ease-out forwards;
+  transform: rotate(45deg); /* Rotate for a 3D effect */
+
+  &::before {
+    content: "❤️"; /* Use a heart emoji for better appearance */
+    display: inline-block;
+    font-size: inherit; /* Inherit the font size */
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.6),
+      0 0 10px rgba(255, 105, 180, 0.5);
+  }
+`;
+
+const ColoredSpan = styled.span`
+  color: #ff71ce;
+  position: relative;
+  cursor: pointer;
+
+  /* Removed the underline effect on hover */
 `;
 
 const IconList = styled.ul`

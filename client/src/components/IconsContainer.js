@@ -79,7 +79,7 @@ const Container = styled.div`
 `;
 
 const Title1 = styled.h1`
-  font-family: "Source Code Pro", monospace;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
   text-align: center;
@@ -87,18 +87,18 @@ const Title1 = styled.h1`
 `;
 
 const Head1 = styled.div`
-  font-family: "Source Code Pro", monospace;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;
 const Head2 = styled.div`
-  font-family: "Source Code Pro", monospace;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;
 
 const Head3 = styled.div`
-  font-family: "Source Code Pro", monospace;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;

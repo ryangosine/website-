@@ -1,12 +1,13 @@
 //mainpage component
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import styled from "styled-components";
 import AboutMeSection from "../components/AboutMeSection";
 import SMIconsContainer from "../components/SMIconsContainer";
 import { motion } from "framer-motion";
 import Ryan from "../Assets/Ryan.svg";
 import MySVG from "../Assets/testDesign.svg";
+import CustomScrollbar from "../components/CustomScrollBar";
 
 const MainPage = () => {
   const [activeSection, setActiveSection] = useState(null);
@@ -33,6 +34,8 @@ const MainPage = () => {
       }
     });
   }, []);
+
+  const sideTwoRef = useRef(null);
 
   useEffect(() => {
     const container = document.getElementById("side-two-container");
@@ -107,6 +110,7 @@ const MainPage = () => {
           <Image src={MySVG} alt="testImage" />
           <AboutMeSection />
         </SideTwoContent>
+        <CustomScrollbar containerRef={sideTwoRef} />
       </SideTwoContainer>
     </StyledMainPage>
   );
@@ -132,11 +136,10 @@ const ListItem = styled.li`
   cursor: pointer;
   padding: 10px;
   transition: color 0.3s ease;
-  color: ${({ $active }) => ($active ? "#6082B6" : "#F0EAD6")};
-  font-weight: ${({ $active }) => ($active ? "bold" : "normal")};
+  color: ${({ $active }) => ($active ? "#b967ff" : "#F0EAD6")};
   font-family: "Lato", sans-serif;
   &:hover {
-    color: #6082b6;
+    color: #b967ff;
   }
 `;
 
@@ -154,7 +157,7 @@ const StyledMainPage = styled(motion.div)`
 const SideOneContainer = styled(motion.div)`
   position: relative;
   height: 100vh;
-  width: 33.33%;
+  width: 20.33%;
   display: flex;
   padding: 20px;
   flex-direction: column;
@@ -174,13 +177,7 @@ const ContentWrapper = styled.div`
   flex-grow: 1; // Allow this to grow and push buttons to bottom
   overflow-y: auto;
   /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* Optional: Style the scrollbar for WebKit browsers (Chrome, Safari, etc.) */
 `;
 
 const SMIconsWrapper = styled.div`
@@ -192,8 +189,10 @@ const SMIconsWrapper = styled.div`
 `;
 
 const SideTwoContainer = styled(motion.div)`
-  width: 66.67%;
-  overflow-y: auto;
+  width: 79.67%;
+  height: 100vh; // Add this line
+  position: relative;
+  overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
 
@@ -208,7 +207,7 @@ const SideTwoContainer = styled(motion.div)`
 `;
 
 const Title = styled.img`
-  max-width: 100%;
+  max-width: 200px;
   height: auto;
   margin-bottom: 10px; // Add some space between the titles
 

@@ -41,7 +41,7 @@ const Title = styled.h3`
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color: #6082b6;
+  color: #b967ff;
 `;
 
 const JobCard = styled.a`
@@ -51,7 +51,7 @@ const JobCard = styled.a`
   text-decoration: none;
   color: inherit;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: all 0.3s ease;
 
   &:hover {

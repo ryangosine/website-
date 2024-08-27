@@ -49,7 +49,7 @@ const Title = styled.h3`
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color: #6082b6;
+  color: #b967ff;
 `;
 
 const ExperienceCard = styled.a`
@@ -58,6 +58,7 @@ const ExperienceCard = styled.a`
   gap: 20px;
   text-decoration: none;
   padding: 20px;
+  border-radius: 5px;
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
 
   &:hover {

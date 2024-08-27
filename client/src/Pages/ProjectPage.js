@@ -32,17 +32,17 @@ const ProjectsPage = () => {
         <BackButtonComponent />
         <Title>MY PROJECTS</Title>
       </HeaderSection>
-      <ProjectList>
+      <ProjectGrid>
         {projects.map((project) => (
-          <ProjectItem key={project.id}>
-            <NameButtonContainer>
+          <ProjectCard key={project.id}>
+            <ProjectContent>
               <ProjectName>{project.name}</ProjectName>
               <ProjectTools tools={project.tools} />
-            </NameButtonContainer>
-            <ProjectDescription>{project.Description}</ProjectDescription>
-          </ProjectItem>
+              <ProjectDescription>{project.Description}</ProjectDescription>
+            </ProjectContent>
+          </ProjectCard>
         ))}
-      </ProjectList>
+      </ProjectGrid>
     </GlobalWrapper>
   );
 };
@@ -100,44 +100,50 @@ const Title = styled.h1`
   }
 `;
 
-const ProjectList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
 
-const ProjectItem = styled.li`
-  display: flex;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 5px;
-
-  &:hover {
-    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
-    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
-    transition: all 0.3s ease; /* Smooth transition for the effect */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const NameButtonContainer = styled.div`
+const ProjectCard = styled.a`
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  padding: 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border: 1px solid rgba(0, 184, 255, 0.5);
+    background-color: rgba(0, 184, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+`;
+
+const ProjectContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  border-right: 1px solid white;
+  width: 100%;
 `;
 
 const ProjectName = styled.h2`
-  color: #0066cc;
+  color: #f0ead6;
   font-size: 18px;
   margin-bottom: 10px;
 `;
 
-// const ProjectTools = styled.p`
-//   color: #666;
-//   font-size: 14px;
-// `;
-
-const ProjectDescription = styled.div``;
+const ProjectDescription = styled.p`
+  color: #f0ead6;
+  font-size: 14px;
+  line-height: 1.5;
+`;
 
 const LoadingMessage = styled.div`
   font-size: 18px;

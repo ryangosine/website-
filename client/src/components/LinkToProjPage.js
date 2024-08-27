@@ -27,10 +27,9 @@ const StyledLink = styled(Link)`
 `;
 
 const Prompt = styled.span`
-  color: ${({ $isHovered }) => ($isHovered ? "#4CAF50" : "#F0EAD6")};
-  font-family: "Source Code Pro", monospace;
+  color: ${({ $isHovered }) => ($isHovered ? "#b967ff" : "#F0EAD6")};
+  font-family: "Space Grotesk", sans-serif;
   position: relative;
-  font-weight: ${({ $isHovered }) => ($isHovered ? "bold" : "normal")};
   font-size: 20px;
   margin: 10px;
   transition: color 0.3s ease, font-weight 0.3s ease;
