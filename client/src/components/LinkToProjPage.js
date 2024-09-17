@@ -27,13 +27,29 @@ const StyledLink = styled(Link)`
 `;
 
 const Prompt = styled.span`
-  color: ${({ $isHovered }) => ($isHovered ? "#b967ff" : "#F0EAD6")};
   font-family: "Edo SZ", sans-serif;
   position: relative;
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 10px;
-  transition: color 0.3s ease, font-weight 0.3s ease;
   letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  color: #f0ead6;
+
+  background: ${({ $isHovered }) =>
+    $isHovered ? "linear-gradient(45deg, #d68fd7, #ff6f61)" : "transparent"};
+
+  background-clip: ${({ $isHovered }) => ($isHovered ? "text" : "none")};
+  -webkit-background-clip: ${({ $isHovered }) =>
+    $isHovered ? "text" : "none"};
+  -webkit-text-fill-color: ${({ $isHovered }) =>
+    $isHovered ? "transparent" : "inherit"};
+
+  &:hover {
+    background: linear-gradient(45deg, #d68fd7, #ff6f61);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 `;
 
 export default LinkToProjectPage;

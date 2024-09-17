@@ -41,9 +41,13 @@ const Title = styled.h3`
   font-family: "Edo SZ", sans-serif;
   font-size: 2em;
   margin: 0;
-  color: #b967ff;
-  font-optical-sizing: auto;
-  font-style: normal;
+  background: linear-gradient(
+    45deg,
+    #9b59b6,
+    #e74c3c
+  ); /* Purple to Red gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
 
 const JobCard = styled.a`

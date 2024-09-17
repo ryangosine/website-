@@ -84,4 +84,4 @@ const BackButtonImage = styled.img`
   height: 75px;
 `;
 
-export default BackButtonComponent;
+// export default BackButtonComponent;

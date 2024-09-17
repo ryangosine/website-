@@ -140,10 +140,27 @@ const ListItem = styled.li`
   cursor: pointer;
   padding: 10px;
   transition: color 0.3s ease;
-  color: ${({ $active }) => ($active ? "#b967ff" : "#F0EAD6")};
-  font-family: "Lato", sans-serif;
+  color: ${({ $active }) => ($active ? "transparent" : "#F0EAD6")};
+  background: ${({ $active }) =>
+    $active
+      ? "linear-gradient(45deg, #d68fd7, #ff6f61)" // Lighter purple to lighter red
+      : "transparent"};
+
+  background-clip: ${({ $active }) => ($active ? "text" : "none")};
+  -webkit-background-clip: ${({ $active }) => ($active ? "text" : "none")};
+  -webkit-text-fill-color: ${({ $active }) =>
+    $active ? "transparent" : "inherit"};
+
   &:hover {
-    color: #b967ff;
+    color: transparent;
+    background: linear-gradient(
+      45deg,
+      #d68fd7,
+      #ff6f61
+    ); // Same brighter gradient on hover
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
@@ -211,12 +228,19 @@ const SideTwoContainer = styled(motion.div)`
 `;
 
 const Title = styled.h1`
-  max-width: 200px;
-  height: auto;
-  margin-bottom: 10px; // Add some space between the titles
-  font-size: 4.5rem;
-  margin: 0;
+  font-size: 3.5rem;
   font-family: "Edo SZ", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  letter-spacing: 3px;
+
+  background: linear-gradient(
+    45deg,
+    #9b59b6,
+    #e74c3c
+  ); /* Purple to Red gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
 
 const TextContainer = styled.div`

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
-import BackButtonComponent from "../components/BackButtonComponent";
+import { useNavigate } from "react-router";
+import { ReactComponent as BackButton } from "../Assets/back-button-svgrepo-com.svg";
 import ProjectTools from "../components/ProjectTools";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -23,13 +25,19 @@ const ProjectsPage = () => {
     fetchProjects();
   }, []);
 
+  const handleBackClick = () => {
+    navigate(-1); // This will navigate to the previous page
+  };
+
   if (loading) return <LoadingMessage>Loading...</LoadingMessage>;
   if (error) return <ErrorMessage>{error}</ErrorMessage>;
 
   return (
     <GlobalWrapper>
       <HeaderSection>
-        <BackButtonComponent />
+        <StyledBackButton onClick={handleBackClick}>
+          <BackButton />
+        </StyledBackButton>
         <Title>MY PROJECTS</Title>
       </HeaderSection>
       <Introduction>
@@ -69,44 +77,69 @@ const HeaderSection = styled.div`
   padding: 20px;
 `;
 
-const shakeAnimation = keyframes`
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  50% { transform: translateX(2px); }
-  75% { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
+const StyledBackButton = styled.button`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(51, 51, 51, 0.2);
+  border-radius: 8px;
+  color: #666;
+  transition: 0.3s;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 105, 180, 0.3),
+      rgba(147, 112, 219, 0.3)
+    );
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:hover {
+    color: #fff;
+    background: rgba(51, 51, 51, 0.4);
+    transform: translateY(-2px);
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+    transition: 0.3s;
+  }
 `;
 
 const Title = styled.h1`
-  color: #6082b6;
-  font-size: 48px;
-  margin-left: 20px;
-  font-family: "Space Grotesk", sans-serif;
+  font-size: 3.5rem;
+  font-family: "Edo SZ", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 
-  // 3D effect
-  text-shadow: 0 1px 0 #4a6285, 0 2px 0 #3d5270, 0 3px 0 #30425a,
-    0 4px 0 #243245, 0 5px 0 #182230, 0 6px 1px rgba(0, 0, 0, 0.1),
-    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
-    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px); // Reduced raise effect
-    animation: ${shakeAnimation} 0.5s ease;
-    text-shadow: 0 1px 0 #4a6285, 0 2px 0 #3d5270, 0 3px 0 #30425a,
-      0 4px 0 #243245, 0 5px 0 #182230, 0 6px 1px rgba(0, 0, 0, 0.1),
-      0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
-      0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
-      0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
-      0 22px 22px rgba(0, 0, 0, 0.1); // Slightly increased shadow
-  }
+  background: linear-gradient(
+    45deg,
+    #9b59b6,
+    #e74c3c
+  ); /* Purple to Red gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
 
 const Introduction = styled.p`

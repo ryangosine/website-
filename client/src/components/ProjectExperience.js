@@ -47,9 +47,13 @@ const Title = styled.h3`
   display: flex;
   justify-content: center;
   font-family: "Edo SZ", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  color: #b967ff;
+  background: linear-gradient(
+    45deg,
+    #9b59b6,
+    #e74c3c
+  ); /* Purple to Red gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
   font-size: 2em;
   margin: 0;
 `;
