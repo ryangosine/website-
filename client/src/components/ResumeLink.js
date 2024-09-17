@@ -22,13 +22,14 @@ const Container = styled.div`
 
 const StyledLink = styled.a`
   color: #f0ead6;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Edo SZ", sans-serif;
   position: relative;
   font-weight: normal;
   font-size: 20px;
   margin: 10px;
   text-decoration: none;
   transition: color 0.3s ease, font-weight 0.3s ease;
+  letter-spacing: 1.5px;
 
   &:hover {
     color: #b967ff;

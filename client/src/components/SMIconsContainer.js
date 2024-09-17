@@ -115,8 +115,9 @@ const Heart = styled.div`
   position: absolute;
   font-size: 30px; /* Increased size */
   color: #ff71ce;
-  animation: ${floatAnimation} 2s ease-out forwards;
+  animation: ${floatAnimation} 3s ease-out forwards;
   transform: rotate(45deg); /* Rotate for a 3D effect */
+  bottom: 100%;
 
   &::before {
     content: "❤️"; /* Use a heart emoji for better appearance */

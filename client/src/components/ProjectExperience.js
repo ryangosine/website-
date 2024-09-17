@@ -46,10 +46,12 @@ const Title = styled.h3`
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Edo SZ", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   color: #b967ff;
+  font-size: 2em;
+  margin: 0;
 `;
 
 const ExperienceCard = styled.a`

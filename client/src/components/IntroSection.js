@@ -6,20 +6,24 @@ const IntroSection = () => {
     <Container>
       <BlurbSection>
         <Blurb>
-          Graduate from the Concordia University Full-Stack Web Development
+          Hey! I'm Ryan. I'm a web developer!
+          <br />
+          <br />
+          I graduated from the Concordia University Full-Stack Web Development
           Program that specialized in the key modern fundamentals of designing
-          and building websites and applications. Focused on learning both
-          Front-End and Back-End development to ensure a strong foundation in
-          programming. Passionate about building web applications and eager to
-          learn, work and develop and expand current skills and knowledge.
+          and building websites and applications. My program focused on learning
+          both Front-End and Back-End development to ensure a strong foundation
+          in programming. I'm very passionate about building web applications
+          and eager to learn, work and develop and expand my current skills and
+          knowledge. Every day is new experience!
           <br />
           <br />
-          Working in school environments has cultivated my capacity to think
-          outside the box, analyze complex problems, and deliver effective
-          solutions to meet daily challenges. I am ready to embark on a new
-          professional chapter, bringing not only technical proficiency but also
-          a creative mindset, problem-solving abilities, and a strong work
-          ethic.
+          Prior to this I worked in schools as a Behaviour Specialist and
+          community problem solver. I think that this experience has really
+          helped me cultivate my ability to think outside the box, analyze
+          complex problems, and deliver effective solutions to meet daily
+          challenges. I loved my work, but am looking forward to new experiences
+          in my new love of programming!
           <br />
         </Blurb>
       </BlurbSection>
@@ -41,8 +45,8 @@ const Blurb = styled.p`
   text-align: left;
   line-height: 1.4;
   color: #efebdd;
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 100;
 `;
 
 export default IntroSection;

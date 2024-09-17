@@ -18,8 +18,8 @@ const AboutMeSection = () => {
         <section id="project-experience">
           <ProjectExperience />
         </section>
-        <ResumeLink />
-        <LinkToProjectPage />
+        {/* <ResumeLink />
+        <LinkToProjectPage /> */}
         <IconsContainer />
       </ContentWrapper>
     </SectionContainer>

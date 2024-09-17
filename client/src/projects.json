@@ -3,7 +3,7 @@
     "id": 1,
     "name": "This Website!",
     "repoUrl": "https://github.com/ryangosine/website-",
-    "description": "Built this interactive website from the ground up to highlight my skills and qualifications. Built without the use of starters or templates.",
+    "description": "Built this interactive REACT website from the ground up to highlight and house my skills and qualifications. Tools include: React.js, JS, Styled-Components, Express, PostgresSQL, Framer-Motion",
     "bulletPoints": []
   },
   {

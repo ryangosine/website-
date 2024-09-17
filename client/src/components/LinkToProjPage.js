@@ -11,7 +11,7 @@ const LinkToProjectPage = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <GlobalWrapper>
-        <Prompt $isHovered={isHovered}> Projects I've Worked On!</Prompt>
+        <Prompt $isHovered={isHovered}> more things i've done</Prompt>
       </GlobalWrapper>
     </StyledLink>
   );
@@ -28,11 +28,12 @@ const StyledLink = styled(Link)`
 
 const Prompt = styled.span`
   color: ${({ $isHovered }) => ($isHovered ? "#b967ff" : "#F0EAD6")};
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Edo SZ", sans-serif;
   position: relative;
   font-size: 20px;
   margin: 10px;
   transition: color 0.3s ease, font-weight 0.3s ease;
+  letter-spacing: 1.5px;
 `;
 
 export default LinkToProjectPage;

@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     color: #F0EAD6;
     background-image: linear-gradient(to right, #434343 0%, black 100%);
     /* background-color: #0a0b1e; */
@@ -31,17 +31,13 @@ const GlobalStyles = createGlobalStyle`
     pointer-events: none;
   } */
 
-  h1 {
-    font-size: 3em;
-    margin: 0;
-    color: #bb86fc;
-  }
 
-  h3 {
+
+  /* h3 {
     font-size: 2em;
     margin: 0;
     color: #2E8B57;
-  }
+  } */
 
   p {
     font-size: 1.2em;

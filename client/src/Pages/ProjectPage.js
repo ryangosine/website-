@@ -32,9 +32,18 @@ const ProjectsPage = () => {
         <BackButtonComponent />
         <Title>MY PROJECTS</Title>
       </HeaderSection>
+      <Introduction>
+        These are some things I've worked on. I'm still learning but trying to
+        expand my horizons. Check back for more!
+      </Introduction>
       <ProjectGrid>
         {projects.map((project) => (
-          <ProjectCard key={project.id}>
+          <ProjectCard
+            key={project.id}
+            href={project.github_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ProjectContent>
               <ProjectName>{project.name}</ProjectName>
               <ProjectTools tools={project.tools} />
@@ -98,6 +107,11 @@ const Title = styled.h1`
       0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
       0 22px 22px rgba(0, 0, 0, 0.1); // Slightly increased shadow
   }
+`;
+
+const Introduction = styled.p`
+  display: flex;
+  justify-content: center;
 `;
 
 const ProjectGrid = styled.div`

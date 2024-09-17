@@ -5,9 +5,11 @@ import styled from "styled-components";
 import AboutMeSection from "../components/AboutMeSection";
 import SMIconsContainer from "../components/SMIconsContainer";
 import { motion } from "framer-motion";
-import Ryan from "../Assets/Ryan.svg";
+// import Ryan from "../Assets/Ryan.svg";
 import MySVG from "../Assets/testDesign.svg";
 import CustomScrollbar from "../components/CustomScrollBar";
+import ResumeLink from "../components/ResumeLink";
+import LinkToProjectPage from "../components/LinkToProjPage";
 
 const MainPage = () => {
   const [activeSection, setActiveSection] = useState(null);
@@ -83,7 +85,7 @@ const MainPage = () => {
       <SideOneContainer variants={childVariants}>
         <ContentWrapper>
           <TextContainer>
-            <Title src={Ryan} alt="Ryan" />
+            <Title>Ryan Gosine</Title>
             <List>
               <ListItem
                 $active={activeSection === "work-experience"}
@@ -100,6 +102,8 @@ const MainPage = () => {
             </List>
           </TextContainer>
         </ContentWrapper>
+        <ResumeLink />
+        <LinkToProjectPage />
         <SMIconsWrapper>
           <SMIconsContainer />
         </SMIconsWrapper>
@@ -206,14 +210,13 @@ const SideTwoContainer = styled(motion.div)`
   }
 `;
 
-const Title = styled.img`
+const Title = styled.h1`
   max-width: 200px;
   height: auto;
   margin-bottom: 10px; // Add some space between the titles
-
-  @media (max-width: 768px) {
-    margin-top: 20px;
-  }
+  font-size: 4.5rem;
+  margin: 0;
+  font-family: "Edo SZ", sans-serif;
 `;
 
 const TextContainer = styled.div`
