@@ -79,11 +79,19 @@ const Container = styled.div`
 `;
 
 const Title1 = styled.h1`
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 400; // Adjust weight as needed
-  font-style: normal; // or italic
-  text-align: center;
-  font-size: 35px;
+  font-size: 2%.5;
+  font-family: "Edo SZ", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  letter-spacing: 3px;
+
+  background: linear-gradient(
+    45deg,
+    #9b59b6,
+    #e74c3c
+  ); /* Purple to Red gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
 
 const Head1 = styled.div`

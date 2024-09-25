@@ -78,10 +78,18 @@ const SMIconsContainer = () => {
 };
 
 const Hearts = () => {
+  const numberOfHearts = 2;
   return (
     <>
-      {[...Array(5)].map((_, i) => (
-        <Heart key={i} style={{ left: `${Math.random() * 100}%` }} />
+      {[...Array(2)].map((_, i) => (
+        <Heart
+          key={i}
+          style={{
+            left: `${
+              (i / (numberOfHearts - 1)) * 100 + (Math.random() - 0.5) * 10
+            }%`,
+          }}
+        />
       ))}
     </>
   );
@@ -132,8 +140,6 @@ const ColoredSpan = styled.span`
   color: #ff71ce;
   position: relative;
   cursor: pointer;
-
-  /* Removed the underline effect on hover */
 `;
 
 const IconList = styled.ul`
