@@ -1,38 +1,16 @@
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import axios from "axios";
+import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { ReactComponent as BackButton } from "../Assets/back-button-svgrepo-com.svg";
 import ProjectTools from "../components/ProjectTools";
-
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+import projectsData from "../projectEXP.json";
 
 const ProjectsPage = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/projects`);
-        setProjects(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError("An error occurred while fetching projects");
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
 
   const handleBackClick = () => {
     navigate(-1); // This will navigate to the previous page
   };
-
-  if (loading) return <LoadingMessage>Loading...</LoadingMessage>;
-  if (error) return <ErrorMessage>{error}</ErrorMessage>;
 
   return (
     <GlobalWrapper>
@@ -47,7 +25,7 @@ const ProjectsPage = () => {
         expand my horizons. Check back for more!
       </Introduction>
       <ProjectGrid>
-        {projects.map((project) => (
+        {projectsData.map((project) => (
           <ProjectCard
             key={project.id}
             href={project.github_url}

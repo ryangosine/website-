@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Sticker Shop",
+    "github_url": "https://github.com/yourusername/project1",
+    "tools": ["React", "JavaScript", "Node.js", "Redux", "Express"],
+    "Description": "Redux project where I learned how to build and manage STORE state for an e-commerce site. "
+  },
+  {
+    "id": 2,
+    "name": "Facebook Clone",
+    "github_url": "https://github.com/ryangosine/mini-project-facespace",
+    "tools": ["React", "JavaScript", "Styled-Components"],
+    "Description": "Functional Facebook Clone built for a class project. Functionalities include adding and deleting friends, customizable profile and the ability to post"
+  },
+  {
+    "id": 3,
+    "name": "Twitter/X Clone",
+    "github_url": "https://github.com/ryangosine/project-twitter-clone",
+    "tools": ["React", "JavaScript", "Styled-Components"],
+    "Description": "Built a function Twitter/X Clone for a class project. Functionalities include: following/unfollowing accounts, customizable profile, 'like' functionality and text posting"
+  },
+  {
+    "id": 4,
+    "name": "Airline Ticketing Program",
+    "github_url": "https://github.com/ryangosine/project-slingair",
+    "tools": ["React", "JavaScript", "MongoDB", "Express", "Insomnia"],
+    "Description": "Built a CRUD ticketing system for faux airline company where users could purchase and customize their flights"
+  }
+]
