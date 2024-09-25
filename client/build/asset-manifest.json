@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/static/js/main.a6a70f35.js",
+    "static/media/testDesign.svg": "/static/media/testDesign.d6f20816ec5ddc2b6d7ced603aa54cd0.svg",
+    "index.html": "/index.html",
+    "static/media/back-button-svgrepo-com.svg": "/static/media/back-button-svgrepo-com.1fedd33c74767f323c5543a13862a526.svg",
+    "main.a6a70f35.js.map": "/static/js/main.a6a70f35.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a6a70f35.js"
+  ]
+}

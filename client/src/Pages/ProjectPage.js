@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 import { ReactComponent as BackButton } from "../Assets/back-button-svgrepo-com.svg";
 import ProjectTools from "../components/ProjectTools";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/projects");
+        const response = await axios.get(`${API_URL}/projects`);
         setProjects(response.data);
         setLoading(false);
       } catch (error) {
