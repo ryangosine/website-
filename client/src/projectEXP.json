@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Sticker Shop",
-    "github_url": "https://github.com/yourusername/project1",
+    "github_url": "",
     "tools": ["React", "JavaScript", "Node.js", "Redux", "Express"],
     "Description": "Redux project where I learned how to build and manage STORE state for an e-commerce site. "
   },

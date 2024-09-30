@@ -1,45 +1,62 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { ReactComponent as BackButton } from "../Assets/back-button-svgrepo-com.svg";
 import ProjectTools from "../components/ProjectTools";
 import projectsData from "../projectEXP.json";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleBackClick = () => {
-    navigate(-1); // This will navigate to the previous page
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate("/main", { replace: true });
+    }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <GlobalWrapper>
-      <HeaderSection>
-        <StyledBackButton onClick={handleBackClick}>
-          <BackButton />
-        </StyledBackButton>
-        <Title>MY PROJECTS</Title>
-      </HeaderSection>
-      <Introduction>
-        These are some things I've worked on. I'm still learning but trying to
-        expand my horizons. Check back for more!
-      </Introduction>
-      <ProjectGrid>
-        {projectsData.map((project) => (
-          <ProjectCard
-            key={project.id}
-            href={project.github_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ProjectContent>
-              <ProjectName>{project.name}</ProjectName>
-              <ProjectTools tools={project.tools} />
-              <ProjectDescription>{project.Description}</ProjectDescription>
-            </ProjectContent>
-          </ProjectCard>
-        ))}
-      </ProjectGrid>
+    <GlobalWrapper $isVisible={isVisible}>
+      <FadeInElement $isVisible={isVisible} $delay={0.2}>
+        <HeaderSection>
+          <StyledBackButton onClick={handleBackClick}>
+            <BackButton />
+          </StyledBackButton>
+          <Title>MY PROJECTS</Title>
+        </HeaderSection>
+      </FadeInElement>
+      <FadeInElement $isVisible={isVisible} $delay={0.4}>
+        <Introduction>
+          These are some things I've worked on. Click the cards to take a look
+          at my code. <br></br>I'm still learning but trying to expand my
+          horizons. Check back for more!
+        </Introduction>
+      </FadeInElement>
+      <FadeInElement $isVisible={isVisible} $delay={0.6}>
+        <ProjectGrid>
+          {projectsData.map((project) => (
+            <ProjectCard
+              key={project.id}
+              href={project.github_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ProjectContent>
+                <ProjectName>{project.name}</ProjectName>
+                <ProjectTools tools={project.tools} />
+                <ProjectDescription>{project.Description}</ProjectDescription>
+              </ProjectContent>
+            </ProjectCard>
+          ))}
+        </ProjectGrid>
+      </FadeInElement>
     </GlobalWrapper>
   );
 };
@@ -47,6 +64,8 @@ const ProjectsPage = () => {
 const GlobalWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: opacity 0.5s ease-in-out;
 `;
 
 const HeaderSection = styled.div`
@@ -106,6 +125,20 @@ const StyledBackButton = styled.button`
   }
 `;
 
+const FadeInElement = styled.div`
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transition-delay: ${({ $delay }) => $delay}s;
+
+  ${({ $isVisible }) =>
+    $isVisible &&
+    `
+    opacity: 1;
+    transform: translateY(0);
+  `}
+`;
+
 const Title = styled.h1`
   font-size: 3.5rem;
   font-family: "Edo SZ", sans-serif;
@@ -125,6 +158,7 @@ const Title = styled.h1`
 const Introduction = styled.p`
   display: flex;
   justify-content: center;
+  text-align: center;
 `;
 
 const ProjectGrid = styled.div`

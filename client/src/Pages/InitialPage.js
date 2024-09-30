@@ -11,8 +11,8 @@ const InitialPage = () => {
   const handleClick = () => {
     setTimeout(() => {
       setIsTransitioning(true);
-      setTimeout(() => navigate("/main"), 1000); // Adjust timing as needed
-    }, 200); // Total duration of button animation
+      setTimeout(() => navigate("/main"), 1000);
+    }, 200);
   };
 
   const buttonVariants = {
@@ -50,24 +50,26 @@ const InitialPage = () => {
 
   return (
     <PageContainer>
-      <ContentWrapper>
-        <AnimatePresence>
-          {!isTransitioning && (
-            <StylizedButton
-              onClick={handleClick}
-              variants={buttonVariants}
-              initial="initial"
-              whileHover="hover"
-              whileTap="click"
-              animate="release"
-              exit={{ opacity: 0 }}
-            >
-              <ButtonText>Enter</ButtonText>
-            </StylizedButton>
-          )}
-        </AnimatePresence>
-      </ContentWrapper>
-      <DiamondTransition isActive={isTransitioning} />
+      <Background>
+        <ContentWrapper>
+          <AnimatePresence>
+            {!isTransitioning && (
+              <StylizedButton
+                onClick={handleClick}
+                variants={buttonVariants}
+                initial="initial"
+                whileHover="hover"
+                whileTap="click"
+                animate="release"
+                exit={{ opacity: 0 }}
+              >
+                <ButtonText>Enter</ButtonText>
+              </StylizedButton>
+            )}
+          </AnimatePresence>
+        </ContentWrapper>
+        <DiamondTransition isActive={isTransitioning} />
+      </Background>
     </PageContainer>
   );
 };
@@ -133,3 +135,22 @@ const ButtonText = styled.span`
 `;
 
 export default InitialPage;
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+`;

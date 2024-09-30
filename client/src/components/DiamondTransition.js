@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-const DiamondTransition = ({ isActive }) => {
+const DiamondTransition = ({ isActive, onTransitionEnd }) => {
+  useEffect(() => {
+    if (isActive) {
+      const timer = setTimeout(() => {
+        onTransitionEnd && onTransitionEnd();
+      }, 1000); // This should match the duration of your animation
+      return () => clearTimeout(timer);
+    }
+  }, [isActive, onTransitionEnd]);
+
   return (
     <DiamondWrapper $isActive={isActive}>
       <Diamond $isActive={isActive} />
@@ -26,7 +35,7 @@ const DiamondWrapper = styled.div`
   pointer-events: none;
   z-index: ${({ $isActive }) => ($isActive ? 1000 : -1)};
   background-color: ${({ $isActive }) =>
-    $isActive ? "transparent" : "#F0EAD6"};
+    $isActive ? "transparent" : "inherit"};
   transition: background-color 0.5s ease-in-out;
 `;
 
