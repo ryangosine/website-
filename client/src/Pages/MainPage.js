@@ -18,22 +18,33 @@ const MainPage = () => {
   const isMobile = window.innerWidth <= 768;
   const containerRef = useRef(null);
 
-  const handleTouchStart = useCallback((e) => {
-    if (sideTwoContainerRef.current.scrollTop === 0) {
-      setPullDistance(0);
-    }
-  }, []);
-
-  const handleTouchMove = useCallback((e) => {
-    if (sideTwoContainerRef.current.scrollTop === 0) {
-      const touch = e.touches[0];
-      const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
-      if (pullDistance > 0 && pullDistance <= 100) {
-        setPullDistance(pullDistance);
+  const handleTouchStart = useCallback(
+    (e) => {
+      if (
+        (isMobile ? window.scrollY : sideTwoContainerRef.current.scrollTop) ===
+        0
+      ) {
+        setPullDistance(0);
       }
-    }
-  }, []);
+    },
+    [isMobile]
+  );
 
+  const handleTouchMove = useCallback(
+    (e) => {
+      if (
+        (isMobile ? window.scrollY : sideTwoContainerRef.current.scrollTop) ===
+        0
+      ) {
+        const touch = e.touches[0];
+        const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
+        if (pullDistance > 0 && pullDistance <= 100) {
+          setPullDistance(pullDistance);
+        }
+      }
+    },
+    [isMobile]
+  );
   const refreshData = () => {
     console.log("Refreshing Data...");
   };
@@ -47,7 +58,8 @@ const MainPage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+      const container = isMobile ? window : sideTwoContainerRef.current;
+      const scrollPosition = isMobile ? window.scrollY : container.scrollTop;
       const sections = document.querySelectorAll("section, #intro-section");
 
       if (scrollPosition < 50) {
@@ -65,19 +77,28 @@ const MainPage = () => {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const container = isMobile ? window : sideTwoContainerRef.current;
+    container.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      container.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       const yOffset = -60;
-      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      if (isMobile) {
+        const y =
+          section.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        sideTwoContainerRef.current.scrollTo({
+          top: section.offsetTop + yOffset,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -141,9 +162,9 @@ const MainPage = () => {
           id="side-two-container"
           variants={childVariants}
           ref={sideTwoContainerRef}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onTouchStart={isMobile ? handleTouchStart : undefined}
+          onTouchMove={isMobile ? handleTouchMove : undefined}
+          onTouchEnd={isMobile ? handleTouchEnd : undefined}
         >
           <PullToRefreshIndicator pullDistance={pullDistance}>
             {pullDistance > 70 ? "Release to refresh" : "Pull to refresh"}
@@ -179,8 +200,9 @@ const PullToRefreshIndicator = styled.div`
 
 const MobileContainer = styled.div`
   @media (max-width: 768px) {
-    height: auto;
-    overflow-y: visible;
+    min-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 `;
 
@@ -243,6 +265,7 @@ const StyledMainPage = styled(motion.div)`
   @media (max-width: 768px) {
     flex-direction: column;
     height: auto;
+    min-height: 100vh;
     overflow: visible;
     padding: 10px;
   }
@@ -258,11 +281,13 @@ const SideOneContainer = styled(motion.div)`
   height: 96vh;
 
   @media (max-width: 768px) {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     height: auto;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
   }
 `;
 
