@@ -75,6 +75,10 @@ const MainPage = () => {
       const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
       if (pullDistance > 0 && pullDistance <= 100) {
         setPullDistance(pullDistance);
+        if (pullDistance > 10) {
+          // Small threshold to prevent accidental triggers
+          e.preventDefault(); // Prevent default only when actually pulling
+        }
       }
     }
   };
@@ -105,9 +109,9 @@ const MainPage = () => {
 
   return (
     <MobileContainer
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onTouchStart={isMobile ? handleTouchStart : undefined}
+      onTouchMove={isMobile ? handleTouchMove : undefined}
+      onTouchEnd={isMobile ? handleTouchEnd : undefined}
     >
       <StyledMainPage
         variants={containerVariants}
@@ -183,7 +187,7 @@ const PullToRefreshIndicator = styled.div`
 
   @media (max-width: 768px) {
     position: fixed;
-    z-index: 1000;
+    z-index: 1001; // Ensure it's above SideOneContainer
   }
 `;
 
@@ -201,9 +205,13 @@ const SideTwoContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px; // Adjust this value as needed
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 60px); // Adjust based on SideOneContainer height
+  }
 `;
 
 const List = styled.ul`
@@ -271,7 +279,7 @@ const SideOneContainer = styled(motion.div)`
   height: 96vh;
 
   @media (max-width: 768px) {
-    position: sticky;
+    position: sticky; // Changed from fixed to sticky
     top: 0;
     width: 100%;
     height: auto;
@@ -313,7 +321,9 @@ const SideTwoContainer = styled(motion.div)`
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
+    min-height: calc(100vh - 60px); // Adjust based on SideOneContainer height
     overflow-y: visible;
+    position: static;
   }
 `;
 
