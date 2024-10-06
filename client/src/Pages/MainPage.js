@@ -15,6 +15,8 @@ const MainPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [pullDistance, setPullDistance] = useState(null);
   const sideTwoContainerRef = useRef(null);
+  const isMobile = window.innerWidth <= 768;
+  const containerRef = useRef(null);
 
   const handleTouchStart = useCallback((e) => {
     if (sideTwoContainerRef.current.scrollTop === 0) {
@@ -44,11 +46,11 @@ const MainPage = () => {
   }, [pullDistance]);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     const handleScroll = () => {
-      const container =
-        window.innerWidth <= 768 ? window : sideTwoContainerRef.current;
-      const scrollPosition =
-        container === window ? window.scrollY : container.scrollTop;
+      const container = isMobile ? window : sideTwoContainerRef.current;
+      const scrollPosition = isMobile ? window.scrollY : container.scrollTop;
       const sections = document.querySelectorAll("section, #intro-section");
 
       if (scrollPosition < 50) {
@@ -66,11 +68,14 @@ const MainPage = () => {
       });
     };
 
-    const container =
-      window.innerWidth <= 768 ? window : sideTwoContainerRef.current;
+    const container = isMobile ? window : sideTwoContainerRef.current;
     container.addEventListener("scroll", handleScroll);
 
-    if (sideTwoContainerRef.current) {
+    if (isMobile && containerRef.current) {
+      containerRef.current.addEventListener("touchstart", handleTouchStart);
+      containerRef.current.addEventListener("touchmove", handleTouchMove);
+      containerRef.current.addEventListener("touchend", handleTouchEnd);
+    } else if (sideTwoContainerRef.current) {
       sideTwoContainerRef.current.addEventListener(
         "touchstart",
         handleTouchStart
@@ -84,7 +89,14 @@ const MainPage = () => {
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
-      if (sideTwoContainerRef.current) {
+      if (isMobile && containerRef.current) {
+        containerRef.current.removeEventListener(
+          "touchstart",
+          handleTouchStart
+        );
+        containerRef.current.removeEventListener("touchmove", handleTouchMove);
+        containerRef.current.removeEventListener("touchend", handleTouchEnd);
+      } else if (sideTwoContainerRef.current) {
         sideTwoContainerRef.current.removeEventListener(
           "touchstart",
           handleTouchStart
@@ -99,7 +111,7 @@ const MainPage = () => {
         );
       }
     };
-  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd, isMobile]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -135,62 +147,64 @@ const MainPage = () => {
   };
 
   return (
-    <StyledMainPage
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <SideOneContainer variants={childVariants}>
-        <ContentWrapper>
-          <TextContainer>
-            <Title>Ryan Gosine</Title>
-            <List>
-              <ListItem
-                $active={activeSection === "intro-section"}
-                onClick={() => scrollToSection("intro-section")}
-              >
-                About Me
-              </ListItem>
-              <ListItem
-                $active={activeSection === "work-experience"}
-                onClick={() => scrollToSection("work-experience")}
-              >
-                Work Experience
-              </ListItem>
-              <ListItem
-                $active={activeSection === "project-experience"}
-                onClick={() => scrollToSection("project-experience")}
-              >
-                Projects
-              </ListItem>
-            </List>
-          </TextContainer>
-        </ContentWrapper>
-        <ResumeLink />
-        <LinkToProjectPage />
-        <SMIconsWrapper>
-          <SMIconsContainer />
-        </SMIconsWrapper>
-      </SideOneContainer>
-
-      <SideTwoContainer
-        id="side-two-container"
-        variants={childVariants}
-        ref={sideTwoContainerRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+    <MobileContainer>
+      <StyledMainPage
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <PullToRefreshIndicator pullDistance={pullDistance}>
-          {pullDistance > 70 ? "Release to refresh" : "Pull to refresh"}
-        </PullToRefreshIndicator>
-        <SideTwoContent>
-          <Image src={MySVG} alt="testImage" />
-          <AboutMeSection />
-        </SideTwoContent>
-        <CustomScrollbar containerRef={sideTwoContainerRef} />
-      </SideTwoContainer>
-    </StyledMainPage>
+        <SideOneContainer variants={childVariants}>
+          <ContentWrapper>
+            <TextContainer>
+              <Title>Ryan Gosine</Title>
+              <List>
+                <ListItem
+                  $active={activeSection === "intro-section"}
+                  onClick={() => scrollToSection("intro-section")}
+                >
+                  About Me
+                </ListItem>
+                <ListItem
+                  $active={activeSection === "work-experience"}
+                  onClick={() => scrollToSection("work-experience")}
+                >
+                  Work Experience
+                </ListItem>
+                <ListItem
+                  $active={activeSection === "project-experience"}
+                  onClick={() => scrollToSection("project-experience")}
+                >
+                  Projects
+                </ListItem>
+              </List>
+            </TextContainer>
+          </ContentWrapper>
+          <ResumeLink />
+          <LinkToProjectPage />
+          <SMIconsWrapper>
+            <SMIconsContainer />
+          </SMIconsWrapper>
+        </SideOneContainer>
+
+        <SideTwoContainer
+          id="side-two-container"
+          variants={childVariants}
+          ref={sideTwoContainerRef}
+          onTouchStart={isMobile ? undefined : handleTouchStart}
+          onTouchMove={isMobile ? undefined : handleTouchMove}
+          onTouchEnd={isMobile ? undefined : handleTouchEnd}
+        >
+          <PullToRefreshIndicator pullDistance={pullDistance}>
+            {pullDistance > 70 ? "Release to refresh" : "Pull to refresh"}
+          </PullToRefreshIndicator>
+          <SideTwoContent>
+            <Image src={MySVG} alt="testImage" />
+            <AboutMeSection />
+          </SideTwoContent>
+          <CustomScrollbar containerRef={sideTwoContainerRef} />
+        </SideTwoContainer>
+      </StyledMainPage>
+    </MobileContainer>
   );
 };
 
@@ -205,6 +219,19 @@ const PullToRefreshIndicator = styled.div`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.1);
   transition: top 0.3s;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    z-index: 1000;
+  }
+`;
+
+const MobileContainer = styled.div`
+  @media (max-width: 768px) {
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 const SideTwoContent = styled.div`
@@ -265,7 +292,7 @@ const StyledMainPage = styled(motion.div)`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    overflow-y: auto;
+    overflow: visible;
     height: auto;
     padding: 10px;
   }
@@ -315,7 +342,6 @@ const SideTwoContainer = styled(motion.div)`
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     display: none;
