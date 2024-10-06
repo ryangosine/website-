@@ -46,11 +46,8 @@ const MainPage = () => {
   }, [pullDistance]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-
     const handleScroll = () => {
-      const container = isMobile ? window : sideTwoContainerRef.current;
-      const scrollPosition = isMobile ? window.scrollY : container.scrollTop;
+      const scrollPosition = window.scrollY;
       const sections = document.querySelectorAll("section, #intro-section");
 
       if (scrollPosition < 50) {
@@ -68,65 +65,19 @@ const MainPage = () => {
       });
     };
 
-    const container = isMobile ? window : sideTwoContainerRef.current;
-    container.addEventListener("scroll", handleScroll);
-
-    if (isMobile && containerRef.current) {
-      containerRef.current.addEventListener("touchstart", handleTouchStart);
-      containerRef.current.addEventListener("touchmove", handleTouchMove);
-      containerRef.current.addEventListener("touchend", handleTouchEnd);
-    } else if (sideTwoContainerRef.current) {
-      sideTwoContainerRef.current.addEventListener(
-        "touchstart",
-        handleTouchStart
-      );
-      sideTwoContainerRef.current.addEventListener(
-        "touchmove",
-        handleTouchMove
-      );
-      sideTwoContainerRef.current.addEventListener("touchend", handleTouchEnd);
-    }
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
-      if (isMobile && containerRef.current) {
-        containerRef.current.removeEventListener(
-          "touchstart",
-          handleTouchStart
-        );
-        containerRef.current.removeEventListener("touchmove", handleTouchMove);
-        containerRef.current.removeEventListener("touchend", handleTouchEnd);
-      } else if (sideTwoContainerRef.current) {
-        sideTwoContainerRef.current.removeEventListener(
-          "touchstart",
-          handleTouchStart
-        );
-        sideTwoContainerRef.current.removeEventListener(
-          "touchmove",
-          handleTouchMove
-        );
-        sideTwoContainerRef.current.removeEventListener(
-          "touchend",
-          handleTouchEnd
-        );
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleTouchStart, handleTouchMove, handleTouchEnd, isMobile]);
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       const yOffset = -60;
-      if (window.innerWidth <= 768) {
-        const y =
-          section.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      } else {
-        sideTwoContainerRef.current.scrollTo({
-          top: section.offsetTop + yOffset,
-          behavior: "smooth",
-        });
-      }
+      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
@@ -190,9 +141,9 @@ const MainPage = () => {
           id="side-two-container"
           variants={childVariants}
           ref={sideTwoContainerRef}
-          onTouchStart={isMobile ? undefined : handleTouchStart}
-          onTouchMove={isMobile ? undefined : handleTouchMove}
-          onTouchEnd={isMobile ? undefined : handleTouchEnd}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <PullToRefreshIndicator pullDistance={pullDistance}>
             {pullDistance > 70 ? "Release to refresh" : "Pull to refresh"}
@@ -228,9 +179,8 @@ const PullToRefreshIndicator = styled.div`
 
 const MobileContainer = styled.div`
   @media (max-width: 768px) {
-    height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    height: auto;
+    overflow-y: visible;
   }
 `;
 
@@ -292,8 +242,8 @@ const StyledMainPage = styled(motion.div)`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    overflow: visible;
     height: auto;
+    overflow: visible;
     padding: 10px;
   }
 `;
@@ -308,13 +258,11 @@ const SideOneContainer = styled(motion.div)`
   height: 96vh;
 
   @media (max-width: 768px) {
+    position: relative;
     width: 100%;
     height: auto;
     padding: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.8); // Adjust color and opacity as needed
+    background-color: rgba(0, 0, 0, 0.8);
   }
 `;
 
