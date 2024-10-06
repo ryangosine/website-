@@ -11,15 +11,15 @@ const AboutMeSection = () => {
   return (
     <SectionContainer>
       <ContentWrapper>
-        <IntroSection />
+        <section id="intro-section">
+          <IntroSection />
+        </section>
         <section id="work-experience">
           <WorkExperience />
         </section>
         <section id="project-experience">
           <ProjectExperience />
         </section>
-        {/* <ResumeLink />
-        <LinkToProjectPage /> */}
         <IconsContainer />
       </ContentWrapper>
     </SectionContainer>

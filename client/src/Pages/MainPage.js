@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import styled from "styled-components";
 import AboutMeSection from "../components/AboutMeSection";
 import SMIconsContainer from "../components/SMIconsContainer";
-import { motion } from "framer-motion";
+import { isMotionComponent, motion } from "framer-motion";
 // import Ryan from "../Assets/Ryan.svg";
 import MySVG from "../Assets/testDesign.svg";
 import CustomScrollbar from "../components/CustomScrollBar";
@@ -16,74 +16,35 @@ const MainPage = () => {
   const [pullDistance, setPullDistance] = useState(null);
   const sideTwoContainerRef = useRef(null);
   const isMobile = window.innerWidth <= 768;
-  const containerRef = useRef(null);
 
-  const handleTouchStart = useCallback(
-    (e) => {
-      if (
-        (isMobile ? window.scrollY : sideTwoContainerRef.current.scrollTop) ===
-        0
-      ) {
-        setPullDistance(0);
-      }
-    },
-    [isMobile]
-  );
+  const handleScroll = useCallback(() => {
+    const container = isMobile ? window : sideTwoContainerRef.current;
+    const scrollPosition = isMobile ? window.scrollY : container.scrollTop;
+    const sections = document.querySelectorAll("section, #intro-section");
 
-  const handleTouchMove = useCallback(
-    (e) => {
-      if (
-        (isMobile ? window.scrollY : sideTwoContainerRef.current.scrollTop) ===
-        0
-      ) {
-        const touch = e.touches[0];
-        const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
-        if (pullDistance > 0 && pullDistance <= 100) {
-          setPullDistance(pullDistance);
-        }
-      }
-    },
-    [isMobile]
-  );
-  const refreshData = () => {
-    console.log("Refreshing Data...");
-  };
-  const handleTouchEnd = useCallback(() => {
-    if (pullDistance > 70) {
-      // Perform refresh action here
-      refreshData();
+    if (scrollPosition < 50) {
+      setActiveSection(null);
+      return;
     }
-    setPullDistance(0);
-  }, [pullDistance]);
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        setActiveSection(section.id);
+      }
+    });
+  }, [isMobile]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const container = isMobile ? window : sideTwoContainerRef.current;
-      const scrollPosition = isMobile ? window.scrollY : container.scrollTop;
-      const sections = document.querySelectorAll("section, #intro-section");
-
-      if (scrollPosition < 50) {
-        setActiveSection(null);
-        return;
-      }
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionBottom = sectionTop + section.offsetHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          setActiveSection(section.id);
-        }
-      });
-    };
-
     const container = isMobile ? window : sideTwoContainerRef.current;
     container.addEventListener("scroll", handleScroll);
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
     };
-  }, [isMobile]);
+  }, [handleScroll, isMobile]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -100,6 +61,30 @@ const MainPage = () => {
         });
       }
     }
+  };
+
+  const handleTouchStart = (e) => {
+    if (isMobile && window.scrollY === 0) {
+      setPullDistance(0);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (isMobile && window.scrollY === 0) {
+      const touch = e.touches[0];
+      const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
+      if (pullDistance > 0 && pullDistance <= 100) {
+        setPullDistance(pullDistance);
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 70) {
+      // Perform refresh action here
+      console.log("Refreshing Data...");
+    }
+    setPullDistance(0);
   };
 
   const containerVariants = {
@@ -119,7 +104,11 @@ const MainPage = () => {
   };
 
   return (
-    <MobileContainer>
+    <MobileContainer
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <StyledMainPage
         variants={containerVariants}
         initial="hidden"
@@ -200,12 +189,13 @@ const PullToRefreshIndicator = styled.div`
 
 const MobileContainer = styled.div`
   @media (max-width: 768px) {
+    height: 100%;
     min-height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    position: relative;
   }
 `;
-
 const SideTwoContent = styled.div`
   display: flex;
   flex-direction: column;
