@@ -13,13 +13,42 @@ import LinkToProjectPage from "../components/LinkToProjPage";
 
 const MainPage = () => {
   const [activeSection, setActiveSection] = useState(null);
-  const sideTwoRef = useRef(null);
+  const [pullDistance, setPullDistance] = useState(null);
+  const sideTwoContainerRef = useRef(null);
+
+  const handleTouchStart = useCallback((e) => {
+    if (sideTwoContainerRef.current.scrollTop === 0) {
+      setPullDistance(0);
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (sideTwoContainerRef.current.scrollTop === 0) {
+      const touch = e.touches[0];
+      const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
+      if (pullDistance > 0 && pullDistance <= 100) {
+        setPullDistance(pullDistance);
+      }
+    }
+  }, []);
+
+  const refreshData = () => {
+    console.log("Refreshing Data...");
+  };
+  const handleTouchEnd = useCallback(() => {
+    if (pullDistance > 70) {
+      // Perform refresh action here
+      refreshData();
+    }
+    setPullDistance(0);
+  }, [pullDistance]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const container = window.innerWidth <= 768 ? window : sideTwoRef.current;
+      const container =
+        window.innerWidth <= 768 ? window : sideTwoContainerRef.current;
       const scrollPosition =
-        container === window ? window.pageYOffset : container.scrollTop;
+        container === window ? window.scrollY : container.scrollTop;
       const sections = document.querySelectorAll("section, #intro-section");
 
       if (scrollPosition < 50) {
@@ -37,10 +66,40 @@ const MainPage = () => {
       });
     };
 
-    const container = window.innerWidth <= 768 ? window : sideTwoRef.current;
+    const container =
+      window.innerWidth <= 768 ? window : sideTwoContainerRef.current;
     container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    if (sideTwoContainerRef.current) {
+      sideTwoContainerRef.current.addEventListener(
+        "touchstart",
+        handleTouchStart
+      );
+      sideTwoContainerRef.current.addEventListener(
+        "touchmove",
+        handleTouchMove
+      );
+      sideTwoContainerRef.current.addEventListener("touchend", handleTouchEnd);
+    }
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      if (sideTwoContainerRef.current) {
+        sideTwoContainerRef.current.removeEventListener(
+          "touchstart",
+          handleTouchStart
+        );
+        sideTwoContainerRef.current.removeEventListener(
+          "touchmove",
+          handleTouchMove
+        );
+        sideTwoContainerRef.current.removeEventListener(
+          "touchend",
+          handleTouchEnd
+        );
+      }
+    };
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -48,10 +107,10 @@ const MainPage = () => {
       const yOffset = -60;
       if (window.innerWidth <= 768) {
         const y =
-          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          section.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       } else {
-        sideTwoRef.current.scrollTo({
+        sideTwoContainerRef.current.scrollTo({
           top: section.offsetTop + yOffset,
           behavior: "smooth",
         });
@@ -117,17 +176,36 @@ const MainPage = () => {
       <SideTwoContainer
         id="side-two-container"
         variants={childVariants}
-        ref={sideTwoRef}
+        ref={sideTwoContainerRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
+        <PullToRefreshIndicator pullDistance={pullDistance}>
+          {pullDistance > 70 ? "Release to refresh" : "Pull to refresh"}
+        </PullToRefreshIndicator>
         <SideTwoContent>
           <Image src={MySVG} alt="testImage" />
           <AboutMeSection />
         </SideTwoContent>
-        <CustomScrollbar containerRef={sideTwoRef} />
+        <CustomScrollbar containerRef={sideTwoContainerRef} />
       </SideTwoContainer>
     </StyledMainPage>
   );
 };
+
+const PullToRefreshIndicator = styled.div`
+  position: absolute;
+  top: ${(props) => -50 + props.pullDistance}px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: top 0.3s;
+`;
 
 const SideTwoContent = styled.div`
   display: flex;
@@ -237,6 +315,7 @@ const SideTwoContainer = styled(motion.div)`
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     display: none;
