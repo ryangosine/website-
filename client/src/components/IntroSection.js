@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const IntroSection = () => {
   return (
-    <Container>
+    <Container id="intro-section">
       <BlurbSection>
         <Blurb>
           Hey! I'm Ryan. I'm a web developer!
@@ -34,19 +34,33 @@ const IntroSection = () => {
 const Container = styled.div`
   display: flex;
   margin-bottom: 40px;
-`;
+  padding: 0 20px;
 
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+`;
 const BlurbSection = styled.div`
   max-width: 600px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const Blurb = styled.p`
   text-align: left;
-  line-height: 1.4;
+  line-height: 1.6;
   color: #efebdd;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 100;
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 `;
 
 export default IntroSection;

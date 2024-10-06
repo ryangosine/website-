@@ -28,12 +28,16 @@ const AboutMeSection = () => {
 
 const SectionContainer = styled.div`
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   align-items: center;
   min-height: 100%;
   padding: 20px;
   margin-top: 50px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    padding: 10px;
+  }
 `;
 const ContentWrapper = styled.div`
   display: flex;
@@ -41,7 +45,11 @@ const ContentWrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 600px;
-  gap: 40px; // This creates space between all direct children
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
 `;
 
 export default AboutMeSection;

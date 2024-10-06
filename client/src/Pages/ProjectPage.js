@@ -66,14 +66,25 @@ const GlobalWrapper = styled.div`
   flex-direction: column;
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const HeaderSection = styled.div`
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 20px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.8
+  ); // Adjust the color and opacity as needed
+  z-index: 10;
 `;
 
 const StyledBackButton = styled.button`
@@ -145,14 +156,13 @@ const Title = styled.h1`
   font-optical-sizing: auto;
   font-style: normal;
   letter-spacing: 3px;
+  background: linear-gradient(45deg, #9b59b6, #e74c3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-  background: linear-gradient(
-    45deg,
-    #9b59b6,
-    #e74c3c
-  ); /* Purple to Red gradient */
-  -webkit-background-clip: text; /* Clip the background to the text */
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  @media (max-width: 768px) {
+    font-size: 2.5rem; // Smaller font size on mobile
+  }
 `;
 
 const Introduction = styled.p`
@@ -166,6 +176,7 @@ const ProjectGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
+  flex-grow: 1; // Allow it to grow and take up remaining space
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

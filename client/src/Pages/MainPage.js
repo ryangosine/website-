@@ -13,50 +13,49 @@ import LinkToProjectPage from "../components/LinkToProjPage";
 
 const MainPage = () => {
   const [activeSection, setActiveSection] = useState(null);
-
-  const handleScroll = useCallback(() => {
-    const container = document.getElementById("side-two-container");
-    const sections = container.querySelectorAll("section");
-    const scrollPosition = container.scrollTop;
-
-    if (scrollPosition < 50) {
-      setActiveSection(null);
-      return;
-    }
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (
-        scrollPosition >= sectionTop - 50 &&
-        scrollPosition < sectionTop + sectionHeight - 50
-      ) {
-        setActiveSection(section.id);
-      }
-    });
-  }, []);
-
   const sideTwoRef = useRef(null);
 
   useEffect(() => {
-    const container = document.getElementById("side-two-container");
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => {
-        container.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [handleScroll]);
+    const handleScroll = () => {
+      const container = window.innerWidth <= 768 ? window : sideTwoRef.current;
+      const scrollPosition =
+        container === window ? window.pageYOffset : container.scrollTop;
+      const sections = document.querySelectorAll("section, #intro-section");
+
+      if (scrollPosition < 50) {
+        setActiveSection(null);
+        return;
+      }
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          setActiveSection(section.id);
+        }
+      });
+    };
+
+    const container = window.innerWidth <= 768 ? window : sideTwoRef.current;
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId) => {
-    const container = document.getElementById("side-two-container");
     const section = document.getElementById(sectionId);
-    if (container && section) {
-      container.scrollTo({
-        top: section.offsetTop - 50,
-        behavior: "smooth",
-      });
+    if (section) {
+      const yOffset = -60;
+      if (window.innerWidth <= 768) {
+        const y =
+          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        sideTwoRef.current.scrollTo({
+          top: section.offsetTop + yOffset,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -88,6 +87,12 @@ const MainPage = () => {
             <Title>Ryan Gosine</Title>
             <List>
               <ListItem
+                $active={activeSection === "intro-section"}
+                onClick={() => scrollToSection("intro-section")}
+              >
+                About Me
+              </ListItem>
+              <ListItem
                 $active={activeSection === "work-experience"}
                 onClick={() => scrollToSection("work-experience")}
               >
@@ -109,7 +114,11 @@ const MainPage = () => {
         </SMIconsWrapper>
       </SideOneContainer>
 
-      <SideTwoContainer id="side-two-container" variants={childVariants}>
+      <SideTwoContainer
+        id="side-two-container"
+        variants={childVariants}
+        ref={sideTwoRef}
+      >
         <SideTwoContent>
           <Image src={MySVG} alt="testImage" />
           <AboutMeSection />
@@ -134,6 +143,13 @@ const List = styled.ul`
   list-style: none;
   padding: 0;
   margin-right: 30px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 0;
+    width: 100%;
+  }
 `;
 
 const ListItem = styled.li`
@@ -142,9 +158,7 @@ const ListItem = styled.li`
   transition: color 0.3s ease;
   color: ${({ $active }) => ($active ? "transparent" : "#F0EAD6")};
   background: ${({ $active }) =>
-    $active
-      ? "linear-gradient(45deg, #d68fd7, #ff6f61)" // Lighter purple to lighter red
-      : "transparent"};
+    $active ? "linear-gradient(45deg, #d68fd7, #ff6f61)" : "transparent"};
 
   background-clip: ${({ $active }) => ($active ? "text" : "none")};
   -webkit-background-clip: ${({ $active }) => ($active ? "text" : "none")};
@@ -153,14 +167,15 @@ const ListItem = styled.li`
 
   &:hover {
     color: transparent;
-    background: linear-gradient(
-      45deg,
-      #d68fd7,
-      #ff6f61
-    ); // Same brighter gradient on hover
+    background: linear-gradient(45deg, #d68fd7, #ff6f61);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px;
   }
 `;
 
@@ -169,15 +184,17 @@ const StyledMainPage = styled(motion.div)`
   height: 100vh;
   overflow: hidden;
   padding: 20px;
+
   @media (max-width: 768px) {
     flex-direction: column;
     overflow-y: auto;
+    height: auto;
+    padding: 10px;
   }
 `;
 
 const SideOneContainer = styled(motion.div)`
   position: relative;
-  height: 100vh;
   width: 20.33%;
   display: flex;
   padding: 20px;
@@ -189,6 +206,10 @@ const SideOneContainer = styled(motion.div)`
     width: 100%;
     height: auto;
     padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8); // Adjust color and opacity as needed
   }
 `;
 
@@ -211,7 +232,7 @@ const SMIconsWrapper = styled.div`
 
 const SideTwoContainer = styled(motion.div)`
   width: 79.67%;
-  height: 100vh; // Add this line
+  height: 100vh;
   position: relative;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -223,6 +244,7 @@ const SideTwoContainer = styled(motion.div)`
 
   @media (max-width: 768px) {
     width: 100%;
+    height: auto;
     overflow-y: visible;
   }
 `;
