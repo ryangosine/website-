@@ -38,13 +38,11 @@ const MainPage = () => {
   }, [isMobile]);
 
   useEffect(() => {
-    const container = isMobile ? window : sideTwoContainerRef.current;
-    container.addEventListener("scroll", handleScroll);
-
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll, isMobile]);
+  }, [handleScroll]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -75,10 +73,6 @@ const MainPage = () => {
       const pullDistance = touch.pageY - e.target.getBoundingClientRect().top;
       if (pullDistance > 0 && pullDistance <= 100) {
         setPullDistance(pullDistance);
-        if (pullDistance > 10) {
-          // Small threshold to prevent accidental triggers
-          e.preventDefault(); // Prevent default only when actually pulling
-        }
       }
     }
   };
@@ -264,7 +258,7 @@ const StyledMainPage = styled(motion.div)`
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-    overflow: visible;
+    overflow-y: auto; // Change to auto instead of visible
     padding: 10px;
   }
 `;
@@ -321,9 +315,9 @@ const SideTwoContainer = styled(motion.div)`
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
-    min-height: calc(100vh - 60px); // Adjust based on SideOneContainer height
+    min-height: calc(100vh - 60px);
     overflow-y: visible;
-    position: static;
+    position: relative; // Change to relative instead of static
   }
 `;
 
