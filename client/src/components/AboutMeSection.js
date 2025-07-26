@@ -4,8 +4,6 @@ import IconsContainer from "./IconsContainer";
 import IntroSection from "./IntroSection";
 import WorkExperience from "./WorkExperience";
 import ProjectExperience from "./ProjectExperience";
-import ResumeLink from "./ResumeLink";
-import LinkToProjectPage from "./LinkToProjPage";
 
 const AboutMeSection = () => {
   return (

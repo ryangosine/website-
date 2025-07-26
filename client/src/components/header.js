@@ -1,30 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+import SMIconsContainer from "./SMIconsContainer";
 
 const Header = () => {
   return (
     <HeaderWrapper>
-      <Link1>link1 | </Link1>
-      <Link2> link2 | </Link2>
-      <Link3> link3</Link3>
+      <SMIconsContainer />
     </HeaderWrapper>
   );
 };
 
 const HeaderWrapper = styled.header`
-  background-color: #282c34;
-  color: white;
+  height: 6rem;
+  /* border-bottom: 1px solid black; */
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  padding-top: 20px;
+  padding: 0 1rem;
+  width: auto;
+  position: sticky;
+  top: 0;
+  /* border-bottom: 2px solid white; */
+
+  color: white;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
-const Link1 = styled.div``;
-const Link2 = styled.div``;
-const Link3 = styled.div``;
-
 export default Header;
+
+// const Header = styled.div`
+//   height: 6rem;
+//   border-bottom: 1px solid black;
+//   display: flex;
+//   align-items: center;
+//   padding: 0 1rem;
+//   width: auto;
+//   position: sticky;
+//   border-bottom: 2px solid white;
+// `;

@@ -32,12 +32,16 @@ const IntroSection = () => {
 };
 
 const Container = styled.div`
+  border: 2px solid green;
   display: flex;
+  margin-top: 40vh;
   margin-bottom: 40px;
-  padding: 0 20px;
+  padding: 60px 0 20px 0;
 
   @media (max-width: 768px) {
+    margin-top: 4vh;
     margin-bottom: 20px;
+    padding: 30px 0 10px 0;
   }
 `;
 const BlurbSection = styled.div`

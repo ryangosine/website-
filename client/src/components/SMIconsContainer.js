@@ -7,7 +7,7 @@ import GmailIcon from "./Icons/GmailIcon";
 import XIcon from "./Icons/Xicon";
 
 const SMIconsContainer = () => {
-  const [isHovering, setIsHovering] = useState(false);
+  // const [isHovering, setIsHovering] = useState(false);
 
   return (
     <GlobalWrapper>
@@ -62,36 +62,18 @@ const SMIconsContainer = () => {
           </IconLink>
         </IconItem>
       </IconList>
-      <TextElement>
+      {/* <TextElement>
         Shoot me an e-mail! I'd{" "}
         <ColoredSpan
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
+          $isHovering={isHovering}
         >
           love
-          {isHovering && <Hearts />}
         </ColoredSpan>{" "}
         to collaborate!
-      </TextElement>
+      </TextElement> */}
     </GlobalWrapper>
-  );
-};
-
-const Hearts = () => {
-  const numberOfHearts = 2;
-  return (
-    <>
-      {[...Array(2)].map((_, i) => (
-        <Heart
-          key={i}
-          style={{
-            left: `${
-              (i / (numberOfHearts - 1)) * 100 + (Math.random() - 0.5) * 10
-            }%`,
-          }}
-        />
-      ))}
-    </>
   );
 };
 
@@ -102,44 +84,19 @@ const GlobalWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const TextElement = styled.div`
-  font-family: "Caveat", cursive;
-  font-weight: 100;
-  position: relative;
-`;
-
-const floatAnimation = keyframes`
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-50px) scale(0.7);
-    opacity: 0;
-  }
-`;
-
-const Heart = styled.div`
-  position: absolute;
-  font-size: 30px; /* Increased size */
-  color: #ff71ce;
-  animation: ${floatAnimation} 3s ease-out forwards;
-  transform: rotate(45deg); /* Rotate for a 3D effect */
-  bottom: 100%;
-
-  &::before {
-    content: "❤️"; /* Use a heart emoji for better appearance */
-    display: inline-block;
-    font-size: inherit; /* Inherit the font size */
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.6),
-      0 0 10px rgba(255, 105, 180, 0.5);
-  }
-`;
+// const TextElement = styled.div`
+//   font-family: "Caveat", cursive;
+//   font-weight: 100;
+//   position: relative;
+// `;
 
 const ColoredSpan = styled.span`
   color: #ff71ce;
   position: relative;
   cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  transform: ${(props) => (props.$isHovering ? "scale(8.2)" : "scale(1)")};
 `;
 
 const IconList = styled.ul`
