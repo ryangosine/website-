@@ -36,7 +36,7 @@ const Container = styled.div`
   /* border: 2px solid green; */
   display: flex;
   justify-content: space-between;
-  margin-top: 40vh;
+  margin-top: 20vh;
   margin-bottom: 40px;
   padding: 60px 0 20px 0;
 

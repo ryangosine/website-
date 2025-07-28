@@ -5,6 +5,7 @@ import ProjectsPage from "./Pages/ProjectPage";
 // import ErrorBoundary from "./components/ErrorBoundry";
 
 import styled from "styled-components";
+import SplashCursor from "./Animations/SplashCursor";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -21,6 +22,7 @@ const App = () => {
       <GlobalStyles />
 
       <PageWrapper>
+        <SplashCursor />
         {/* <Header /> */}
         <BrowserRouter>
           <Routes>
