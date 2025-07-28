@@ -1,11 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import projectData from "../projects.json";
+import TiltedCard from "../Animations/TiltedCard";
+import websiteCard from "../Assets/websiteCard.svg";
 
 const ProjectExperience = () => {
   return (
     <Container>
       <Title>Project Experience</Title>
+      <TiltedCard
+        imageSrc={websiteCard}
+        // altText="Kendrick Lamar - GNX Album Cover"
+        // captionText="Kendrick Lamar - GNX"
+        containerHeight="300px"
+        containerWidth="300px"
+        imageHeight="300px"
+        imageWidth="300px"
+        rotateAmplitude={12}
+        scaleOnHover={1.2}
+        showMobileWarning={false}
+        showTooltip={true}
+        displayOverlayContent={true}
+        // overlayContent={
+        //   <p className="tilted-card-demo-text">Kendrick Lamar - GNX</p>
+        // }
+      />
       {projectData.map((project) => (
         <ExperienceCard
           key={project.id}

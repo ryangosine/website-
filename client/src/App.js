@@ -22,7 +22,7 @@ const App = () => {
       <GlobalStyles />
 
       <PageWrapper>
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         {/* <Header /> */}
         <BrowserRouter>
           <Routes>
