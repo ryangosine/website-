@@ -35,11 +35,14 @@ const ProjectExperience = () => {
 };
 
 const Container = styled.div`
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
+
   gap: 20px;
   width: 100%;
-  max-width: 600px;
+  margin-left: auto;
+  margin-right: 3rem;
 `;
 
 const Title = styled.h3`
@@ -63,8 +66,11 @@ const ExperienceCard = styled.a`
   align-items: flex-start;
   gap: 20px;
   text-decoration: none;
-  padding: 20px;
+  padding: 40px;
   border-radius: 5px;
+  width: 90%;
+  margin: 50px;
+
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
 
   &:hover {

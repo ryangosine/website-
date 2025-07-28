@@ -1,8 +1,6 @@
-import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
-import { AnimatePresence } from "framer-motion";
 import ProjectsPage from "./Pages/ProjectPage";
 // import ErrorBoundary from "./components/ErrorBoundry";
 
@@ -26,6 +24,7 @@ const App = () => {
         {/* <Header /> */}
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<MainPage />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/projectPage" element={<ProjectsPage />} />
           </Routes>

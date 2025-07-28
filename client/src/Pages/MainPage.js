@@ -4,26 +4,39 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import IntroSection from "../components/IntroSection";
-import Header from "../components/header";
+import SideBar from "../components/SideBar";
 import TitleSection from "../components/TitleSection";
+import Quote from "../components/Quote";
+import IconsContainer from "../components/IconsContainer";
+import ProjectExperience from "../components/ProjectExperience";
 
 const MainPage = () => {
   return (
     <MainWrapper>
-      <Header />
-      <TitleSection />
-      <IntroSection />
-      <div style={{ height: "1200px", marginTop: "2rem" }}>
-        Simulate lots of scrolling content!
-      </div>
+      <SideBar />
+      <ContentWrapper>
+        <TitleSection />
+        <Quote />
+        <IntroSection />
+        <ProjectExperience />
+        <IconsContainer />
+        {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
+          Simulate lots of scrolling content!
+        </div> */}
+      </ContentWrapper>
     </MainWrapper>
   );
 };
 
 const MainWrapper = styled.div`
+  display: flex;
   position: relative;
 `;
 
+const ContentWrapper = styled.div`
+  flex: 1;
+  padding-left: 1rem;
+`;
 export default MainPage;
 
 // const Header = styled.div`

@@ -4,6 +4,7 @@ import styled from "styled-components";
 const IntroSection = () => {
   return (
     <Container id="intro-section">
+      <Picture></Picture>
       <BlurbSection>
         <Blurb>
           Hey! I'm Ryan. I'm a web developer!
@@ -32,8 +33,9 @@ const IntroSection = () => {
 };
 
 const Container = styled.div`
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;
+  justify-content: space-between;
   margin-top: 40vh;
   margin-bottom: 40px;
   padding: 60px 0 20px 0;
@@ -43,6 +45,14 @@ const Container = styled.div`
     margin-bottom: 20px;
     padding: 30px 0 10px 0;
   }
+`;
+
+const Picture = styled.div`
+  border: 1px solid white;
+  border-radius: 10%;
+  width: 400px;
+  height: 400px;
+  margin: 30px;
 `;
 const BlurbSection = styled.div`
   max-width: 600px;

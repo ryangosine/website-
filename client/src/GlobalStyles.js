@@ -70,8 +70,9 @@ const GlobalStyles = createGlobalStyle`
       opacity: 0;
     }
   }
-`;
+  `;
 
+export default GlobalStyles;
 /* body {
     margin: 0;
     padding: 0;
@@ -112,5 +113,3 @@ const GlobalStyles = createGlobalStyle`
 // }
 
 // `;
-
-export default GlobalStyles;

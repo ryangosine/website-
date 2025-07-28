@@ -103,6 +103,7 @@ const IconList = styled.ul`
   margin: 10;
   padding: 0;
   display: flex;
+  flex-direction: column;
   list-style: none;
 `;
 
