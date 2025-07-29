@@ -10,12 +10,14 @@ import Quote from "../components/Quote";
 import IconsContainer from "../components/IconsContainer";
 import ProjectExperience from "../components/ProjectExperience";
 import WorkExperience from "../components/WorkExperience";
+import MobileHeader from "../components/MobileHeader";
 
 const MainPage = () => {
   return (
     <MainWrapper>
       <SideBar />
       <ContentWrapper>
+        <MobileHeader />
         <TitleSection />
         <IntroSection />
         <WorkExperience />
