@@ -6,7 +6,7 @@ const MobileHeader = () => {
   return (
     <HeaderWrapper>
       <IconRow>
-        <SMIconsContainer />
+        <SMIconsContainer direction="row" />
       </IconRow>
     </HeaderWrapper>
   );
