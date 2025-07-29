@@ -5,7 +5,7 @@ import workExperienceData from "../workEXP.json"; // Import the JSON file
 const WorkExperience = () => {
   return (
     <Container>
-      <Title>Work Experience</Title>
+      <Title>Current Client(s)</Title>
       {workExperienceData.map((job) => (
         <JobCard
           key={job.id}
@@ -13,7 +13,7 @@ const WorkExperience = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Years>{job.years}</Years>
+          {/* <Years>{job.years}</Years> */}
           <Details>
             <JobTitle>
               {job.jobTitle} - {job.company}
@@ -27,25 +27,33 @@ const WorkExperience = () => {
 };
 
 const Container = styled.div`
+  /* border: 1px solid red; */
   display: flex;
+
   flex-direction: column;
+
   gap: 20px;
   width: 100%;
-  max-width: 600px;
+  /* max-width: 600px; */
 `;
 
 const Title = styled.h3`
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  font-family: "Edo SZ", sans-serif;
+  font-family: "Playfair Display", serif;
   font-size: 2em;
   margin: 0;
+  --angle: 45deg;
   background: linear-gradient(
-    45deg,
-    #9b59b6,
-    #e74c3c
-  ); /* Purple to Red gradient */
+    var(--angle),
+    #d8f0fa,
+    #c6e6f9,
+    #aed1f1,
+    #97bdfc,
+    #84acf7,
+    #719aed
+  );
   -webkit-background-clip: text; /* Clip the background to the text */
   -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
@@ -56,9 +64,10 @@ const JobCard = styled.a`
   gap: 20px;
   text-decoration: none;
   color: inherit;
-  padding: 20px;
+  padding: 60px;
   border-radius: 5px;
   transition: all 0.3s ease;
+  font-family: "Noto Sans", sans-serif;
 
   &:hover {
     border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */

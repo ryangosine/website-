@@ -9,6 +9,7 @@ import TitleSection from "../components/TitleSection";
 import Quote from "../components/Quote";
 import IconsContainer from "../components/IconsContainer";
 import ProjectExperience from "../components/ProjectExperience";
+import WorkExperience from "../components/WorkExperience";
 
 const MainPage = () => {
   return (
@@ -17,6 +18,7 @@ const MainPage = () => {
       <ContentWrapper>
         <TitleSection />
         <IntroSection />
+        <WorkExperience />
         <Quote />
         <ProjectExperience />
         <IconsContainer />

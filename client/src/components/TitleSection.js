@@ -103,11 +103,12 @@ const TextContainer = styled.div`
   --angle: 45deg;
   background: linear-gradient(
     var(--angle),
-    #293352,
-    #5d5d6f,
-    #a27b89,
-    #d3a286,
-    #f0d8c3
+    #d8f0fa,
+    #c6e6f9,
+    #aed1f1,
+    #97bdfc,
+    #84acf7,
+    #719aed
   );
 
   -webkit-background-clip: text;

@@ -4,6 +4,7 @@ import projectData from "../projects.json";
 import TiltedCard from "../Animations/TiltedCard";
 import websiteCard from "../Assets/websiteCard.svg";
 import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
+import { motion } from "framer-motion";
 
 const ProjectExperience = () => {
   return (
@@ -33,7 +34,7 @@ const ProjectExperience = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Click Here to visit REPO
+                    CLICK HERE TO VISIT REPO
                   </a>
                 </Repo>
               </SecondTitle>
@@ -60,6 +61,14 @@ const ProjectText = styled.div`
   justify-content: center;
   color: #f0ead6;
   max-width: 600px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Noto Sans", sans-serif;
+  &:hover {
+    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
+    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
+    transition: all 0.3s ease; /* Smooth transition for the effect */
+  }
 `;
 
 const Container = styled.div`
@@ -137,6 +146,7 @@ const ProjectName = styled.div`
   color: #f0ead6;
   padding: 10px;
 `;
+
 const Repo = styled.p`
   margin: 0;
   font-style: italic;
@@ -144,15 +154,43 @@ const Repo = styled.p`
   padding: 10px;
 
   a {
-    color: inherit; /* Inherit text color (no purple visited) */
-    text-decoration: none; /* Remove underline */
+    color: inherit;
+    text-decoration: none;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
 
-    &:hover {
-      text-decoration: underline; /* Optional: underline on hover */
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #ff0000, #00ffff);
+      transform: scaleX(0);
+      transition: transform 0.4s ease-out;
+    }
+
+    &::after {
+      bottom: -5px;
+      left: 0;
+      transform-origin: right;
+    }
+
+    &::before {
+      top: -5px;
+      left: 0;
+      transform-origin: left;
+    }
+
+    &:hover::after,
+    &:hover::before {
+      transform: scaleX(1);
     }
 
     &:visited {
-      color: inherit; /* Prevent default purple visited color */
+      color: inherit;
     }
   }
 `;
