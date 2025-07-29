@@ -24,13 +24,13 @@ const MainPage = () => {
   return (
     <MainWrapper>
       <SideBar />
-      <PullToRefresh
-        onRefresh={handleRefresh}
-        pullingContent={<span>PullToRefresh...</span>}
-        refreshingContent={<Loader />}
-      >
-        <MobileHeader />
-        <ContentWrapper>
+      <ContentWrapper>
+        <PullToRefresh
+          onRefresh={handleRefresh}
+          pullingContent={<span>PullToRefresh...</span>}
+          refreshingContent={<Loader />}
+        >
+          <MobileHeader />
           <TitleSection />
           <IntroSection />
           <WorkExperience />
@@ -40,8 +40,8 @@ const MainPage = () => {
           {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
           Simulate lots of scrolling content!
           </div> */}
-        </ContentWrapper>
-      </PullToRefresh>
+        </PullToRefresh>
+      </ContentWrapper>
     </MainWrapper>
   );
 };

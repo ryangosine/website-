@@ -5,7 +5,9 @@ import SMIconsContainer from "./SMIconsContainer";
 const MobileHeader = () => {
   return (
     <HeaderWrapper>
-      <SMIconsContainer />
+      <IconRow>
+        <SMIconsContainer />
+      </IconRow>
     </HeaderWrapper>
   );
 };
@@ -21,6 +23,12 @@ const HeaderWrapper = styled.header`
     padding: 0.5rem;
     /* background-color: #0b0b2b; */
   }
+`;
+
+const IconRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 `;
 
 export default MobileHeader;
