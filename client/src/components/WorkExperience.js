@@ -16,7 +16,7 @@ const WorkExperience = () => {
           {/* <Years>{job.years}</Years> */}
           <Details>
             <JobTitle>
-              {job.jobTitle} - {job.company}
+              {job.jobTitle} <br /> {job.company}
             </JobTitle>
             <Position>{job.description}</Position>
           </Details>
@@ -29,7 +29,7 @@ const WorkExperience = () => {
 const Container = styled.div`
   /* border: 1px solid red; */
   display: flex;
-
+  justify-content: flex-end;
   flex-direction: column;
 
   gap: 20px;
@@ -55,6 +55,7 @@ const Title = styled.h3`
     #719aed
   );
   -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text;
   -webkit-text-fill-color: transparent; /* Make the text color transparent */
 `;
 
@@ -68,6 +69,7 @@ const JobCard = styled.a`
   border-radius: 5px;
   transition: all 0.3s ease;
   font-family: "Noto Sans", sans-serif;
+  width: 50%;
 
   &:hover {
     border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
@@ -91,7 +93,8 @@ const Details = styled.div`
 
 const JobTitle = styled.div`
   font-style: italic;
-  font-size: 0.9em;
+  font-size: 1.2em;
+  margin-bottom: 20px;
 `;
 
 const Position = styled.div`

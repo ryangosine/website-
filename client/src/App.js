@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import ProjectsPage from "./Pages/ProjectPage";
 // import ErrorBoundary from "./components/ErrorBoundry";
+import AnimatedCursor from "react-animated-cursor";
 
 import styled from "styled-components";
-import SplashCursor from "./Animations/SplashCursor";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -20,9 +20,8 @@ const App = () => {
     <div>
       {/* <ErrorBoundary> */}
       <GlobalStyles />
-
       <PageWrapper>
-        {/* <SplashCursor /> */}
+        <AnimatedCursor />
         {/* <Header /> */}
         <BrowserRouter>
           <Routes>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import projectData from "../projects.json";
 import TiltedCard from "../Animations/TiltedCard";
-import websiteCard from "../Assets/websiteCard.svg";
+import websiteCardSpace from "../Assets/WebsiteCardSpace.svg";
 import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
 import { motion } from "framer-motion";
 
@@ -14,7 +14,7 @@ const ProjectExperience = () => {
         {projectData.map((project, index) => (
           <ProjectRow key={project.id}>
             <TiltedCard
-              imageSrc={index === 0 ? websiteCard : shopCard_500x300}
+              imageSrc={index === 0 ? websiteCardSpace : shopCard_500x300}
               containerHeight="300px"
               containerWidth="500px"
               imageHeight="300px"
@@ -22,7 +22,7 @@ const ProjectExperience = () => {
               rotateAmplitude={12}
               scaleOnHover={1.2}
               showMobileWarning={false}
-              showTooltip={true}
+              showTooltip={false}
               displayOverlayContent={true}
             />
             <ProjectText>
@@ -51,7 +51,7 @@ const ProjectExperience = () => {
 const ProjectRow = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 5em;
   gap: 40px;
 `;
 
@@ -81,25 +81,32 @@ const Container = styled.div`
   width: 100%;
   margin-left: auto;
   margin-right: 3rem;
+  margin-top: 20vh;
 `;
 
 const Title = styled.h3`
-  margin-top: 50px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
-  font-family: "Edo SZ", sans-serif;
+  font-family: "Playfair Display", serif;
+  --angle: 45deg;
   background: linear-gradient(
-    45deg,
-    #9b59b6,
-    #e74c3c
-  ); /* Purple to Red gradient */
+    var(--angle),
+    #d8f0fa,
+    #c6e6f9,
+    #aed1f1,
+    #97bdfc,
+    #84acf7,
+    #719aed
+  );
   -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text;
   -webkit-text-fill-color: transparent; /* Make the text color transparent */
   font-size: 2em;
-  margin: 0;
 `;
 
 const CardContainer = styled.div`
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
 `;

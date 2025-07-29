@@ -33,7 +33,7 @@ const IntroSection = () => {
 };
 
 const Container = styled.div`
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;
   justify-content: space-between;
   margin-top: 40vh;
