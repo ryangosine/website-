@@ -33,11 +33,18 @@ const MainPage = () => {
 const MainWrapper = styled.div`
   display: flex;
   position: relative;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ContentWrapper = styled.div`
   flex: 1;
   padding-left: 1rem;
+  @media (max-width: 768px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 `;
 export default MainPage;
 

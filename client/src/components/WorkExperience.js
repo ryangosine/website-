@@ -76,6 +76,12 @@ const JobCard = styled.a`
     background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
     transition: all 0.3s ease; /* Smooth transition for the effect */
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 20px;
+    flex-direction: column;
+  }
 `;
 
 const Years = styled.div`

@@ -76,6 +76,11 @@ const Container = styled.div`
   width: 100%;
   overflow-y: auto;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    text-align: center;
+  }
 `;
 
 const Title1 = styled.h1`
@@ -92,6 +97,11 @@ const Title1 = styled.h1`
   ); /* Purple to Red gradient */
   -webkit-background-clip: text; /* Clip the background to the text */
   -webkit-text-fill-color: transparent; /* Make the text color transparent */
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    text-align: center;
+  }
 `;
 
 const Head1 = styled.div`

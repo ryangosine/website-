@@ -26,6 +26,11 @@ const QuoteWrapper = styled.div`
   font-weight: 400;
   color: #f0ead6;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    padding: 20px;
+  }
 `;
 const QuoteText = styled.h1`
   display: flex;

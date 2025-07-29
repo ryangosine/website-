@@ -41,6 +41,8 @@ const Container = styled.div`
   padding: 60px 0 20px 0;
 
   @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
     margin-top: 4vh;
     margin-bottom: 20px;
     padding: 30px 0 10px 0;
@@ -53,6 +55,10 @@ const Picture = styled.div`
   width: 400px;
   height: 400px;
   margin: 30px;
+  @media (max-width: 768px) {
+    width: 90%;
+    height: auto;
+  }
 `;
 const BlurbSection = styled.div`
   max-width: 600px;

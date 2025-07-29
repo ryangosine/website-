@@ -28,7 +28,7 @@ const SideBarWrapper = styled.aside`
 
   /* Optional: Adjust for small screens */
   @media (max-width: 768px) {
-    width: 4rem;
+    display: none;
   }
 `;
 

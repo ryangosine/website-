@@ -113,6 +113,11 @@ const TextContainer = styled.div`
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 4rem;
+    padding: 0 10px;
+  }
 `;
 
 const AnimatedChar = styled(motion.span)`
@@ -133,6 +138,12 @@ const Subheading = styled.div`
   width: 100%;
   padding: 0 60px;
   margin-top: 40px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    text-align: center;
+  }
 `;
 
 const Word1 = styled(motion.span)`

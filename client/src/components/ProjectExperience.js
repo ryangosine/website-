@@ -53,6 +53,11 @@ const ProjectRow = styled.div`
   align-items: flex-start;
   margin-bottom: 5em;
   gap: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ProjectText = styled.div`
