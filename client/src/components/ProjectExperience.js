@@ -3,58 +3,68 @@ import styled from "styled-components";
 import projectData from "../projects.json";
 import TiltedCard from "../Animations/TiltedCard";
 import websiteCard from "../Assets/websiteCard.svg";
+import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
 
 const ProjectExperience = () => {
   return (
     <Container>
       <Title>Project Experience</Title>
-      <TiltedCard
-        imageSrc={websiteCard}
-        // altText="Kendrick Lamar - GNX Album Cover"
-        // captionText="Kendrick Lamar - GNX"
-        containerHeight="300px"
-        containerWidth="300px"
-        imageHeight="300px"
-        imageWidth="300px"
-        rotateAmplitude={12}
-        scaleOnHover={1.2}
-        showMobileWarning={false}
-        showTooltip={true}
-        displayOverlayContent={true}
-        // overlayContent={
-        //   <p className="tilted-card-demo-text">Kendrick Lamar - GNX</p>
-        // }
-      />
-      {projectData.map((project) => (
-        <ExperienceCard
-          key={project.id}
-          href={project.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ProjectName>{project.name}</ProjectName>
-          <ProjectDescription>
-            <SecondTitle>
-              <Repo>Click Card For REPO</Repo>
-            </SecondTitle>
-            {project.bulletPoints.length > 0 ? (
-              <BulletList>
-                {project.bulletPoints.map((point, index) => (
-                  <BulletPoint key={index}>{point}</BulletPoint>
-                ))}
-              </BulletList>
-            ) : (
+      <CardContainer>
+        {projectData.map((project, index) => (
+          <ProjectRow key={project.id}>
+            <TiltedCard
+              imageSrc={index === 0 ? websiteCard : shopCard_500x300}
+              containerHeight="300px"
+              containerWidth="500px"
+              imageHeight="300px"
+              imageWidth="500px"
+              rotateAmplitude={12}
+              scaleOnHover={1.2}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+            />
+            <ProjectText>
+              <ProjectName>{project.name}</ProjectName>
+              <SecondTitle>
+                <Repo>
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Click Here to visit REPO
+                  </a>
+                </Repo>
+              </SecondTitle>
+
               <Details>{project.description}</Details>
-            )}
-          </ProjectDescription>
-        </ExperienceCard>
-      ))}
+            </ProjectText>
+          </ProjectRow>
+        ))}
+      </CardContainer>
     </Container>
   );
 };
 
+const ProjectRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 40px;
+`;
+
+const ProjectText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #f0ead6;
+  max-width: 600px;
+`;
+
 const Container = styled.div`
   /* border: 1px solid red; */
+
   display: flex;
   flex-direction: column;
 
@@ -80,7 +90,18 @@ const Title = styled.h3`
   margin: 0;
 `;
 
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProjectOneContainer = styled.div`
+  border: 1px solid green;
+  display: flex;
+`;
+
 const ExperienceCard = styled.a`
+  border: 1px solid green;
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -111,15 +132,29 @@ const ProjectDescription = styled.div`
 `;
 
 const ProjectName = styled.div`
-  min-width: 120px;
-  text-align: left;
+  /* min-width: 120px;
+  text-align: left; */
   color: #f0ead6;
+  padding: 10px;
 `;
 const Repo = styled.p`
   margin: 0;
   font-style: italic;
   font-size: 0.9em;
-  padding-right: 5px;
+  padding: 10px;
+
+  a {
+    color: inherit; /* Inherit text color (no purple visited) */
+    text-decoration: none; /* Remove underline */
+
+    &:hover {
+      text-decoration: underline; /* Optional: underline on hover */
+    }
+
+    &:visited {
+      color: inherit; /* Prevent default purple visited color */
+    }
+  }
 `;
 
 const BulletList = styled.ul`
@@ -129,7 +164,7 @@ const BulletList = styled.ul`
 
 const Details = styled.div`
   margin: 0;
-  padding-left: 20px;
+  padding: 10px;
   line-height: 1.4;
 `;
 
@@ -138,3 +173,11 @@ const BulletPoint = styled.li`
   margin-bottom: 5px;
 `;
 export default ProjectExperience;
+
+// {project.bulletPoints.length > 0 ? (
+//   <BulletList>
+//     {project.bulletPoints.map((point, index) => (
+//       <BulletPoint key={index}>{point}</BulletPoint>
+//     ))}
+//   </BulletList>
+// ) : }

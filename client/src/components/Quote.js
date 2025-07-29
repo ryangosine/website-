@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import TextType from "../Animations/TextType";
 
 const Quote = () => {
   return (
     <QuoteWrapper>
-      <QuoteText>
-        I AM GOING TO HAVE SOME KIND OF QUOTE THAT I LIKE HERE.
-      </QuoteText>
+      <TextType
+        text={["MODERN PROBLEMS REQUIRE MODERN SOLUTIONS."]}
+        typingSpeed={110}
+        pauseDuration={1500}
+        showCursor={true}
+        cursorCharacter="|"
+        startOnVisible={true}
+      />
     </QuoteWrapper>
   );
 };
@@ -15,6 +21,7 @@ const QuoteWrapper = styled.div`
   display: flex;
   margin-top: 30px;
   padding: 70px;
+  font-size: 5rem;
 `;
 const QuoteText = styled.h1`
   display: flex;

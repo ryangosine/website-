@@ -16,8 +16,8 @@ const MainPage = () => {
       <SideBar />
       <ContentWrapper>
         <TitleSection />
-        <Quote />
         <IntroSection />
+        <Quote />
         <ProjectExperience />
         <IconsContainer />
         {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
