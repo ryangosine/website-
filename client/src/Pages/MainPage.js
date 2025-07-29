@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import IntroSection from "../components/IntroSection";
 import SideBar from "../components/SideBar";
 import TitleSection from "../components/TitleSection";
@@ -11,26 +10,57 @@ import IconsContainer from "../components/IconsContainer";
 import ProjectExperience from "../components/ProjectExperience";
 import WorkExperience from "../components/WorkExperience";
 import MobileHeader from "../components/MobileHeader";
+import PullToRefresh from "react-simple-pull-to-refresh";
 
 const MainPage = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleRefresh = async () => {
+    setLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    window.location.reload();
+  };
+
   return (
     <MainWrapper>
       <SideBar />
-      <ContentWrapper>
+      <PullToRefresh
+        onRefresh={handleRefresh}
+        pullingContent={<span>PullToRefresh...</span>}
+        refreshingContent={<Loader />}
+      >
         <MobileHeader />
-        <TitleSection />
-        <IntroSection />
-        <WorkExperience />
-        <Quote />
-        <ProjectExperience />
-        <IconsContainer />
-        {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
+        <ContentWrapper>
+          <TitleSection />
+          <IntroSection />
+          <WorkExperience />
+          <Quote />
+          <ProjectExperience />
+          <IconsContainer />
+          {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
           Simulate lots of scrolling content!
-        </div> */}
-      </ContentWrapper>
+          </div> */}
+        </ContentWrapper>
+      </PullToRefresh>
     </MainWrapper>
   );
 };
+
+const Loader = styled.div`
+  margin: 2rem auto;
+  width: 36px;
+  height: 36px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #00b8ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 const MainWrapper = styled.div`
   display: flex;
