@@ -15,13 +15,11 @@ const HeaderWrapper = styled.header`
 
   @media (max-width: 768px) {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
-    background-color: #0b0b2b; // Match your theme
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    /* background-color: #0b0b2b; */
   }
 `;
 
