@@ -96,17 +96,22 @@ const TextContainer = styled.div`
   display: flex;
   justify-content: center;
   font-size: 12rem;
-  font-family: "Edo SZ", sans-serif;
+  font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-style: normal;
-  letter-spacing: 3px;
+  letter-spacing: 2;
+  --angle: 45deg;
   background: linear-gradient(
-    45deg,
-    #9b59b6,
-    #e74c3c
-  ); /* Purple to Red gradient */
-  -webkit-background-clip: text; /* Clip the background to the text */
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+    var(--angle),
+    #293352,
+    #5d5d6f,
+    #a27b89,
+    #d3a286,
+    #f0d8c3
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const AnimatedChar = styled(motion.span)`
@@ -118,14 +123,14 @@ const AnimatedChar = styled(motion.span)`
   -webkit-text-fill-color: transparent;
 
   /* White glow/shadow around letters */
-  text-shadow: 0px 3px 8px rgba(255, 255, 255, 0.4);
+  /* text-shadow: 0px 3px 8px rgba(255, 255, 255, 0.4); */
 `;
 
 const Subheading = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 60px;
   margin-top: 40px;
 `;
 

@@ -33,10 +33,10 @@ const IntroSection = () => {
 };
 
 const Container = styled.div`
-  /* border: 2px solid green; */
+  border: 2px solid green;
   display: flex;
   justify-content: space-between;
-  margin-top: 20vh;
+  margin-top: 40vh;
   margin-bottom: 40px;
   padding: 60px 0 20px 0;
 
@@ -56,6 +56,7 @@ const Picture = styled.div`
 `;
 const BlurbSection = styled.div`
   max-width: 600px;
+  padding-top: 50px;
   margin: 0 auto;
 
   @media (max-width: 768px) {
@@ -66,11 +67,10 @@ const BlurbSection = styled.div`
 const Blurb = styled.p`
   text-align: left;
   line-height: 1.6;
-  color: #efebdd;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 100;
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 300;
   font-size: 16px;
-
   @media (max-width: 768px) {
     font-size: 14px;
     line-height: 1.5;

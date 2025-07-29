@@ -22,6 +22,10 @@ const QuoteWrapper = styled.div`
   margin-top: 30px;
   padding: 70px;
   font-size: 5rem;
+  font-family: "Courier Prime", monospace;
+  font-weight: 400;
+  color: #f0ead6;
+  text-align: center;
 `;
 const QuoteText = styled.h1`
   display: flex;
