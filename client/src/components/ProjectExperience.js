@@ -28,18 +28,27 @@ const ProjectExperience = () => {
             <ProjectText>
               <ProjectName>{project.name}</ProjectName>
               <SecondTitle>
-                <Repo>
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    CLICK HERE TO VISIT REPO
-                  </a>
-                </Repo>
+                {project.siteUrl && (
+                  <WebsiteNavigation>
+                    <a
+                      href={project.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CLICK HERE TO CHECK IT OUT!
+                    </a>
+                  </WebsiteNavigation>
+                )}
               </SecondTitle>
 
-              <Details>{project.description}</Details>
+              <Details>
+                {project.description.split("\n").map((line, index) => (
+                  <p key={index}>{line.trim() === "" ? "\u00A0" : line}</p>
+                ))}
+              </Details>
+              {/* <BulletList>{project.bulletPoints.split("\n").map((line, index) => (
+                  <p key={index}>{line.trim() === "" ? "\u00A0" : line}</p>
+                ))}</BulletList> */}
             </ProjectText>
           </ProjectRow>
         ))}
@@ -84,13 +93,14 @@ const Container = styled.div`
 
   gap: 20px;
   width: 100%;
-  margin-left: auto;
-  margin-right: 3rem;
+  margin-left: 80px;
+
   margin-top: 20vh;
 `;
 
 const Title = styled.h3`
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
+  margin-right: 10rem;
   display: flex;
   justify-content: center;
   font-family: "Playfair Display", serif;
@@ -114,6 +124,7 @@ const CardContainer = styled.div`
   /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
+  margin-right: 90px;
 `;
 
 const ProjectOneContainer = styled.div`
@@ -159,7 +170,7 @@ const ProjectName = styled.div`
   padding: 10px;
 `;
 
-const Repo = styled.p`
+const WebsiteNavigation = styled.p`
   margin: 0;
   font-style: italic;
   font-size: 0.9em;

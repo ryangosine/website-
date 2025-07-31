@@ -2,20 +2,23 @@
   {
     "id": 1,
     "name": "This Website!",
-    "repoUrl": "https://github.com/ryangosine/website-",
-    "description": "Built this interactive REACT website from the ground up to highlight and house my skills and qualifications. Tools include: React.js, JS, Styled-Components, Express, PostgresSQL, Framer-Motion",
+    "repoUrl": "",
+    "description": "Built this interactive REACT website from the ground up to highlight and house my skills and qualifications. \n\nTools include: React.js, JS, Styled-Components, Express, PostgresSQL, Framer-Motion",
     "bulletPoints": []
   },
   {
     "id": 2,
     "name": "Full-Stack E-commerce Store",
-    "repoUrl": "https://github.com/ryangosine/shop",
-    "description": "",
+    "repoUrl": "",
+    "siteUrl": "https://mockshopexample.netlify.app/",
+    "description": "- Developed a full stack \"CRUD\" web-store front utilizing a variety of technologies and databases \n\n - Customer information was stored using a database developed in MongoDB \n\n - Cart is designed in Redux \n\n- React.js, JS, CSS, HTML, Node.JS, Express,",
+
     "bulletPoints": [
-      "Developed a full stack \"CRUD\" web-store front utilizing a variety of technologies and databases",
-      "Customer information was stored using a database developed in MongoDB",
-      "Cart is designed in Redux",
-      "React.js, JS, CSS, HTML, Node.JS, Express"
+      "- Developed a full stack \"CRUD\" web-store",
+      "- Customer information is stored in MongoDB",
+      "- Dynamic ordering and purchasing.",
+      "- Redux Cart",
+      "- User Friendly design"
     ]
   }
 ]

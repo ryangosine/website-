@@ -11,6 +11,10 @@ import ProjectExperience from "../components/ProjectExperience";
 import WorkExperience from "../components/WorkExperience";
 import MobileHeader from "../components/MobileHeader";
 import PullToRefresh from "react-simple-pull-to-refresh";
+import Header from "../components/header";
+import GradientSection from "../components/StyleComponents/GradientStyle";
+import BlackSection from "../components/StyleComponents/BlackSection";
+import BridgeFadeSection from "../components/StyleComponents/BridgeFadeSection";
 
 const MainPage = () => {
   const [loading, setLoading] = useState(false);
@@ -23,23 +27,39 @@ const MainPage = () => {
 
   return (
     <MainWrapper>
-      <SideBar />
+      {/* <SideBar /> */}
       <ContentWrapper>
+        <Header />
         <PullToRefresh
           onRefresh={handleRefresh}
           pullingContent={<span>PullToRefresh...</span>}
           refreshingContent={<Loader />}
         >
           <MobileHeader />
-          <TitleSection />
-          <IntroSection />
-          <WorkExperience />
-          <Quote />
-          <ProjectExperience />
-          <IconsContainer />
-          {/* <div style={{ height: "1200px", marginTop: "2rem" }}>
-          Simulate lots of scrolling content!
-          </div> */}
+
+          <GradientSection>
+            <TitleSection />
+          </GradientSection>
+          <BridgeFadeSection />
+          <BlackSection>
+            <IntroSection />
+          </BlackSection>
+          <BridgeFadeSection />
+          <GradientSection>
+            <WorkExperience />
+          </GradientSection>
+          <BridgeFadeSection />
+          <BlackSection>
+            <Quote />
+          </BlackSection>
+          <BridgeFadeSection />
+          <GradientSection>
+            <ProjectExperience />
+          </GradientSection>
+          <BridgeFadeSection />
+          <BlackSection>
+            <IconsContainer />
+          </BlackSection>
         </PullToRefresh>
       </ContentWrapper>
     </MainWrapper>
@@ -72,7 +92,6 @@ const MainWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   flex: 1;
-  padding-left: 1rem;
   @media (max-width: 768px) {
     padding-left: 0.5rem;
     padding-right: 0.5rem;

@@ -6,12 +6,12 @@ import FaceBookIcon from "./Icons/FacebookIcon";
 import GmailIcon from "./Icons/GmailIcon";
 import XIcon from "./Icons/Xicon";
 
-const SMIconsContainer = () => {
+const SMIconsContainer = ({ direction = "column" }) => {
   // const [isHovering, setIsHovering] = useState(false);
 
   return (
     <GlobalWrapper>
-      <IconList>
+      <IconList direction={direction}>
         <IconItem>
           <IconLink
             href="https://www.linkedin.com/in/ryangosine/"
@@ -103,7 +103,7 @@ const IconList = styled.ul`
   margin: 10;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => props.direction};
   list-style: none;
 `;
 

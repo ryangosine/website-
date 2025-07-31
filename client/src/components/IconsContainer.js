@@ -52,7 +52,7 @@ const IconsContainer = () => {
         <ExpressIcon />
       </ItemsContBkEnd>
 
-      <Head3>Other Technologies</Head3>
+      <Head3>Other </Head3>
       <OtherTech>
         <GitIcon />
         <VSCIcon />
@@ -67,13 +67,14 @@ const IconsContainer = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 70px;
+  margin-left: 80px;
   justify-content: center;
   align-items: center;
   gap: 20px; // Adjust as needed
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
+  width: 80%;
   overflow-y: auto;
   box-sizing: border-box;
 
@@ -84,19 +85,25 @@ const Container = styled.div`
 `;
 
 const Title1 = styled.h1`
-  font-size: 2%.5;
-  font-family: "Edo SZ", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  letter-spacing: 3px;
+  /* letter-spacing: 3px; */
 
+  font-family: "Playfair Display", serif;
+  --angle: 45deg;
   background: linear-gradient(
-    45deg,
-    #9b59b6,
-    #e74c3c
-  ); /* Purple to Red gradient */
+    var(--angle),
+    #d8f0fa,
+    #c6e6f9,
+    #aed1f1,
+    #97bdfc,
+    #84acf7,
+    #719aed
+  );
   -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text;
   -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  font-size: 2em;
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
@@ -105,18 +112,18 @@ const Title1 = styled.h1`
 `;
 
 const Head1 = styled.div`
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;
 const Head2 = styled.div`
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;
 
 const Head3 = styled.div`
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 400; // Adjust weight as needed
   font-style: normal; // or italic
 `;
