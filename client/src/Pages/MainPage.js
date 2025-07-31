@@ -12,11 +12,6 @@ import WorkExperience from "../components/WorkExperience";
 import MobileHeader from "../components/MobileHeader";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import Header from "../components/header";
-import GradientSection from "../components/StyleComponents/GradientStyle";
-import BlackSection from "../components/StyleComponents/BlackSection";
-import BridgeFadeSection from "../components/StyleComponents/BridgeFadeSection";
-
-import SMIconsContainer from "../components/SMIconsContainer";
 import Footer from "../components/Footer";
 
 const MainPage = () => {
@@ -38,31 +33,19 @@ const MainPage = () => {
           pullingContent={<span>PullToRefresh...</span>}
           refreshingContent={<Loader />}
         >
-          <GradientSection>
-            <MobileHeader />
+          <MobileHeader />
 
-            <TitleSection />
-          </GradientSection>
-          <BridgeFadeSection />
-          <BlackSection>
-            <IntroSection />
-          </BlackSection>
-          <BridgeFadeSection />
-          <GradientSection>
-            <WorkExperience />
-          </GradientSection>
-          <BridgeFadeSection />
-          <BlackSection>
-            <Quote />
-          </BlackSection>
-          <BridgeFadeSection />
-          <GradientSection>
-            <ProjectExperience />
-          </GradientSection>
-          <BridgeFadeSection />
-          <BlackSection>
-            <IconsContainer />
-          </BlackSection>
+          <TitleSection />
+
+          <IntroSection />
+
+          <WorkExperience />
+
+          <Quote />
+
+          <ProjectExperience />
+
+          <IconsContainer />
         </PullToRefresh>
       </ContentWrapper>
       <Footer />

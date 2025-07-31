@@ -10,235 +10,146 @@ const ProjectExperience = () => {
   return (
     <Container>
       <Title>Project Experience</Title>
-      <CardContainer>
-        {projectData.map((project, index) => (
-          <ProjectRow key={project.id}>
-            <TiltedCard
-              imageSrc={index === 0 ? websiteCardSpace : shopCard_500x300}
-              containerHeight="300px"
-              containerWidth="500px"
-              imageHeight="300px"
-              imageWidth="500px"
-              rotateAmplitude={12}
-              scaleOnHover={1.2}
-              showMobileWarning={false}
-              showTooltip={false}
-              displayOverlayContent={true}
-            />
-            <ProjectText>
-              <ProjectName>{project.name}</ProjectName>
-              <SecondTitle>
+      <CardRow>
+        {projectData.map((project, index) => {
+          const color = index === 0 ? "#4A90E2" : "#27AE60";
+          return (
+            <Card
+              key={project.id}
+              hoverColor={color}
+              href={project.siteUrl || "#"}
+            >
+              <Image
+                src={index === 0 ? websiteCardSpace : shopCard_500x300}
+                alt={project.name}
+              />
+              <TextOverlay hoverColor={color}>
+                <ProjectName>{project.name}</ProjectName>
+                <Details>
+                  {project.description.split("\n").map((line, idx) => (
+                    <p key={idx}>{line.trim() || "\u00A0"}</p>
+                  ))}
+                </Details>
                 {project.siteUrl && (
-                  <WebsiteNavigation>
-                    <a
-                      href={project.siteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CLICK HERE TO CHECK IT OUT!
-                    </a>
-                  </WebsiteNavigation>
+                  <ActionButton buttonColor={color}>Visit Site</ActionButton>
                 )}
-              </SecondTitle>
-
-              <Details>
-                {project.description.split("\n").map((line, index) => (
-                  <p key={index}>{line.trim() === "" ? "\u00A0" : line}</p>
-                ))}
-              </Details>
-              {/* <BulletList>{project.bulletPoints.split("\n").map((line, index) => (
-                  <p key={index}>{line.trim() === "" ? "\u00A0" : line}</p>
-                ))}</BulletList> */}
-            </ProjectText>
-          </ProjectRow>
-        ))}
-      </CardContainer>
+              </TextOverlay>
+            </Card>
+          );
+        })}
+      </CardRow>
     </Container>
   );
 };
 
-const ProjectRow = styled.div`
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 5em;
-  gap: 40px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const ProjectText = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #f0ead6;
-  max-width: 600px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-family: "Noto Sans", sans-serif;
-  &:hover {
-    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
-    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
-    transition: all 0.3s ease; /* Smooth transition for the effect */
-  }
-`;
-
 const Container = styled.div`
-  /* border: 1px solid red; */
-
   display: flex;
   flex-direction: column;
-
-  gap: 20px;
-  width: 100%;
-  margin-left: 80px;
-
-  margin-top: 20vh;
+  gap: 40px;
 `;
 
 const Title = styled.h3`
-  margin-bottom: 3rem;
-  margin-right: 10rem;
-  display: flex;
-  justify-content: center;
-  font-family: "Montserrat", sans-serif;
-  --angle: 45deg;
-  background: linear-gradient(
-    var(--angle),
-    #d8f0fa,
-    #c6e6f9,
-    #aed1f1,
-    #97bdfc,
-    #84acf7,
-    #719aed
-  );
-  -webkit-background-clip: text; /* Clip the background to the text */
-  background-clip: text;
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  text-align: center;
   font-size: 2em;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
-const CardContainer = styled.div`
-  /* border: 1px solid green; */
+const CardRow = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-right: 90px;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
-const ProjectOneContainer = styled.div`
-  border: 1px solid green;
-  display: flex;
-`;
-
-const ExperienceCard = styled.a`
-  border: 1px solid green;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
+const Card = styled.a`
+  position: relative;
+  width: 500px;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
   text-decoration: none;
-  padding: 40px;
-  border-radius: 5px;
-  width: 90%;
-  margin: 50px;
-
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
-
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  background-color: black;
   &:hover {
-    border: 1px solid rgba(0, 184, 255, 0.5);
-    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
-    transition: all 0.3s ease; /* Smooth transition for the effect */
+    background-color: ${(props) => props.hoverColor};
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;
 
-const SecondTitle = styled.div`
-  display: flex;
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+
+  ${Card}:hover & {
+    opacity: 0;
+  }
 `;
 
-const ProjectDescription = styled.div`
+const TextOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  color: #f0ead6;
-`;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background-color: ${(props) => props.hoverColor};
+  z-index: 2;
 
-const ProjectName = styled.div`
-  /* min-width: 120px;
-  text-align: left; */
-  color: #f0ead6;
-  padding: 10px;
-`;
+  ${Card}:hover & {
+    opacity: 1;
+  }
 
-const WebsiteNavigation = styled.p`
-  margin: 0;
-  font-style: italic;
-  font-size: 0.9em;
-  padding: 10px;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    font-family: "Inter", sans-serif;
-    font-size: 1.2rem;
-    position: relative;
-    display: inline-block;
-
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(to right, #ff0000, #00ffff);
-      transform: scaleX(0);
-      transition: transform 0.4s ease-out;
-    }
-
-    &::after {
-      bottom: -5px;
-      left: 0;
-      transform-origin: right;
-    }
-
-    &::before {
-      top: -5px;
-      left: 0;
-      transform-origin: left;
-    }
-
-    &:hover::after,
-    &:hover::before {
-      transform: scaleX(1);
-    }
-
-    &:visited {
-      color: inherit;
-    }
+  * {
+    color: ${(props) => {
+      const clr = props.hoverColor;
+      // assume dark background, set white text
+      return "#fff";
+    }};
   }
 `;
 
-const BulletList = styled.ul`
+const ProjectName = styled.h4`
   margin: 0;
-  padding-left: 20px;
+  color: #fff;
+  font-size: 1.4em;
 `;
 
 const Details = styled.div`
-  margin: 0;
-  padding: 10px;
+  color: #f0ead6;
+  margin-top: 0.5rem;
   line-height: 1.4;
+  flex: 1;
+  overflow-y: auto;
 `;
 
-const BulletPoint = styled.li`
-  line-height: 1.4;
-  margin-bottom: 5px;
+const ActionButton = styled.div`
+  padding: 0.6rem 1.4rem;
+  border: 2px solid black;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 999px;
+  align-self: flex-start;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;
+
 export default ProjectExperience;
-
-// {project.bulletPoints.length > 0 ? (
-//   <BulletList>
-//     {project.bulletPoints.map((point, index) => (
-//       <BulletPoint key={index}>{point}</BulletPoint>
-//     ))}
-//   </BulletList>
-// ) : }
