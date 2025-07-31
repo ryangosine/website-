@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import LinkedInIcon from "./Icons/LinkedInIcon";
 import GitHubIcon from "./Icons/GitHubIcon";
 import FaceBookIcon from "./Icons/FacebookIcon";
 import GmailIcon from "./Icons/GmailIcon";
 import XIcon from "./Icons/Xicon";
 
-const SMIconsContainer = ({ direction = "column" }) => {
-  // const [isHovering, setIsHovering] = useState(false);
-
+const SMIconsContainer = () => {
   return (
     <GlobalWrapper>
-      <IconList direction={direction}>
+      <IconList>
         <IconItem>
           <IconLink
             href="https://www.linkedin.com/in/ryangosine/"
@@ -62,82 +60,59 @@ const SMIconsContainer = ({ direction = "column" }) => {
           </IconLink>
         </IconItem>
       </IconList>
-      {/* <TextElement>
-        Shoot me an e-mail! I'd{" "}
-        <ColoredSpan
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          $isHovering={isHovering}
-        >
-          love
-        </ColoredSpan>{" "}
-        to collaborate!
-      </TextElement> */}
     </GlobalWrapper>
   );
 };
 
 const GlobalWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-// const TextElement = styled.div`
-//   font-family: "Caveat", cursive;
-//   font-weight: 100;
-//   position: relative;
-// `;
-
-const ColoredSpan = styled.span`
-  color: #ff71ce;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  transition: transform 0.3s ease;
-  transform: ${(props) => (props.$isHovering ? "scale(8.2)" : "scale(1)")};
+  justify-content: center;
+  width: 100%;
 `;
 
 const IconList = styled.ul`
-  margin: 10;
-  padding: 0;
   display: flex;
-  flex-direction: ${(props) => props.direction};
+  flex-direction: row;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+
+  @media (max-width: 500px) {
+    gap: 6px;
+  }
 `;
 
 const IconItem = styled.li`
-  margin: 5px;
+  display: flex;
 `;
 
 const IconLink = styled.a`
-  position: relative;
+  position: relative; /* ✨ anchor is now the positioning context */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
   height: 50px;
   background: rgba(51, 51, 51, 0.2);
-  border-radius: 8px; // Changed from 50% to 8px for a box shape
+  border-radius: 8px;
   color: #666;
   transition: 0.3s;
   overflow: hidden;
+  z-index: 1; /* ✨ ensures this is above ::before */
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(
       135deg,
       rgba(255, 105, 180, 0.3),
       rgba(147, 112, 219, 0.3)
     );
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.3s;
+    z-index: 0; /* ✨ stays behind icon and link */
   }
 
   &:hover::before {
@@ -155,6 +130,17 @@ const IconLink = styled.a`
     height: 30px;
     fill: currentColor;
     transition: 0.3s;
+    z-index: 1;
+  }
+
+  @media (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 

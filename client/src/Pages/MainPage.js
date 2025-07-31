@@ -16,6 +16,9 @@ import GradientSection from "../components/StyleComponents/GradientStyle";
 import BlackSection from "../components/StyleComponents/BlackSection";
 import BridgeFadeSection from "../components/StyleComponents/BridgeFadeSection";
 
+import SMIconsContainer from "../components/SMIconsContainer";
+import Footer from "../components/Footer";
+
 const MainPage = () => {
   const [loading, setLoading] = useState(false);
 
@@ -35,9 +38,9 @@ const MainPage = () => {
           pullingContent={<span>PullToRefresh...</span>}
           refreshingContent={<Loader />}
         >
-          <MobileHeader />
-
           <GradientSection>
+            <MobileHeader />
+
             <TitleSection />
           </GradientSection>
           <BridgeFadeSection />
@@ -62,6 +65,7 @@ const MainPage = () => {
           </BlackSection>
         </PullToRefresh>
       </ContentWrapper>
+      <Footer />
     </MainWrapper>
   );
 };
@@ -84,7 +88,8 @@ const Loader = styled.div`
 
 const MainWrapper = styled.div`
   display: flex;
-  position: relative;
+  flex-direction: column;
+  min-height: 100vh;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -92,6 +97,8 @@ const MainWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   flex: 1;
+  position: relative;
+  z-index: 1;
   @media (max-width: 768px) {
     padding-left: 0.5rem;
     padding-right: 0.5rem;

@@ -103,7 +103,7 @@ const Title = styled.h3`
   margin-right: 10rem;
   display: flex;
   justify-content: center;
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
   --angle: 45deg;
   background: linear-gradient(
     var(--angle),
@@ -179,7 +179,7 @@ const WebsiteNavigation = styled.p`
   a {
     color: inherit;
     text-decoration: none;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 1.2rem;
     position: relative;
     display: inline-block;

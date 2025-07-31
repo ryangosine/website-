@@ -41,7 +41,7 @@ const Title = styled.h3`
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2em;
   margin: 0;
   --angle: 45deg;
@@ -68,7 +68,7 @@ const JobCard = styled.a`
   padding: 60px;
   border-radius: 5px;
   transition: all 0.3s ease;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   width: 50%;
 
   &:hover {

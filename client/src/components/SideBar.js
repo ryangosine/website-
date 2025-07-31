@@ -11,11 +11,12 @@ const SideBar = () => {
 };
 
 const SideBarWrapper = styled.aside`
-  width: 6rem; /* Sidebar width */
-  height: 100vh; /* Full viewport height */
+  width: 6rem;
+  height: 100vh;
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 10; /* ensure it's visible above sections if needed */
 
   display: flex;
   flex-direction: column;
@@ -23,24 +24,11 @@ const SideBarWrapper = styled.aside`
   justify-content: flex-end;
 
   padding: 1rem 0;
-  /* background-color: #111;  */
-  color: white;
+  background-color: transparent;
 
-  /* Optional: Adjust for small screens */
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
 export default SideBar;
-
-// const Header = styled.div`
-//   height: 6rem;
-//   border-bottom: 1px solid black;
-//   display: flex;
-//   align-items: center;
-//   padding: 0 1rem;
-//   width: auto;
-//   position: sticky;
-//   border-bottom: 2px solid white;
-// `;

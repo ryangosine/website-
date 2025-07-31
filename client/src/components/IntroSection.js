@@ -74,7 +74,7 @@ const Blurb = styled.p`
   text-align: left;
   line-height: 1.6;
   color: white;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 300;
   font-size: 16px;
   @media (max-width: 768px) {

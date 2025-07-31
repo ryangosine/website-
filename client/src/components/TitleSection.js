@@ -96,8 +96,8 @@ const TextContainer = styled.div`
   display: flex;
   justify-content: center;
   font-size: 12rem;
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   font-style: normal;
   letter-spacing: 2;
   --angle: 45deg;
@@ -135,6 +135,7 @@ const AnimatedChar = styled(motion.span)`
 const Subheading = styled.div`
   display: flex;
   justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   padding: 0 60px;
   margin-top: 40px;
