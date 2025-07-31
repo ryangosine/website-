@@ -19,7 +19,7 @@ const Quote = () => {
 
 const QuoteWrapper = styled.div`
   display: flex;
-  margin-top: 60px;
+  margin-top: 10px;
   padding: 70px;
   font-size: 5rem;
   font-family: "Courier Prime", monospace;
@@ -31,12 +31,6 @@ const QuoteWrapper = styled.div`
     font-size: 2.5rem;
     padding: 20px;
   }
-`;
-const QuoteText = styled.h1`
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 5.5rem;
-  margin-top: 50px;
 `;
 
 export default Quote;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import workExperienceData from "../workEXP.json"; // Import the JSON file
+import workExperienceData from "../workEXP.json";
 
 const WorkExperience = () => {
   return (
@@ -13,13 +13,11 @@ const WorkExperience = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* <Years>{job.years}</Years> */}
-          <Details>
-            <JobTitle>
-              {job.jobTitle} <br /> {job.company}
-            </JobTitle>
-            <Position>{job.description}</Position>
-          </Details>
+          <JobInfo>
+            <JobTitle>{job.jobTitle}</JobTitle>
+            <Company>{job.company}</Company>
+          </JobInfo>
+          <Position>{job.description}</Position>
         </JobCard>
       ))}
     </Container>
@@ -27,14 +25,10 @@ const WorkExperience = () => {
 };
 
 const Container = styled.div`
-  /* border: 1px solid red; */
   display: flex;
-  justify-content: flex-end;
   flex-direction: column;
-
-  gap: 20px;
+  gap: 40px;
   width: 100%;
-  /* max-width: 600px; */
 `;
 
 const Title = styled.h3`
@@ -44,67 +38,70 @@ const Title = styled.h3`
   font-family: "Montserrat", sans-serif;
   font-size: 2em;
   margin: 0;
-  --angle: 45deg;
-  background: linear-gradient(
-    var(--angle),
-    #d8f0fa,
-    #c6e6f9,
-    #aed1f1,
-    #97bdfc,
-    #84acf7,
-    #719aed
-  );
-  -webkit-background-clip: text; /* Clip the background to the text */
+  background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
+  -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  -webkit-text-fill-color: transparent;
 `;
 
 const JobCard = styled.a`
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding: 60px 40px;
   text-decoration: none;
   color: inherit;
-  padding: 60px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
   font-family: "Inter", sans-serif;
-  width: 50%;
+  transition: background 0.3s, border 0.3s;
 
   &:hover {
-    border: 1px solid rgba(0, 184, 255, 0.5); /* Faint border with the desired color */
-    background-color: rgba(0, 184, 255, 0.1); /* Faded background color */
-    transition: all 0.3s ease; /* Smooth transition for the effect */
+    background-color: rgba(0, 184, 255, 0.1);
+    border: 1px solid rgba(0, 184, 255, 0.5);
   }
 
   @media (max-width: 768px) {
-    width: 100%;
-    padding: 20px;
     flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+    padding: 20px;
   }
 `;
 
-const Years = styled.div`
-  min-width: 120px;
-  text-align: left;
-`;
-
-const Details = styled.div`
-  flex: 1;
+const JobInfo = styled.div`
+  flex: 0 0 35%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  color: #efebdd;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const JobTitle = styled.div`
-  font-style: italic;
   font-size: 1.2em;
-  margin-bottom: 20px;
+`;
+
+const Company = styled.div`
+  font-size: 1.1em;
 `;
 
 const Position = styled.div`
-  line-height: 1.4; // Match line-height with IntroSection
-`;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 20px;
+  line-height: 1.6;
+  text-align: right;
 
+  @media (max-width: 768px) {
+    text-align: left;
+    margin-top: 1rem;
+    padding-left: 0;
+  }
+`;
 export default WorkExperience;
