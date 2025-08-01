@@ -8,7 +8,6 @@ import Quote from "../components/Quote";
 import IconsContainer from "../components/IconsContainer";
 import ProjectExperience from "../components/ProjectExperience";
 import WorkExperience from "../components/WorkExperience";
-import MobileHeader from "../components/MobileHeader";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import Header from "../components/header";
 import Footer from "../components/Footer";
@@ -32,8 +31,6 @@ const MainPage = () => {
           pullingContent={<span>PullToRefresh...</span>}
           refreshingContent={<Loader />}
         >
-          <MobileHeader />
-
           <TitleSection />
 
           <IntroSection />

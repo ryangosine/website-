@@ -2,7 +2,6 @@ import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
-import ProjectsPage from "./Pages/ProjectPage";
 import AnimatedCursor from "react-animated-cursor";
 import ContactPage from "./Pages/ContactPage";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,14 +33,6 @@ const AnimatedRoutes = () => {
           element={
             <PageWrapper>
               <ContactPage />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/projectPage"
-          element={
-            <PageWrapper>
-              <ProjectsPage />
             </PageWrapper>
           }
         />
