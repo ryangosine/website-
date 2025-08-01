@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import workExperienceData from "../workEXP.json";
 
@@ -121,7 +120,7 @@ const TextOverlay = styled.div`
   @media (max-width: 768px) {
     position: relative;
     opacity: 1;
-    background-color: ${darkMauve}; /* Show overlay content always on mobile */
+    background-color: ${darkMauve};
   }
 `;
 

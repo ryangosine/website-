@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import SMIconsContainer from "./SMIconsContainer";
 
@@ -16,9 +15,8 @@ const Footer = () => {
 };
 
 const FooterWrapper = styled.footer`
-  /* border: 1px solid red; */
   width: 100%;
-  background-color: #000; /* ✨ solid black box */
+  background-color: #000;
   padding: 2rem 0;
   display: flex;
   justify-content: center;

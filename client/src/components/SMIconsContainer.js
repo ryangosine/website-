@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import LinkedInIcon from "./Icons/LinkedInIcon";
 import GitHubIcon from "./Icons/GitHubIcon";
@@ -88,7 +87,7 @@ const IconItem = styled.li`
 `;
 
 const IconLink = styled.a`
-  position: relative; /* ✨ anchor is now the positioning context */
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +98,7 @@ const IconLink = styled.a`
   color: #666;
   transition: 0.3s;
   overflow: hidden;
-  z-index: 1; /* ✨ ensures this is above ::before */
+  z-index: 1;
 
   &::before {
     content: "";

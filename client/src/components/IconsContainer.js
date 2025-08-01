@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import HTMLIcon from "./Icons/HTMLIcon";
 import JSIcon from "./Icons/JSIcon";

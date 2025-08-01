@@ -1,10 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import projectData from "../projects.json";
-import TiltedCard from "../Animations/TiltedCard";
 import websiteCardSpace from "../Assets/WebsiteCardSpace.svg";
 import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
-import { motion } from "framer-motion";
 
 const ProjectExperience = () => {
   return (

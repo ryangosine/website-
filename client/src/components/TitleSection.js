@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import TextFade from "../Animations/TextFade";
@@ -87,12 +87,10 @@ const TitleSection = () => {
 };
 
 const SectionWrapper = styled.div`
-  /* border: 3px solid red; */
   margin-top: 13vh;
 `;
 
 const TextContainer = styled.div`
-  /* border: 2px solid white; */
   display: flex;
   justify-content: center;
   font-size: 12rem;
@@ -127,9 +125,6 @@ const AnimatedChar = styled(motion.span)`
   background: inherit;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* White glow/shadow around letters */
-  /* text-shadow: 0px 3px 8px rgba(255, 255, 255, 0.4); */
 `;
 
 const Subheading = styled.div`
@@ -169,35 +164,3 @@ const Word4 = styled(motion.span)`
 `;
 
 export default TitleSection;
-
-const Brackets = styled.div`
-  /* border: 1px solid white; */
-  display: flex;
-  align-items: flex-end;
-  font-size: 2rem;
-  /* padding: 10px; */
-  /* margin-right: 5px; */
-`;
-const Period = styled.div`
-  font-size: 5rem; // Similar to the curly braces, but slightly smaller
-  border: 1px solid skyblue;
-  display: inline-block;
-  align-self: flex-end;
-  padding-top: 10px;
-
-  /* padding: 0 10px; */
-`;
-
-const Subheading1 = styled.h2`
-  /* border: 1px solid green; */
-  padding: 10px;
-  display: flex;
-
-  gap: 10px;
-`;
-const Divider = styled.h1`
-  padding: 10px;
-`;
-const Subheading2 = styled.h2`
-  padding: 10px;
-`;
