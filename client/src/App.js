@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GlobalStyles from "./GlobalStyles";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import AnimatedCursor from "react-animated-cursor";
 import ContactPage from "./Pages/ContactPage";
 import { AnimatePresence, motion } from "framer-motion";
+
+function useShowCustomCursor() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setShow(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
+
+  return show;
+}
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -42,10 +56,12 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
+  const showCursor = useShowCustomCursor();
+
   return (
     <>
       <GlobalStyles />
-      <AnimatedCursor />
+      {showCursor && <AnimatedCursor />}
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>

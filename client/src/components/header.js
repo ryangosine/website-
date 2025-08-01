@@ -12,9 +12,19 @@ const Header = () => {
           ← Back
         </ButtonLink>
       ) : (
-        <ButtonLink to="/contact" aria-label="Go to contact page">
-          Contact
-        </ButtonLink>
+        <>
+          <ResumeLink
+            href="/Ryan_Gosine_Resume.pdf"
+            download
+            aria-label="Download résumé (PDF)"
+            title="Download résumé (PDF)"
+          >
+            Download my Résumé
+          </ResumeLink>
+          <ButtonLink to="/contact" aria-label="Go to contact page">
+            Contact
+          </ButtonLink>
+        </>
       )}
     </HeaderWrapper>
   );
@@ -34,6 +44,31 @@ const HeaderWrapper = styled.header`
 
   @media (max-width: 768px) {
     padding: 1rem;
+  }
+`;
+const ResumeLink = styled.a`
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.6rem, 3.5vw, 0.8rem);
+  color: white;
+  text-decoration: none;
+  margin-right: 2rem;
+  opacity: 0.9;
+  transition: opacity 0.2s, text-decoration-color 0.2s;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  &:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
   }
 `;
 
