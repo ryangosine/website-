@@ -88,6 +88,10 @@ const TitleSection = () => {
 
 const SectionWrapper = styled.div`
   margin-top: 13vh;
+
+  @media (max-width: 768px) {
+    margin-top: 8vh;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -134,11 +138,14 @@ const Subheading = styled.div`
   width: 100%;
   padding: 0 60px;
   margin-top: 40px;
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0 20px;
     text-align: center;
+    gap: 10px;
   }
 `;
 
@@ -146,21 +153,41 @@ const Word1 = styled(motion.span)`
   display: inline-block;
   font-size: 3.5rem;
   margin: 0 5px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
 `;
 const Word2 = styled(motion.span)`
   display: inline-block;
   font-size: 3.5rem;
   margin: 0 5px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
 `;
 const Word3 = styled(motion.span)`
   display: inline-block;
   font-size: 3.5rem;
   margin: 0 5px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
 `;
 const Word4 = styled(motion.span)`
   display: inline-block;
   font-size: 3.5rem;
   margin: 0 5px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
 `;
 
 export default TitleSection;
