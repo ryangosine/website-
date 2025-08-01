@@ -67,7 +67,7 @@ const CardRow = styled.div`
   gap: 2rem;
 `;
 
-const CardLink = styled.a`
+const CardLink = styled.div`
   position: relative;
   width: clamp(280px, 90vw, 500px);
   height: 300px;

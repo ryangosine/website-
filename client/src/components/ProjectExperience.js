@@ -78,7 +78,7 @@ const CardRow = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.a`
+const Card = styled.div`
   font-family: "Inter", sans-serif;
   position: relative;
   width: 400px;
