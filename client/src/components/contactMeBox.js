@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { motion, useReducedMotion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ContactMeBox = () => {
   const shouldReduceMotion = useReducedMotion();
+  const navigate = useNavigate();
 
   return (
     <Section aria-labelledby="contact-title">
@@ -16,6 +18,11 @@ const ContactMeBox = () => {
           I’m currently open to new opportunities and collaborations.
           <br /> Feel free to reach out and let’s build something great.
         </Text>
+        <ButtonWrapper>
+          <ContactMeButton onClick={() => navigate("/contact")}>
+            Contact Me
+          </ContactMeButton>
+        </ButtonWrapper>
       </BoxWrapper>
     </Section>
   );
@@ -52,7 +59,6 @@ const Title = styled.h1`
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
 `;
 
 const Text = styled.p`
@@ -60,6 +66,29 @@ const Text = styled.p`
   font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: #eee;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const ContactMeButton = styled.button`
+  padding: 0.6rem 1.4rem;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
 `;
 
 export default ContactMeBox;

@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header";
 import Footer from "../components/Footer";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 const ContactPage = () => {
   const formRef = useRef();

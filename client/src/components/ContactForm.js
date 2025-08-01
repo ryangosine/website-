@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 
 const ContactForm = () => {
@@ -9,8 +9,29 @@ const ContactForm = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setIsSending(true);
     setFeedbackMsg("");
+
+    const name = form.current.name.value.trim();
+    const email = form.current.email.value.trim();
+    const message = form.current.message.value.trim();
+
+    if (!name) {
+      setFeedbackMsg("❌ Name is required.");
+      return;
+    }
+
+    const emailPattern = /^\S+@\S+\.\S+$/;
+    if (!emailPattern.test(email)) {
+      setFeedbackMsg("❌ Please enter a valid email address.");
+      return;
+    }
+
+    if (!message) {
+      setFeedbackMsg("❌ Message is required.");
+      return;
+    }
+
+    setIsSending(true);
 
     emailjs
       .sendForm(
@@ -30,6 +51,13 @@ const ContactForm = () => {
       .finally(() => setIsSending(false));
   };
 
+  useEffect(() => {
+    if (feedbackMsg) {
+      const timeout = setTimeout(() => setFeedbackMsg(""), 4000);
+      return () => clearTimeout(timeout);
+    }
+  }, [feedbackMsg]);
+
   return (
     <Container>
       <Header>Contact Me</Header>
@@ -37,45 +65,48 @@ const ContactForm = () => {
         Have a question or project in mind? Send a message below.
       </Subtext>
       <Form ref={form} onSubmit={sendEmail} noValidate>
-        <Label htmlFor="name">Your Name</Label>
-        <Input
-          id="name"
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          required
-        />
+        <fieldset disabled={isSending} style={{ border: "none", padding: 0 }}>
+          <Label htmlFor="name">Your Name</Label>
+          <Input
+            id="name"
+            name="name"
+            placeholder="Your Name"
+            aria-required="true"
+          />
 
-        <Label htmlFor="email">Your Email</Label>
-        <Input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
+          <Label htmlFor="email">Your Email</Label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            aria-required="true"
+          />
 
-        <Label htmlFor="message">Your Message</Label>
-        <TextArea
-          id="message"
-          name="message"
-          placeholder="Let's talk about it..."
-          rows="5"
-          required
-        />
+          <Label htmlFor="message">Your Message</Label>
+          <TextArea
+            id="message"
+            name="message"
+            placeholder="Let's talk about it..."
+            rows="5"
+            aria-required="true"
+          />
 
-        <Button type="submit" disabled={isSending}>
-          {isSending ? "Sending..." : "Send Message"}
-        </Button>
+          <Button type="submit">
+            {isSending ? "Sending..." : "Send Message"}
+          </Button>
+        </fieldset>
 
-        {feedbackMsg && <Feedback>{feedbackMsg}</Feedback>}
+        {feedbackMsg && <Feedback role="status">{feedbackMsg}</Feedback>}
       </Form>
     </Container>
   );
 };
 
 const Container = styled.div`
-  max-width: 600px;
+  max-width: 1080px;
+  width: 100%;
+
   margin: 6rem auto;
   padding: 2.5rem;
   background: rgba(255, 255, 255, 0.03);
@@ -116,9 +147,11 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 100%;
 `;
 
 const Input = styled.input`
+  width: 100%;
   padding: 1rem;
   font-size: 1rem;
   border: 1px solid #444;
@@ -137,6 +170,7 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
+  width: 100%;
   padding: 1rem;
   font-size: 1rem;
   border: 1px solid #444;
