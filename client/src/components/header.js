@@ -80,9 +80,8 @@ const ButtonLink = styled(Link)`
     z-index: 2;
   }
   @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
     font-size: 14px;
+    padding: 0.5rem 1rem;
   }
 `;
 

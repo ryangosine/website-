@@ -27,7 +27,15 @@ const ProjectExperience = () => {
                     <p key={idx}>{line.trim() || "\u00A0"}</p>
                   ))}
                 </Details>
-                {project.siteUrl && <ActionButton>Visit Site</ActionButton>}
+                {project.siteUrl && (
+                  <ActionButton
+                    href={project.siteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Site
+                  </ActionButton>
+                )}
               </TextOverlay>
             </Card>
           );
@@ -61,15 +69,14 @@ const CardRow = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.a`
+const Card = styled.div`
+  font-family: "Inter", sans-serif;
   position: relative;
   width: 400px;
   height: 300px;
   border-radius: 8px;
   overflow: hidden;
   display: block;
-  text-decoration: none;
-  cursor: pointer;
   transition: background-color 0.5s ease;
   background-color: black;
   &:hover {
@@ -109,7 +116,7 @@ const TextOverlay = styled.div`
   }
 
   * {
-    color: ${(props) => "#fff"};
+    color: #fff;
   }
 `;
 
@@ -125,12 +132,15 @@ const Details = styled.div`
   line-height: 1.4;
   flex: 1;
   overflow-y: auto;
+  font-size: 0.9rem;
 `;
 
-const ActionButton = styled.div`
+const ActionButton = styled.a`
   padding: 0.6rem 1.4rem;
   border: 2px solid black;
   background-color: transparent;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
   color: white;
   font-size: 1rem;
   cursor: pointer;

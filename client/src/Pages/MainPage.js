@@ -53,12 +53,7 @@ const MainPage = () => {
               {pageContent}
             </PullToRefresh>
           ) : (
-            <>
-              {pageContent}
-              <ManualRefreshButton onClick={handleRefresh}>
-                Refresh
-              </ManualRefreshButton>
-            </>
+            <>{pageContent}</>
           )}
           <ContactMeBox />
           <Footer />
@@ -86,23 +81,6 @@ const Loader = styled.div`
 
 const FullPageLoader = styled(Loader)`
   margin: 10rem auto;
-`;
-
-const ManualRefreshButton = styled.button`
-  margin: 2rem auto;
-  padding: 0.6rem 1.2rem;
-  background-color: transparent;
-  border: 2px solid #00b8ff;
-  color: #00b8ff;
-  font-size: 1rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #00b8ff;
-    color: black;
-  }
 `;
 
 const MainWrapper = styled.div`

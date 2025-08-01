@@ -16,12 +16,21 @@ const WorkExperience = () => {
             <Placeholder>{job.company}</Placeholder>
             <TextOverlay>
               <JobTitle>{job.jobTitle}</JobTitle>
-              <Company>{job.company}</Company>
+
               <Details>
                 {job.description.split("\n").map((line, idx) => (
                   <p key={idx}>{line.trim() || "\u00A0"}</p>
                 ))}
               </Details>
+              {job.companyUrl && (
+                <ActionButton
+                  href={job.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Site
+                </ActionButton>
+              )}
             </TextOverlay>
           </Card>
         ))}
@@ -58,7 +67,7 @@ const CardRow = styled.div`
   gap: 2rem;
 `;
 
-const Card = styled.a`
+const Card = styled.div`
   position: relative;
   width: clamp(280px, 90vw, 500px);
   height: 300px;
@@ -76,7 +85,7 @@ const Card = styled.a`
   }
 
   @media (max-width: 768px) {
-    height: auto; /* Allow flexible height on mobile */
+    height: auto;
   }
 `;
 
@@ -89,8 +98,10 @@ const Placeholder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   transition: opacity 0.5s ease;
   z-index: 1;
+  font-family: "Montserrat", sans-serif;
 
   ${Card}:hover & {
     opacity: 0;
@@ -127,18 +138,9 @@ const TextOverlay = styled.div`
 const JobTitle = styled.h4`
   margin: 0;
   font-size: 1.4em;
-
+  font-family: "Inter", sans-serif;
   @media (max-width: 768px) {
     font-size: 1.2em;
-  }
-`;
-
-const Company = styled.div`
-  margin: 5px 0;
-  font-size: 1.1em;
-
-  @media (max-width: 768px) {
-    font-size: 1em;
   }
 `;
 
@@ -147,9 +149,29 @@ const Details = styled.div`
   line-height: 1.5;
   overflow-y: auto;
   max-height: 120px;
-
+  font-family: "Inter", sans-serif;
   @media (max-width: 768px) {
     max-height: none;
+  }
+`;
+
+const ActionButton = styled.a`
+  padding: 0.6rem 1.4rem;
+  margin-top: 4rem;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+
+  border-radius: 999px;
+  align-self: flex-start;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: black;
   }
 `;
 export default WorkExperience;
