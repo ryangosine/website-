@@ -12,6 +12,7 @@ import MobileHeader from "../components/MobileHeader";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import Header from "../components/header";
 import Footer from "../components/Footer";
+import ContactMeBox from "../components/contactMeBox";
 
 const MainPage = () => {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ const MainPage = () => {
           <IconsContainer />
         </PullToRefresh>
       </ContentWrapper>
+      <ContactMeBox />
       <Footer />
     </MainWrapper>
   );

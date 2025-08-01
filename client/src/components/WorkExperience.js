@@ -64,7 +64,7 @@ const Card = styled.a`
   width: clamp(280px, 90vw, 500px);
   height: 300px;
   background-color: black;
-  border: 1px solid ${darkMauve};
+  border: 4px solid ${darkMauve};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;

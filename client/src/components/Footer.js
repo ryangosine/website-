@@ -16,7 +16,7 @@ const Footer = () => {
 };
 
 const FooterWrapper = styled.footer`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
   background-color: #000; /* ✨ solid black box */
   padding: 2rem 0;

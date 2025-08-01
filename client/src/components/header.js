@@ -37,19 +37,19 @@ const HeaderWrapper = styled.header`
 const ButtonLink = styled(Link)`
   position: relative;
   display: flex;
-  justify-content: center; /* Horizontal centering of text */
-  align-items: center; /* Vertical centering of text */
-  width: 100px;
-  height: 60px;
-  background: rgba(51, 51, 51, 0.2);
-  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1.4rem;
+  background-color: transparent;
   color: white;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  border: 2px solid white;
+  border-radius: 999px;
   text-decoration: none;
-  transition: 0.3s;
   overflow: hidden;
   z-index: 1;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
 
   &::before {
     content: "";
@@ -63,6 +63,7 @@ const ButtonLink = styled(Link)`
     opacity: 0;
     transition: opacity 0.3s;
     z-index: 0;
+    border-radius: 999px;
   }
 
   &:hover::before {
@@ -70,11 +71,15 @@ const ButtonLink = styled(Link)`
   }
 
   &:hover {
-    color: #fff;
-    background: rgba(51, 51, 51, 0.4);
+    color: black;
+    background-color: white;
     transform: translateY(-2px);
   }
 
+  span {
+    position: relative;
+    z-index: 2;
+  }
   @media (max-width: 768px) {
     width: 50px;
     height: 50px;

@@ -167,7 +167,7 @@ const IconsContainer = () => {
 };
 
 const Wrapper = styled.div`
-  border: 1px solid white;
+  border: 4px solid white;
   border-radius: 15px;
   width: 90%;
   max-width: 1200px;
