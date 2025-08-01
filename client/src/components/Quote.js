@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import TextType from "../Animations/TextType";
+import Spacer from "./Spacer";
 
 const Quote = () => {
   return (
-    <QuoteWrapper role="region" aria-label="Inspirational quote section">
-      <QuoteBlock aria-live="polite">
-        <TextType
-          text={["Modern problems require modern solutions."]}
-          typingSpeed={110}
-          pauseDuration={1500}
-          showCursor={true}
-          cursorCharacter="|"
-          startOnVisible={true}
-        />
-      </QuoteBlock>
-    </QuoteWrapper>
+    <>
+      <QuoteWrapper role="region" aria-label="Inspirational quote section">
+        <QuoteBlock aria-live="polite">
+          <TextType
+            text={["Modern problems require modern solutions."]}
+            typingSpeed={110}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="|"
+            startOnVisible={true}
+          />
+        </QuoteBlock>
+      </QuoteWrapper>
+      <Spacer size="6rem" mobileSize="4rem" />
+    </>
   );
 };
 
@@ -22,7 +26,7 @@ const QuoteWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10rem auto;
+  margin: 0 auto;
   padding: 70px;
   font-size: 5rem;
   font-family: "Courier Prime", Courier, monospace;
@@ -34,7 +38,7 @@ const QuoteWrapper = styled.section`
   @media (max-width: 768px) {
     font-size: 2.5rem;
     padding: 20px;
-    margin: 5rem auto;
+    margin: 0 auto;
   }
 `;
 

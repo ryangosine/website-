@@ -3,6 +3,7 @@ import styled from "styled-components";
 import projectData from "../projects.json";
 import websiteCardSpace from "../Assets/WebsiteCardSpace.svg";
 import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
+import Spacer from "./Spacer";
 
 const ProjectExperience = () => {
   const [expandedId, setExpandedId] = useState(null);
@@ -21,51 +22,54 @@ const ProjectExperience = () => {
   };
 
   return (
-    <Container role="region" aria-labelledby="project-experience-heading">
-      <Title id="project-experience-heading">Project Experience</Title>
-      <MobileHint>try clicking the card</MobileHint>
-      <CardRow>
-        {projectData.map((project, index) => {
-          const color = index === 0 ? "#4A90E2" : "#27AE60";
-          const imageSrc = index === 0 ? websiteCardSpace : shopCard_500x300;
-          const isExpanded = expandedId === project.id;
+    <>
+      <Container role="region" aria-labelledby="project-experience-heading">
+        <Title id="project-experience-heading">Project Experience</Title>
+        <MobileHint>try clicking the card</MobileHint>
+        <CardRow>
+          {projectData.map((project, index) => {
+            const color = index === 0 ? "#4A90E2" : "#27AE60";
+            const imageSrc = index === 0 ? websiteCardSpace : shopCard_500x300;
+            const isExpanded = expandedId === project.id;
 
-          return (
-            <CardContainer
-              key={project.id}
-              onClick={() => handleToggle(project.id)}
-              $hoverColor={color}
-              $isExpanded={isExpanded}
-            >
-              <Image
-                src={imageSrc}
-                alt={project.name}
-                loading="lazy"
+            return (
+              <CardContainer
+                key={project.id}
+                onClick={() => handleToggle(project.id)}
+                $hoverColor={color}
                 $isExpanded={isExpanded}
-              />
-              <TextOverlay $hoverColor={color} $isExpanded={isExpanded}>
-                <ProjectName>{project.name}</ProjectName>
-                <Details>
-                  {project.description.split("\n").map((line, idx) => (
-                    <p key={idx}>{line.trim() || "\u00A0"}</p>
-                  ))}
-                </Details>
-                {project.siteUrl && isExpanded && (
-                  <ActionButton
-                    href={project.siteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Visit Site
-                  </ActionButton>
-                )}
-              </TextOverlay>
-            </CardContainer>
-          );
-        })}
-      </CardRow>
-    </Container>
+              >
+                <Image
+                  src={imageSrc}
+                  alt={project.name}
+                  loading="lazy"
+                  $isExpanded={isExpanded}
+                />
+                <TextOverlay $hoverColor={color} $isExpanded={isExpanded}>
+                  <ProjectName>{project.name}</ProjectName>
+                  <Details>
+                    {project.description.split("\n").map((line, idx) => (
+                      <p key={idx}>{line.trim() || "\u00A0"}</p>
+                    ))}
+                  </Details>
+                  {project.siteUrl && isExpanded && (
+                    <ActionButton
+                      href={project.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Visit Site
+                    </ActionButton>
+                  )}
+                </TextOverlay>
+              </CardContainer>
+            );
+          })}
+        </CardRow>
+      </Container>
+      <Spacer size="10rem" mobileSize="6rem" />
+    </>
   );
 };
 
@@ -73,7 +77,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin: 10rem auto;
+  margin: 0 auto;
   padding: 0 1rem;
 `;
 

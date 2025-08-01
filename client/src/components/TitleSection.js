@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import TextFade from "../Animations/TextFade";
+import Spacer from "../components/Spacer";
 
 const TitleSection = () => {
   const nameRef = useRef(null);
@@ -27,77 +28,80 @@ const TitleSection = () => {
   }, [startSubheading]);
 
   return (
-    <SectionWrapper>
-      <HiddenH1>Ryan Gosine</HiddenH1>
+    <>
+      <SectionWrapper>
+        <HiddenH1>Ryan Gosine</HiddenH1>
 
-      <TextContainer aria-hidden="true">
-        <AnimatePresence>
-          {name.map((char, i) => (
-            <AnimatedChar
-              ref={i === 0 ? nameRef : null}
-              key={i}
-              initial={{ opacity: 0, x: -18 }}
-              animate={isNameInView ? { opacity: 1, x: 0 } : {}}
-              exit="hidden"
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </AnimatedChar>
-          ))}
-        </AnimatePresence>
-      </TextContainer>
+        <TextContainer aria-hidden="true">
+          <AnimatePresence>
+            {name.map((char, i) => (
+              <AnimatedChar
+                ref={i === 0 ? nameRef : null}
+                key={i}
+                initial={{ opacity: 0, x: -18 }}
+                animate={isNameInView ? { opacity: 1, x: 0 } : {}}
+                exit="hidden"
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </AnimatedChar>
+            ))}
+          </AnimatePresence>
+        </TextContainer>
 
-      <Subheading role="region" aria-live="polite">
-        {startSubheading && (
-          <TextFade direction="down" staggerChildren={0.1}>
-            <Word
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
-            >
-              Web
-            </Word>
-            <Word
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", duration: 0.6, delay: 1 }}
-            >
-              Developer
-            </Word>
-          </TextFade>
-        )}
+        <Subheading role="region" aria-live="polite">
+          {startSubheading && (
+            <TextFade direction="down" staggerChildren={0.1}>
+              <Word
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
+              >
+                Web
+              </Word>
+              <Word
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", duration: 0.6, delay: 1 }}
+              >
+                Developer
+              </Word>
+            </TextFade>
+          )}
 
-        {startSecondSubheading && (
-          <TextFade direction="up" staggerChildren={0.1}>
-            <Word
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
-            >
-              Problem
-            </Word>
-            <Word
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", duration: 0.6, delay: 1 }}
-            >
-              Solver
-            </Word>
-          </TextFade>
-        )}
-      </Subheading>
-    </SectionWrapper>
+          {startSecondSubheading && (
+            <TextFade direction="up" staggerChildren={0.1}>
+              <Word
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
+              >
+                Problem
+              </Word>
+              <Word
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", duration: 0.6, delay: 1 }}
+              >
+                Solver
+              </Word>
+            </TextFade>
+          )}
+        </Subheading>
+      </SectionWrapper>
+      <Spacer size="6rem" mobileSize="4rem" />
+    </>
   );
 };
 
 const SectionWrapper = styled.div`
-  margin-top: 10vh;
+  margin-top: 8vh;
   padding: 0 1rem;
   box-sizing: border-box;
   width: 100%;
 
   @media (max-width: 768px) {
-    margin-top: 8vh;
+    margin-top: 4vh;
   }
 `;
 

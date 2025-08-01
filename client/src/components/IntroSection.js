@@ -1,107 +1,110 @@
 import styled from "styled-components";
 import Selfie from "../Assets/website_photo_self.svg";
+import Spacer from "../components/Spacer";
 
 const IntroSection = () => {
   return (
-    <Section id="intro-section" aria-labelledby="intro-heading">
-      <ProfileImage
-        src={Selfie}
-        alt="Portrait of Ryan, the web developer"
-        loading="lazy"
-      />
-      <BlurbContainer>
-        <Heading id="intro-heading">Meet Ryan</Heading>
-        <Blurb as="article">
-          <p>Hey! I'm Ryan. I'm a web developer!</p>
+    <>
+      <Section id="intro-section" aria-labelledby="intro-heading">
+        <ProfileWrap>
+          <ProfileImage
+            src={Selfie}
+            alt="Portrait of Ryan, the web developer"
+            loading="lazy"
+          />
+        </ProfileWrap>
 
-          <p>
-            I graduated from the Concordia University Full-Stack Web Development
-            Program that specialized in the key modern fundamentals of designing
-            and building websites and applications. My program focused on
-            learning both Front-End and Back-End development to ensure a strong
-            foundation in programming. I'm very passionate about building web
-            applications and eager to learn, work and develop and expand my
-            current skills and knowledge. Every day is a new experience!
-          </p>
+        <BlurbContainer>
+          <Heading id="intro-heading">Meet Ryan</Heading>
+          <Blurb as="article">
+            <p>Hey everyone! I’m Ryan.</p>
 
-          <p>
-            Prior to this I worked in schools as a Behaviour Specialist and
-            community problem solver. I think that this experience has really
-            helped me cultivate my ability to think outside the box, analyze
-            complex problems, and deliver effective solutions to meet daily
-            challenges. I loved my work, but am looking forward to new
-            experiences in my new love of programming!
-          </p>
-        </Blurb>
-      </BlurbContainer>
-    </Section>
+            <p>
+              I’m a full-stack web developer trained at Concordia University’s
+              Web Development Program. I build clean, functional websites and
+              applications with a focus on design, readability, and
+              accessibility. I’m eager to keep learning and grow with every
+              project!
+            </p>
+
+            <p>
+              My background as a Behaviour Specialist with the English Montreal
+              School Board taught me to solve problems creatively and think
+              outside the box. I now apply those skills to delivering smart,
+              effective digital solutions.
+            </p>
+          </Blurb>
+        </BlurbContainer>
+      </Section>
+      <Spacer size="6rem" mobileSize="4rem" />
+    </>
   );
 };
 
 const Section = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 40vh;
-  margin-bottom: 2.5rem;
-  padding: 4rem 0 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 4vh;
-    margin-bottom: 1.25rem;
-    padding: 2rem 0 1rem;
+  padding: clamp(2rem, 6vw, 4rem) 0;
+  margin: 0 auto;
+  max-width: 1100px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: clamp(1.5rem, 6vw, 3rem) 1rem;
   }
 `;
 
-const ProfileImage = styled.img`
-  border: 1px solid black;
-  border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  object-fit: cover;
-  margin: 2rem;
+const ProfileWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
-  @media (max-width: 768px) {
-    width: 90%;
-    height: auto;
-    margin: 0 0 2rem 0;
+const ProfileImage = styled.img`
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: clamp(220px, 32vw, 360px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  /* Optional subtle ring on hover for desktops */
+  @media (hover: hover) {
+    &:hover {
+      outline: 2px solid rgba(255, 255, 255, 0.2);
+      outline-offset: 4px;
+    }
   }
 `;
 
 const BlurbContainer = styled.div`
-  max-width: 600px;
-  padding-top: 2.5rem;
+  max-width: 640px;
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding-top: 1.5rem;
-  }
 `;
 
 const Heading = styled.h2`
-  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
   font-family: "Montserrat", sans-serif;
   color: white;
-  margin-bottom: 1.5rem;
+  margin: 0 0 0.75rem 0;
 `;
 
 const Blurb = styled.div`
   font-family: "Inter", sans-serif;
   color: white;
   font-weight: 300;
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.7;
   text-align: left;
 
   p {
-    margin-bottom: 1.25rem;
+    margin: 0 0 1rem 0;
   }
 
-  @media (max-width: 768px) {
-    line-height: 1.5;
+  p:last-child {
+    margin-bottom: 0;
   }
 `;
 

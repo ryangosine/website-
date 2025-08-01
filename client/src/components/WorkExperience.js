@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import workExperienceData from "../workEXP.json";
+import Spacer from "./Spacer";
 
 const darkMauve = "#874C62";
 
@@ -21,61 +22,66 @@ const WorkExperience = () => {
   };
 
   return (
-    <Section role="region" aria-labelledby="work-experience-heading">
-      <Title id="work-experience-heading">Current Client(s)</Title>
-      <MobileHint>try clicking the card</MobileHint>
-      <CardRow>
-        {workExperienceData.map((job) => {
-          const isExpanded = expandedId === job.id;
+    <>
+      <Section role="region" aria-labelledby="work-experience-heading">
+        <Title id="work-experience-heading">Current Client(s)</Title>
+        <MobileHint>try clicking the card</MobileHint>
+        <CardRow>
+          {workExperienceData.map((job) => {
+            const isExpanded = expandedId === job.id;
 
-          const onKeyDown = (e) => {
-            if (!isMobile) return;
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleToggle(job.id);
-            }
-          };
+            const onKeyDown = (e) => {
+              if (!isMobile) return;
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleToggle(job.id);
+              }
+            };
 
-          return (
-            <CardContainer
-              key={job.id}
-              onClick={() => handleToggle(job.id)}
-              onKeyDown={onKeyDown}
-              $isExpanded={isExpanded}
-              role="button"
-              tabIndex={0}
-              aria-expanded={isExpanded}
-              aria-label={`${job.company} details`}
-            >
-              {/* Mobile: visible by default; fades out when expanded */}
-              <Placeholder $isExpanded={isExpanded}>{job.company}</Placeholder>
+            return (
+              <CardContainer
+                key={job.id}
+                onClick={() => handleToggle(job.id)}
+                onKeyDown={onKeyDown}
+                $isExpanded={isExpanded}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isExpanded}
+                aria-label={`${job.company} details`}
+              >
+                {/* Mobile: visible by default; fades out when expanded */}
+                <Placeholder $isExpanded={isExpanded}>
+                  {job.company}
+                </Placeholder>
 
-              {/* Mobile: hidden by default; fades in when expanded */}
-              <TextOverlay $isExpanded={isExpanded}>
-                <JobTitle>{job.jobTitle}</JobTitle>
+                {/* Mobile: hidden by default; fades in when expanded */}
+                <TextOverlay $isExpanded={isExpanded}>
+                  <JobTitle>{job.jobTitle}</JobTitle>
 
-                <Details>
-                  {job.description.split("\n").map((line, idx) => (
-                    <p key={idx}>{line.trim() || "\u00A0"}</p>
-                  ))}
-                </Details>
+                  <Details>
+                    {job.description.split("\n").map((line, idx) => (
+                      <p key={idx}>{line.trim() || "\u00A0"}</p>
+                    ))}
+                  </Details>
 
-                {job.companyUrl && isExpanded && (
-                  <ActionButton
-                    href={job.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()} // keep taps from closing the card
-                  >
-                    Visit Site
-                  </ActionButton>
-                )}
-              </TextOverlay>
-            </CardContainer>
-          );
-        })}
-      </CardRow>
-    </Section>
+                  {job.companyUrl && isExpanded && (
+                    <ActionButton
+                      href={job.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()} // keep taps from closing the card
+                    >
+                      Visit Site
+                    </ActionButton>
+                  )}
+                </TextOverlay>
+              </CardContainer>
+            );
+          })}
+        </CardRow>
+      </Section>
+      <Spacer size="6rem" mobileSize="4rem" />
+    </>
   );
 };
 
@@ -85,6 +91,7 @@ const Section = styled.section`
   gap: 2.5rem;
   width: 100%;
   padding: 1rem;
+  margin: 0 auto;
 `;
 
 const Title = styled.h3`

@@ -6,6 +6,7 @@ import AngularIcon from "./Icons/AngularIcon";
 import TSLogo from "./Icons/TypeScript";
 import NPMIcon from "./Icons/NPMIcon";
 import BootStrapLogo from "./Icons/BootStrapLogo";
+import NextIcon from "./Icons/NextJSicon";
 import NodeIcon from "./Icons/NodeIcon";
 import PythonIcon from "./Icons/PythonIcon";
 import MongoDBIcon from "./Icons/MongoDbIcon";
@@ -19,151 +20,164 @@ import GitIcon from "./Icons/GitIcon";
 import VSCIcon from "./Icons/VSCIcon";
 import InsomniaIcon from "./Icons/InsomniaIcon";
 import PostManIcon from "./Icons/PostManIcon";
+import Spacer from "./Spacer";
 
 const IconsContainer = () => {
   return (
-    <Wrapper>
-      <Title1 as="h2" id="technologies-title">
-        Technologies I Enjoy Using
-      </Title1>
-      <Columns role="region" aria-labelledby="technologies-title">
-        <Column as="section" aria-labelledby="front-end-heading">
-          <ColumnTitle id="front-end-heading">Front End</ColumnTitle>
-          <Item tabIndex="0" aria-label="HTML">
-            <SmallIcon>
-              <HTMLIcon />
-            </SmallIcon>
-            HTML
-          </Item>
-          <Item tabIndex="0" aria-label="JavaScript">
-            <SmallIcon>
-              <JSIcon />
-            </SmallIcon>
-            JavaScript
-          </Item>
-          <Item tabIndex="0" aria-label="React">
-            <SmallIcon>
-              <ReactIcon />
-            </SmallIcon>
-            React
-          </Item>
-          <Item tabIndex="0" aria-label="CSS">
-            <SmallIcon>
-              <CSSIcon />
-            </SmallIcon>
-            CSS
-          </Item>
-          <Item tabIndex="0" aria-label="Styled Components">
-            <SmallIcon>
-              <StyledComponentsLogo />
-            </SmallIcon>
-            Styled Components
-          </Item>
-          <Item tabIndex="0" aria-label="Angular">
-            <SmallIcon>
-              <AngularIcon />
-            </SmallIcon>
-            Angular
-          </Item>
-          <Item tabIndex="0" aria-label="TypeScript">
-            <SmallIcon>
-              <TSLogo />
-            </SmallIcon>
-            TypeScript
-          </Item>
-          <Item tabIndex="0" aria-label="Yarn">
-            <SmallIcon>
-              <YarnIcon />
-            </SmallIcon>
-            Yarn
-          </Item>
-          <Item tabIndex="0" aria-label="NPM">
-            <SmallIcon>
-              <NPMIcon />
-            </SmallIcon>
-            NPM
-          </Item>
-          <Item tabIndex="0" aria-label="Bootstrap">
-            <SmallIcon>
-              <BootStrapLogo />
-            </SmallIcon>
-            Bootstrap
-          </Item>
-        </Column>
+    <>
+      <Wrapper>
+        <Title1 as="h2" id="technologies-title">
+          Technologies I Enjoy Using
+        </Title1>
+        <Columns role="region" aria-labelledby="technologies-title">
+          <Column as="section" aria-labelledby="front-end-heading">
+            <ColumnTitle id="front-end-heading">Front End</ColumnTitle>
+            <Item tabIndex="0" aria-label="HTML">
+              <SmallIcon>
+                <HTMLIcon />
+              </SmallIcon>
+              HTML
+            </Item>
+            <Item tabIndex="0" aria-label="JavaScript">
+              <SmallIcon>
+                <JSIcon />
+              </SmallIcon>
+              JavaScript
+            </Item>
 
-        <Divider />
+            <Item tabIndex="0" aria-label="React">
+              <SmallIcon>
+                <ReactIcon />
+              </SmallIcon>
+              React
+            </Item>
 
-        <Column as="section" aria-labelledby="back-end-heading">
-          <ColumnTitle id="back-end-heading">Back End</ColumnTitle>
-          <Item tabIndex="0" aria-label="Node.js">
-            <SmallIcon>
-              <NodeIcon />
-            </SmallIcon>
-            Node.js
-          </Item>
-          <Item tabIndex="0" aria-label="Express">
-            <SmallIcon>
-              <ExpressIcon />
-            </SmallIcon>
-            Express
-          </Item>
-          <Item tabIndex="0" aria-label="Python">
-            <SmallIcon>
-              <PythonIcon />
-            </SmallIcon>
-            Python
-          </Item>
-          <Item tabIndex="0" aria-label="MongoDB">
-            <SmallIcon>
-              <MongoDBIcon />
-            </SmallIcon>
-            MongoDB
-          </Item>
-          <Item tabIndex="0" aria-label="Java">
-            <SmallIcon>
-              <JavaIcon />
-            </SmallIcon>
-            Java
-          </Item>
-          <Item tabIndex="0" aria-label="Bash">
-            <SmallIcon>
-              <BashIcon />
-            </SmallIcon>
-            Bash
-          </Item>
-        </Column>
+            <Item tabIndex="0" aria-label="Next.js">
+              <SmallIcon>
+                <NextIcon />
+              </SmallIcon>
+              Next.js
+            </Item>
 
-        <Divider />
+            <Item tabIndex="0" aria-label="CSS">
+              <SmallIcon>
+                <CSSIcon />
+              </SmallIcon>
+              CSS
+            </Item>
+            <Item tabIndex="0" aria-label="Styled Components">
+              <SmallIcon>
+                <StyledComponentsLogo />
+              </SmallIcon>
+              Styled Components
+            </Item>
+            <Item tabIndex="0" aria-label="Angular">
+              <SmallIcon>
+                <AngularIcon />
+              </SmallIcon>
+              Angular
+            </Item>
+            <Item tabIndex="0" aria-label="TypeScript">
+              <SmallIcon>
+                <TSLogo />
+              </SmallIcon>
+              TypeScript
+            </Item>
+            <Item tabIndex="0" aria-label="Yarn">
+              <SmallIcon>
+                <YarnIcon />
+              </SmallIcon>
+              Yarn
+            </Item>
+            <Item tabIndex="0" aria-label="NPM">
+              <SmallIcon>
+                <NPMIcon />
+              </SmallIcon>
+              NPM
+            </Item>
+            <Item tabIndex="0" aria-label="Bootstrap">
+              <SmallIcon>
+                <BootStrapLogo />
+              </SmallIcon>
+              Bootstrap
+            </Item>
+          </Column>
 
-        <Column as="section" aria-labelledby="other-tools-heading">
-          <ColumnTitle id="other-tools-heading">Other</ColumnTitle>
-          <Item tabIndex="0" aria-label="Git">
-            <SmallIcon>
-              <GitIcon />
-            </SmallIcon>
-            Git
-          </Item>
-          <Item tabIndex="0" aria-label="VS Code">
-            <SmallIcon>
-              <VSCIcon />
-            </SmallIcon>
-            VS Code
-          </Item>
-          <Item tabIndex="0" aria-label="Insomnia">
-            <SmallIcon>
-              <InsomniaIcon />
-            </SmallIcon>
-            Insomnia
-          </Item>
-          <Item tabIndex="0" aria-label="Postman">
-            <SmallIcon>
-              <PostManIcon />
-            </SmallIcon>
-            Postman
-          </Item>
-        </Column>
-      </Columns>
-    </Wrapper>
+          <Divider />
+
+          <Column as="section" aria-labelledby="back-end-heading">
+            <ColumnTitle id="back-end-heading">Back End</ColumnTitle>
+            <Item tabIndex="0" aria-label="Node.js">
+              <SmallIcon>
+                <NodeIcon />
+              </SmallIcon>
+              Node.js
+            </Item>
+            <Item tabIndex="0" aria-label="Express">
+              <SmallIcon>
+                <ExpressIcon />
+              </SmallIcon>
+              Express
+            </Item>
+            <Item tabIndex="0" aria-label="Python">
+              <SmallIcon>
+                <PythonIcon />
+              </SmallIcon>
+              Python
+            </Item>
+            <Item tabIndex="0" aria-label="MongoDB">
+              <SmallIcon>
+                <MongoDBIcon />
+              </SmallIcon>
+              MongoDB
+            </Item>
+            <Item tabIndex="0" aria-label="Java">
+              <SmallIcon>
+                <JavaIcon />
+              </SmallIcon>
+              Java
+            </Item>
+            <Item tabIndex="0" aria-label="Bash">
+              <SmallIcon>
+                <BashIcon />
+              </SmallIcon>
+              Bash
+            </Item>
+          </Column>
+
+          <Divider />
+
+          <Column as="section" aria-labelledby="other-tools-heading">
+            <ColumnTitle id="other-tools-heading">Other</ColumnTitle>
+            <Item tabIndex="0" aria-label="Git">
+              <SmallIcon>
+                <GitIcon />
+              </SmallIcon>
+              Git
+            </Item>
+            <Item tabIndex="0" aria-label="VS Code">
+              <SmallIcon>
+                <VSCIcon />
+              </SmallIcon>
+              VS Code
+            </Item>
+            <Item tabIndex="0" aria-label="Insomnia">
+              <SmallIcon>
+                <InsomniaIcon />
+              </SmallIcon>
+              Insomnia
+            </Item>
+            <Item tabIndex="0" aria-label="Postman">
+              <SmallIcon>
+                <PostManIcon />
+              </SmallIcon>
+              Postman
+            </Item>
+          </Column>
+        </Columns>
+      </Wrapper>
+      <Spacer size="6rem" mobileSize="4rem" />
+    </>
   );
 };
 
@@ -172,12 +186,12 @@ const Wrapper = styled.div`
   border-radius: 15px;
   width: 90%;
   max-width: 1200px;
-  margin: 10rem auto;
+  margin: 0 auto;
   padding: 2rem 1.5rem;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    margin: 6rem auto;
+    margin: 0 auto;
     padding: 1.5rem 1rem;
   }
 `;
