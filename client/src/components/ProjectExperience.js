@@ -1,9 +1,25 @@
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import projectData from "../projects.json";
 import websiteCardSpace from "../Assets/WebsiteCardSpace.svg";
 import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
 
 const ProjectExperience = () => {
+  const [expandedId, setExpandedId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleToggle = (id) => {
+    if (!isMobile) return;
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
     <Container role="region" aria-labelledby="project-experience-heading">
       <Title id="project-experience-heading">Project Experience</Title>
@@ -11,40 +27,35 @@ const ProjectExperience = () => {
         {projectData.map((project, index) => {
           const color = index === 0 ? "#4A90E2" : "#27AE60";
           const imageSrc = index === 0 ? websiteCardSpace : shopCard_500x300;
+          const isExpanded = expandedId === project.id;
 
           return (
-            <Card
-              as="a"
+            <CardContainer
               key={project.id}
-              href={project.siteUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View project: ${project.name}`}
+              onClick={() => handleToggle(project.id)}
               $hoverColor={color}
+              $isExpanded={isExpanded}
             >
-              <Image
-                src={imageSrc}
-                alt={project.name || "Project preview"}
-                loading="lazy"
-              />
-              <TextOverlay $hoverColor={color}>
+              <Image src={imageSrc} alt={project.name} loading="lazy" />
+              <TextOverlay $hoverColor={color} $isExpanded={isExpanded}>
                 <ProjectName>{project.name}</ProjectName>
                 <Details>
                   {project.description.split("\n").map((line, idx) => (
                     <p key={idx}>{line.trim() || "\u00A0"}</p>
                   ))}
                 </Details>
-                {project.siteUrl && (
+                {project.siteUrl && isExpanded && (
                   <ActionButton
                     href={project.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Visit Site
                   </ActionButton>
                 )}
               </TextOverlay>
-            </Card>
+            </CardContainer>
           );
         })}
       </CardRow>
@@ -63,7 +74,6 @@ const Container = styled.div`
 const Title = styled.h3`
   text-align: center;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin: 0;
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
   background-clip: text;
@@ -78,29 +88,24 @@ const CardRow = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.div`
-  font-family: "Inter", sans-serif;
+const CardContainer = styled.div`
   position: relative;
   width: 400px;
   height: 300px;
   border-radius: 8px;
   overflow: hidden;
-  display: block;
-  transition: background-color 0.5s ease;
   background-color: black;
-  text-decoration: none;
+  transition: background-color 0.5s ease;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.$hoverColor};
   }
 
-  &:focus {
-    outline: 2px solid ${(props) => props.$hoverColor};
-    outline-offset: 4px;
-  }
-
   @media (max-width: 768px) {
     width: 90%;
+    height: auto;
   }
 `;
 
@@ -111,8 +116,12 @@ const Image = styled.img`
   transition: opacity 0.5s ease;
   z-index: 1;
 
-  ${Card}:hover & {
+  ${CardContainer}:hover & {
     opacity: 0;
+  }
+
+  @media (max-width: 768px) {
+    opacity: ${(props) => (props.$isExpanded ? 0 : 1)};
   }
 `;
 
@@ -126,9 +135,17 @@ const TextOverlay = styled.div`
   transition: opacity 0.5s ease;
   background-color: ${(props) => props.$hoverColor};
   z-index: 2;
+  pointer-events: none;
 
-  ${Card}:hover & {
+  ${CardContainer}:hover & {
     opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
+    pointer-events: auto;
   }
 
   * {

@@ -1,45 +1,64 @@
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import workExperienceData from "../workEXP.json";
 
+const darkMauve = "#874C62";
+
 const WorkExperience = () => {
+  const [expandedId, setExpandedId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleToggle = (id) => {
+    if (!isMobile) return;
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
     <Section role="region" aria-labelledby="work-experience-heading">
       <Title id="work-experience-heading">Current Client(s)</Title>
       <CardRow>
-        {workExperienceData.map((job) => (
-          <CardLink
-            key={job.id}
-            href={job.companyUrl || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Learn more about ${job.company}`}
-          >
-            <Placeholder>{job.company}</Placeholder>
-            <TextOverlay>
-              <JobTitle>{job.jobTitle}</JobTitle>
-              <Details>
-                {job.description.split("\n").map((line, idx) => (
-                  <p key={idx}>{line.trim() || "\u00A0"}</p>
-                ))}
-              </Details>
-              {job.companyUrl && (
-                <ActionButton
-                  href={job.companyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Visit Site
-                </ActionButton>
-              )}
-            </TextOverlay>
-          </CardLink>
-        ))}
+        {workExperienceData.map((job) => {
+          const isExpanded = expandedId === job.id;
+
+          return (
+            <CardContainer
+              key={job.id}
+              onClick={() => handleToggle(job.id)}
+              $isExpanded={isExpanded}
+            >
+              <Placeholder>{job.company}</Placeholder>
+              <TextOverlay $isExpanded={isExpanded}>
+                <JobTitle>{job.jobTitle}</JobTitle>
+                <Details>
+                  {job.description.split("\n").map((line, idx) => (
+                    <p key={idx}>{line.trim() || "\u00A0"}</p>
+                  ))}
+                </Details>
+                {job.companyUrl && isExpanded && (
+                  <ActionButton
+                    href={job.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Visit Site
+                  </ActionButton>
+                )}
+              </TextOverlay>
+            </CardContainer>
+          );
+        })}
       </CardRow>
     </Section>
   );
 };
-
-const darkMauve = "#874C62";
 
 const Section = styled.section`
   display: flex;
@@ -47,7 +66,6 @@ const Section = styled.section`
   gap: 2.5rem;
   width: 100%;
   padding: 1rem;
-  box-sizing: border-box;
 `;
 
 const Title = styled.h3`
@@ -55,7 +73,6 @@ const Title = styled.h3`
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
-  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -67,7 +84,7 @@ const CardRow = styled.div`
   gap: 2rem;
 `;
 
-const CardLink = styled.div`
+const CardContainer = styled.div`
   position: relative;
   width: clamp(280px, 90vw, 500px);
   height: 300px;
@@ -76,18 +93,10 @@ const CardLink = styled.div`
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition: background-color 0.5s ease;
 
   &:hover {
     background-color: ${darkMauve};
-    border-color: ${darkMauve};
-  }
-
-  &:focus {
-    outline: 2px solid white;
-    outline-offset: 4px;
   }
 
   @media (max-width: 768px) {
@@ -109,7 +118,7 @@ const Placeholder = styled.div`
   z-index: 1;
   font-family: "Montserrat", sans-serif;
 
-  ${CardLink}:hover & {
+  ${CardContainer}:hover & {
     opacity: 0;
   }
 
@@ -128,15 +137,18 @@ const TextOverlay = styled.div`
   transition: opacity 0.5s ease;
   color: white;
   z-index: 2;
+  pointer-events: none;
 
-  ${CardLink}:hover & {
+  ${CardContainer}:hover & {
     opacity: 1;
+    pointer-events: auto;
   }
 
   @media (max-width: 768px) {
     position: relative;
-    opacity: 1;
+    opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
     background-color: ${darkMauve};
+    pointer-events: auto;
   }
 `;
 
@@ -144,10 +156,6 @@ const JobTitle = styled.h4`
   margin: 0;
   font-size: 1.4em;
   font-family: "Inter", sans-serif;
-
-  @media (max-width: 768px) {
-    font-size: 1.2em;
-  }
 `;
 
 const Details = styled.div`
