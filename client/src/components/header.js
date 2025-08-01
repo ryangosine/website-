@@ -7,7 +7,7 @@ const Header = () => {
   const onContactPage = location.pathname === "/contact";
 
   return (
-    <HeaderWrapper onContactPage={onContactPage}>
+    <HeaderWrapper $onContactPage={onContactPage}>
       {onContactPage ? (
         <ButtonLink to="/">← Back</ButtonLink>
       ) : (
@@ -20,8 +20,8 @@ const Header = () => {
 const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
-  justify-content: ${({ onContactPage }) =>
-    onContactPage ? "flex-start" : "flex-end"};
+  justify-content: ${({ $onContactPage }) =>
+    $onContactPage ? "flex-start" : "flex-end"};
   padding: 1rem 2rem;
   width: 100%;
   background: transparent;

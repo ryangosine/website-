@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import IntroSection from "../components/IntroSection";
-import SideBar from "../components/SideBar";
 import TitleSection from "../components/TitleSection";
 import Quote from "../components/Quote";
 import IconsContainer from "../components/IconsContainer";
@@ -25,7 +24,6 @@ const MainPage = () => {
 
   return (
     <MainWrapper>
-      {/* <SideBar /> */}
       <ContentWrapper>
         <Header />
         <PullToRefresh

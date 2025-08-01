@@ -19,7 +19,7 @@ const Quote = () => {
 
 const QuoteWrapper = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin: 10rem auto;
   padding: 70px;
   font-size: 5rem;
   font-family: "Courier Prime", monospace;

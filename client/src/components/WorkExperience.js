@@ -31,16 +31,20 @@ const WorkExperience = () => {
   );
 };
 
+const darkMauve = "#874C62";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 2.5rem;
   width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h3`
   text-align: center;
-  font-size: 2em;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
   -webkit-background-clip: text;
@@ -50,32 +54,30 @@ const Title = styled.h3`
 
 const CardRow = styled.div`
   display: flex;
-  gap: 30px;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 `;
 
-const darkMauve = "#874C62"; // Rich, deeper mauve shade :contentReference[oaicite:6]{index=6}
-
-const Card = styled.div`
+const Card = styled.a`
   position: relative;
-  width: 500px;
+  width: clamp(280px, 90vw, 500px);
   height: 300px;
   background-color: black;
-  border: 1px solid ${darkMauve}; /* Mauve frame visible initially */
+  border: 1px solid ${darkMauve};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   transition: background-color 0.5s ease, border-color 0.5s ease;
+  text-decoration: none;
 
   &:hover {
-    background-color: ${darkMauve}; /* Fill with mauve on hover */
+    background-color: ${darkMauve};
     border-color: ${darkMauve};
   }
 
   @media (max-width: 768px) {
-    width: 90%;
-    height: auto;
+    height: auto; /* Allow flexible height on mobile */
   }
 `;
 
@@ -84,7 +86,7 @@ const Placeholder = styled.div`
   height: 100%;
   background-color: black;
   color: white;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +94,12 @@ const Placeholder = styled.div`
   z-index: 1;
 
   ${Card}:hover & {
-    opacity: 0; /* Fade out placeholder on hover */
+    opacity: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    text-align: center;
   }
 `;
 
@@ -104,26 +111,46 @@ const TextOverlay = styled.div`
   flex-direction: column;
   opacity: 0;
   transition: opacity 0.5s ease;
-  color: white; /* Keep overlay text white against mauve background */
+  color: white;
   z-index: 2;
 
   ${Card}:hover & {
     opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    opacity: 1;
+    background-color: ${darkMauve}; /* Show overlay content always on mobile */
   }
 `;
 
 const JobTitle = styled.h4`
   margin: 0;
   font-size: 1.4em;
+
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+  }
 `;
 
 const Company = styled.div`
   margin: 5px 0;
   font-size: 1.1em;
+
+  @media (max-width: 768px) {
+    font-size: 1em;
+  }
 `;
 
 const Details = styled.div`
   margin-top: 0.5rem;
   line-height: 1.5;
+  overflow-y: auto;
+  max-height: 120px;
+
+  @media (max-width: 768px) {
+    max-height: none;
+  }
 `;
 export default WorkExperience;

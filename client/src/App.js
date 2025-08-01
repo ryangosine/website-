@@ -1,41 +1,77 @@
+import React from "react";
 import GlobalStyles from "./GlobalStyles";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import ProjectsPage from "./Pages/ProjectPage";
-// import ErrorBoundary from "./components/ErrorBoundry";
 import AnimatedCursor from "react-animated-cursor";
 import ContactPage from "./Pages/ContactPage";
+import { AnimatePresence, motion } from "framer-motion";
 
-import styled from "styled-components";
+const AnimatedRoutes = () => {
+  const location = useLocation();
 
-// const PageWrapper = styled.div`
-//   min-height: 100vh;
-//   background: white;
-//   color: white;
-//   position: relative;
-//   z-index: 0;
-// `;
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageWrapper>
+              <MainPage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/main"
+          element={
+            <PageWrapper>
+              <MainPage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageWrapper>
+              <ContactPage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/projectPage"
+          element={
+            <PageWrapper>
+              <ProjectsPage />
+            </PageWrapper>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => {
   return (
-    <div>
-      {/* <ErrorBoundary> */}
+    <>
       <GlobalStyles />
-      {/* <PageWrapper> */}
       <AnimatedCursor />
-      {/* <Header /> */}
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/projectPage" element={<ProjectsPage />} />
-        </Routes>
+        <AnimatedRoutes />
       </BrowserRouter>
-      {/* </PageWrapper> */}
+    </>
+  );
+};
 
-      {/* </ErrorBoundary> */}
-    </div>
+const PageWrapper = ({ children }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+    >
+      {children}
+    </motion.div>
   );
 };
 

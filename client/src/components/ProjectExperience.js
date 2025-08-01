@@ -16,23 +16,21 @@ const ProjectExperience = () => {
           return (
             <Card
               key={project.id}
-              hoverColor={color}
+              $hoverColor={color}
               href={project.siteUrl || "#"}
             >
               <Image
                 src={index === 0 ? websiteCardSpace : shopCard_500x300}
                 alt={project.name}
               />
-              <TextOverlay hoverColor={color}>
+              <TextOverlay $hoverColor={color}>
                 <ProjectName>{project.name}</ProjectName>
                 <Details>
                   {project.description.split("\n").map((line, idx) => (
                     <p key={idx}>{line.trim() || "\u00A0"}</p>
                   ))}
                 </Details>
-                {project.siteUrl && (
-                  <ActionButton buttonColor={color}>Visit Site</ActionButton>
-                )}
+                {project.siteUrl && <ActionButton>Visit Site</ActionButton>}
               </TextOverlay>
             </Card>
           );
@@ -46,6 +44,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  margin: 10rem auto;
 `;
 
 const Title = styled.h3`
@@ -67,7 +66,7 @@ const CardRow = styled.div`
 
 const Card = styled.a`
   position: relative;
-  width: 500px;
+  width: 400px;
   height: 300px;
   border-radius: 8px;
   overflow: hidden;
@@ -77,7 +76,7 @@ const Card = styled.a`
   transition: background-color 0.5s ease;
   background-color: black;
   &:hover {
-    background-color: ${(props) => props.hoverColor};
+    background-color: ${(props) => props.$hoverColor};
   }
 
   @media (max-width: 768px) {
@@ -105,7 +104,7 @@ const TextOverlay = styled.div`
   flex-direction: column;
   opacity: 0;
   transition: opacity 0.5s ease;
-  background-color: ${(props) => props.hoverColor};
+  background-color: ${(props) => props.$hoverColor};
   z-index: 2;
 
   ${Card}:hover & {
@@ -113,11 +112,7 @@ const TextOverlay = styled.div`
   }
 
   * {
-    color: ${(props) => {
-      const clr = props.hoverColor;
-      // assume dark background, set white text
-      return "#fff";
-    }};
+    color: ${(props) => "#fff"};
   }
 `;
 

@@ -5,7 +5,12 @@ import SMIconsContainer from "./SMIconsContainer";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <SMIconsContainer />
+      <ContentWrapper>
+        <SMIconsContainer />
+        <InfoText>
+          Forged With Equal Parts <Red>Love</Red> & <Orange>Frustration</Orange>
+        </InfoText>
+      </ContentWrapper>
     </FooterWrapper>
   );
 };
@@ -24,6 +29,25 @@ const FooterWrapper = styled.footer`
   @media (max-width: 500px) {
     padding: 1.5rem 0;
   }
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const InfoText = styled.p`
+  margin: 15px;
+  font-family: "Inter", sans-serif;
+`;
+const Red = styled.span`
+  color: red;
+  font-weight: 600;
+`;
+
+const Orange = styled.span`
+  color: orange;
+  font-weight: 600;
 `;
 
 export default Footer;
