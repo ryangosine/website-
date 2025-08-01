@@ -23,67 +23,69 @@ import PostManIcon from "./Icons/PostManIcon";
 const IconsContainer = () => {
   return (
     <Wrapper>
-      <Title1>Technologies I Enjoy Using</Title1>
-      <Columns>
-        <Column>
-          <ColumnTitle>Front End</ColumnTitle>
-          <Item>
+      <Title1 as="h2" id="technologies-title">
+        Technologies I Enjoy Using
+      </Title1>
+      <Columns role="region" aria-labelledby="technologies-title">
+        <Column as="section" aria-labelledby="front-end-heading">
+          <ColumnTitle id="front-end-heading">Front End</ColumnTitle>
+          <Item tabIndex="0" aria-label="HTML">
             <SmallIcon>
-              <HTMLIcon width="30" height="30" />
+              <HTMLIcon />
             </SmallIcon>
             HTML
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="JavaScript">
             <SmallIcon>
-              <JSIcon width="30" height="30" />
+              <JSIcon />
             </SmallIcon>
             JavaScript
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="React">
             <SmallIcon>
-              <ReactIcon width="30" height="30" />
+              <ReactIcon />
             </SmallIcon>
             React
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="CSS">
             <SmallIcon>
-              <CSSIcon width="30" height="30" />
+              <CSSIcon />
             </SmallIcon>
             CSS
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Styled Components">
             <SmallIcon>
-              <StyledComponentsLogo width="30" height="30" />
+              <StyledComponentsLogo />
             </SmallIcon>
             Styled Components
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Angular">
             <SmallIcon>
-              <AngularIcon width="30" height="30" />
+              <AngularIcon />
             </SmallIcon>
             Angular
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="TypeScript">
             <SmallIcon>
-              <TSLogo width="30" height="30" />
+              <TSLogo />
             </SmallIcon>
             TypeScript
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Yarn">
             <SmallIcon>
-              <YarnIcon width="30" height="30" />
+              <YarnIcon />
             </SmallIcon>
             Yarn
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="NPM">
             <SmallIcon>
-              <NPMIcon width="30" height="30" />
+              <NPMIcon />
             </SmallIcon>
             NPM
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Bootstrap">
             <SmallIcon>
-              <BootStrapLogo width="30" height="30" />
+              <BootStrapLogo />
             </SmallIcon>
             Bootstrap
           </Item>
@@ -91,41 +93,41 @@ const IconsContainer = () => {
 
         <Divider />
 
-        <Column>
-          <ColumnTitle>Back End</ColumnTitle>
-          <Item>
+        <Column as="section" aria-labelledby="back-end-heading">
+          <ColumnTitle id="back-end-heading">Back End</ColumnTitle>
+          <Item tabIndex="0" aria-label="Node.js">
             <SmallIcon>
-              <NodeIcon width="30" height="30" />
+              <NodeIcon />
             </SmallIcon>
             Node.js
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Express">
             <SmallIcon>
-              <ExpressIcon width="30" height="30" />
+              <ExpressIcon />
             </SmallIcon>
             Express
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Python">
             <SmallIcon>
-              <PythonIcon width="30" height="30" />
+              <PythonIcon />
             </SmallIcon>
             Python
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="MongoDB">
             <SmallIcon>
-              <MongoDBIcon width="30" height="30" />
+              <MongoDBIcon />
             </SmallIcon>
             MongoDB
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Java">
             <SmallIcon>
-              <JavaIcon width="30" height="30" />
+              <JavaIcon />
             </SmallIcon>
             Java
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Bash">
             <SmallIcon>
-              <BashIcon width="30" height="30" />
+              <BashIcon />
             </SmallIcon>
             Bash
           </Item>
@@ -133,29 +135,29 @@ const IconsContainer = () => {
 
         <Divider />
 
-        <Column>
-          <ColumnTitle>Other</ColumnTitle>
-          <Item>
+        <Column as="section" aria-labelledby="other-tools-heading">
+          <ColumnTitle id="other-tools-heading">Other</ColumnTitle>
+          <Item tabIndex="0" aria-label="Git">
             <SmallIcon>
-              <GitIcon width="30" height="30" />
+              <GitIcon />
             </SmallIcon>
             Git
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="VS Code">
             <SmallIcon>
-              <VSCIcon width="30" height="30" />
+              <VSCIcon />
             </SmallIcon>
             VS Code
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Insomnia">
             <SmallIcon>
-              <InsomniaIcon width="30" height="30" />
+              <InsomniaIcon />
             </SmallIcon>
             Insomnia
           </Item>
-          <Item>
+          <Item tabIndex="0" aria-label="Postman">
             <SmallIcon>
-              <PostManIcon width="30" height="30" />
+              <PostManIcon />
             </SmallIcon>
             Postman
           </Item>
@@ -170,19 +172,25 @@ const Wrapper = styled.div`
   border-radius: 15px;
   width: 90%;
   max-width: 1200px;
-  margin: 15rem auto;
-  padding: 2rem 1rem;
+  margin: 10rem auto;
+  padding: 2rem 1.5rem;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    margin: 6rem auto;
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const Title1 = styled.h1`
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   background: linear-gradient(45deg, #d8f0fa, #719aed);
-  -webkit-background-clip: text;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   margin-bottom: 2rem;
 `;
 
@@ -193,24 +201,26 @@ const Columns = styled.div`
   flex-wrap: wrap;
   padding: 20px;
   font-family: "Inter", sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const Column = styled.div`
   flex: 1;
-  min-width: 250px;
+  min-width: 240px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
 const ColumnTitle = styled.h3`
-  font-family: "Inter", sans-serif;
   font-size: 1.2rem;
   border-bottom: 1px solid #ccc;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 `;
 
 const Item = styled.div`
@@ -244,4 +254,5 @@ const Divider = styled.div`
     display: none;
   }
 `;
+
 export default IconsContainer;

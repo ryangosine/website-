@@ -2,81 +2,104 @@ import styled from "styled-components";
 
 const IntroSection = () => {
   return (
-    <Container id="intro-section">
-      <Picture></Picture>
-      <BlurbSection>
-        <Blurb>
-          Hey! I'm Ryan. I'm a web developer!
-          <br />
-          <br />
-          I graduated from the Concordia University Full-Stack Web Development
-          Program that specialized in the key modern fundamentals of designing
-          and building websites and applications. My program focused on learning
-          both Front-End and Back-End development to ensure a strong foundation
-          in programming. I'm very passionate about building web applications
-          and eager to learn, work and develop and expand my current skills and
-          knowledge. Every day is new experience!
-          <br />
-          <br />
-          Prior to this I worked in schools as a Behaviour Specialist and
-          community problem solver. I think that this experience has really
-          helped me cultivate my ability to think outside the box, analyze
-          complex problems, and deliver effective solutions to meet daily
-          challenges. I loved my work, but am looking forward to new experiences
-          in my new love of programming!
-          <br />
+    <Section id="intro-section" aria-labelledby="intro-heading">
+      <ProfileImage
+        src="/images/ryan-profile.jpg"
+        alt="Portrait of Ryan, the web developer"
+        loading="lazy"
+      />
+      <BlurbContainer>
+        <Heading id="intro-heading">Meet Ryan</Heading>
+        <Blurb as="article">
+          <p>Hey! I'm Ryan. I'm a web developer!</p>
+
+          <p>
+            I graduated from the Concordia University Full-Stack Web Development
+            Program that specialized in the key modern fundamentals of designing
+            and building websites and applications. My program focused on
+            learning both Front-End and Back-End development to ensure a strong
+            foundation in programming. I'm very passionate about building web
+            applications and eager to learn, work and develop and expand my
+            current skills and knowledge. Every day is a new experience!
+          </p>
+
+          <p>
+            Prior to this I worked in schools as a Behaviour Specialist and
+            community problem solver. I think that this experience has really
+            helped me cultivate my ability to think outside the box, analyze
+            complex problems, and deliver effective solutions to meet daily
+            challenges. I loved my work, but am looking forward to new
+            experiences in my new love of programming!
+          </p>
         </Blurb>
-      </BlurbSection>
-    </Container>
+      </BlurbContainer>
+    </Section>
   );
 };
 
-const Container = styled.div`
+const Section = styled.section`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   margin-top: 40vh;
-  margin-bottom: 40px;
-  padding: 60px 0 20px 0;
+  margin-bottom: 2.5rem;
+  padding: 4rem 0 1.25rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     margin-top: 4vh;
-    margin-bottom: 20px;
-    padding: 30px 0 10px 0;
+    margin-bottom: 1.25rem;
+    padding: 2rem 0 1rem;
   }
 `;
 
-const Picture = styled.div`
+const ProfileImage = styled.img`
   border: 1px solid white;
   border-radius: 10%;
   width: 400px;
   height: 400px;
-  margin: 30px;
+  object-fit: cover;
+  margin: 2rem;
+
   @media (max-width: 768px) {
     width: 90%;
     height: auto;
+    margin: 0 0 2rem 0;
   }
 `;
-const BlurbSection = styled.div`
+
+const BlurbContainer = styled.div`
   max-width: 600px;
-  padding-top: 50px;
+  padding-top: 2.5rem;
   margin: 0 auto;
 
   @media (max-width: 768px) {
     max-width: 100%;
+    padding-top: 1.5rem;
   }
 `;
 
-const Blurb = styled.p`
-  text-align: left;
-  line-height: 1.6;
+const Heading = styled.h2`
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-family: "Montserrat", sans-serif;
   color: white;
+  margin-bottom: 1.5rem;
+`;
+
+const Blurb = styled.div`
   font-family: "Inter", sans-serif;
+  color: white;
   font-weight: 300;
-  font-size: 16px;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
+  text-align: left;
+
+  p {
+    margin-bottom: 1.25rem;
+  }
+
   @media (max-width: 768px) {
-    font-size: 14px;
     line-height: 1.5;
   }
 `;

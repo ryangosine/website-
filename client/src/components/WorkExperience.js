@@ -3,20 +3,20 @@ import workExperienceData from "../workEXP.json";
 
 const WorkExperience = () => {
   return (
-    <Container>
-      <Title>Current Client(s)</Title>
+    <Section role="region" aria-labelledby="work-experience-heading">
+      <Title id="work-experience-heading">Current Client(s)</Title>
       <CardRow>
         {workExperienceData.map((job) => (
-          <Card
+          <CardLink
             key={job.id}
             href={job.companyUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`Learn more about ${job.company}`}
           >
             <Placeholder>{job.company}</Placeholder>
             <TextOverlay>
               <JobTitle>{job.jobTitle}</JobTitle>
-
               <Details>
                 {job.description.split("\n").map((line, idx) => (
                   <p key={idx}>{line.trim() || "\u00A0"}</p>
@@ -32,16 +32,16 @@ const WorkExperience = () => {
                 </ActionButton>
               )}
             </TextOverlay>
-          </Card>
+          </CardLink>
         ))}
       </CardRow>
-    </Container>
+    </Section>
   );
 };
 
 const darkMauve = "#874C62";
 
-const Container = styled.div`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -67,7 +67,7 @@ const CardRow = styled.div`
   gap: 2rem;
 `;
 
-const Card = styled.div`
+const CardLink = styled.a`
   position: relative;
   width: clamp(280px, 90vw, 500px);
   height: 300px;
@@ -76,12 +76,18 @@ const Card = styled.div`
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: background-color 0.5s ease, border-color 0.5s ease;
   text-decoration: none;
+  display: block;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
 
   &:hover {
     background-color: ${darkMauve};
     border-color: ${darkMauve};
+  }
+
+  &:focus {
+    outline: 2px solid white;
+    outline-offset: 4px;
   }
 
   @media (max-width: 768px) {
@@ -103,13 +109,12 @@ const Placeholder = styled.div`
   z-index: 1;
   font-family: "Montserrat", sans-serif;
 
-  ${Card}:hover & {
+  ${CardLink}:hover & {
     opacity: 0;
   }
 
   @media (max-width: 768px) {
-    padding: 1rem;
-    text-align: center;
+    display: none;
   }
 `;
 
@@ -124,7 +129,7 @@ const TextOverlay = styled.div`
   color: white;
   z-index: 2;
 
-  ${Card}:hover & {
+  ${CardLink}:hover & {
     opacity: 1;
   }
 
@@ -139,6 +144,7 @@ const JobTitle = styled.h4`
   margin: 0;
   font-size: 1.4em;
   font-family: "Inter", sans-serif;
+
   @media (max-width: 768px) {
     font-size: 1.2em;
   }
@@ -150,6 +156,7 @@ const Details = styled.div`
   overflow-y: auto;
   max-height: 120px;
   font-family: "Inter", sans-serif;
+
   @media (max-width: 768px) {
     max-height: none;
   }
@@ -157,14 +164,13 @@ const Details = styled.div`
 
 const ActionButton = styled.a`
   padding: 0.6rem 1.4rem;
-  margin-top: 4rem;
+  margin-top: auto;
   border: 2px solid white;
   background-color: transparent;
   color: white;
   font-size: 1rem;
   text-decoration: none;
   font-family: "Inter", sans-serif;
-
   border-radius: 999px;
   align-self: flex-start;
   transition: background-color 0.3s, color 0.3s;
@@ -173,5 +179,11 @@ const ActionButton = styled.a`
     background-color: white;
     color: black;
   }
+
+  &:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
+  }
 `;
+
 export default WorkExperience;

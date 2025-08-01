@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import TextFade from "../Animations/TextFade";
@@ -9,13 +9,15 @@ const TitleSection = () => {
   const [startSubheading, setStartSubheading] = useState(false);
   const [startSecondSubheading, setSecondSubHeading] = useState(false);
 
+  const name = useMemo(() => "Ryan Gosine.".split(""), []);
+
   useEffect(() => {
     if (isNameInView) {
-      const delay = "Ryan Gosine.".length * 100 + 500;
+      const delay = name.length * 100 + 500;
       const timer = setTimeout(() => setStartSubheading(true), delay);
       return () => clearTimeout(timer);
     }
-  }, [isNameInView]);
+  }, [isNameInView, name.length]);
 
   useEffect(() => {
     if (startSubheading) {
@@ -26,11 +28,13 @@ const TitleSection = () => {
 
   return (
     <SectionWrapper>
-      <TextContainer>
+      <HiddenH1>Ryan Gosine</HiddenH1>
+
+      <TextContainer aria-hidden="true">
         <AnimatePresence>
-          {"Ryan Gosine.".split("").map((char, i) => (
+          {name.map((char, i) => (
             <AnimatedChar
-              ref={nameRef}
+              ref={i === 0 ? nameRef : null}
               key={i}
               initial={{ opacity: 0, x: -18 }}
               animate={isNameInView ? { opacity: 1, x: 0 } : {}}
@@ -43,42 +47,42 @@ const TitleSection = () => {
         </AnimatePresence>
       </TextContainer>
 
-      <Subheading>
+      <Subheading role="region" aria-live="polite">
         {startSubheading && (
           <TextFade direction="down" staggerChildren={0.1}>
-            <Word1
-              initial={{ opacity: 0, y: -100 }} // Start from left
-              animate={{ opacity: 1, y: 0 }} // Move to the center
+            <Word
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
             >
               Web
-            </Word1>
-            <Word2
-              initial={{ opacity: 0, y: -100 }} // Start from left
-              animate={{ opacity: 1, y: 0 }} // Move to the center
+            </Word>
+            <Word
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", duration: 0.6, delay: 1 }}
             >
               Developer
-            </Word2>
+            </Word>
           </TextFade>
         )}
 
         {startSecondSubheading && (
           <TextFade direction="up" staggerChildren={0.1}>
-            <Word3
-              initial={{ opacity: 0, y: 100 }} // Start from right
-              animate={{ opacity: 1, y: 0 }} // Move to the center
+            <Word
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", duration: 0.6, delay: 0.5 }}
             >
               Problem
-            </Word3>
-            <Word4
-              initial={{ opacity: 0, y: 100 }} // Start from right
-              animate={{ opacity: 1, y: 0 }} // Move to the center
+            </Word>
+            <Word
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", duration: 0.6, delay: 1 }}
             >
               Solver
-            </Word4>
+            </Word>
           </TextFade>
         )}
       </Subheading>
@@ -87,24 +91,39 @@ const TitleSection = () => {
 };
 
 const SectionWrapper = styled.div`
-  margin-top: 13vh;
+  margin-top: 10vh;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  width: 100%;
 
   @media (max-width: 768px) {
     margin-top: 8vh;
   }
 `;
 
+const HiddenH1 = styled.h1`
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
 const TextContainer = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 12rem;
+  font-size: clamp(2rem, 10vw, 8rem);
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-style: normal;
-  letter-spacing: 2;
-  --angle: 45deg;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
   background: linear-gradient(
-    var(--angle),
+    45deg,
     #d8f0fa,
     #c6e6f9,
     #aed1f1,
@@ -112,14 +131,10 @@ const TextContainer = styled.div`
     #84acf7,
     #719aed
   );
-
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  @media (max-width: 768px) {
-    font-size: 4rem;
-    padding: 0 10px;
-  }
+  color: transparent;
 `;
 
 const AnimatedChar = styled(motion.span)`
@@ -128,16 +143,19 @@ const AnimatedChar = styled(motion.span)`
   font-family: inherit;
   background: inherit;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
 
 const Subheading = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   font-family: "Montserrat", sans-serif;
-  width: 100%;
-  padding: 0 60px;
-  margin-top: 40px;
+  margin-top: 2rem;
+  gap: 1rem;
+  padding: 0 1rem;
+  text-align: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -149,39 +167,9 @@ const Subheading = styled.div`
   }
 `;
 
-const Word1 = styled(motion.span)`
+const Word = styled(motion.span)`
   display: inline-block;
-  font-size: 3.5rem;
-  margin: 0 5px;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin: 10px 0;
-  }
-`;
-const Word2 = styled(motion.span)`
-  display: inline-block;
-  font-size: 3.5rem;
-  margin: 0 5px;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin: 10px 0;
-  }
-`;
-const Word3 = styled(motion.span)`
-  display: inline-block;
-  font-size: 3.5rem;
-  margin: 0 5px;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin: 10px 0;
-  }
-`;
-const Word4 = styled(motion.span)`
-  display: inline-block;
-  font-size: 3.5rem;
+  font-size: clamp(1.5rem, 4vw, 3rem);
   margin: 0 5px;
 
   @media (max-width: 768px) {

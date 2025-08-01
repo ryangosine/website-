@@ -13,34 +13,38 @@ import ContactMeBox from "../components/contactMeBox";
 
 const MainPage = () => {
   const [loading, setLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleRefresh = async () => {
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setLoading(false);
-    window.location.reload();
   };
 
   const pageContent = (
-    <>
+    <MainContent role="main" aria-label="Main content">
       <TitleSection />
       <IntroSection />
       <WorkExperience />
       <Quote />
       <ProjectExperience />
       <IconsContainer />
-    </>
+    </MainContent>
   );
 
   return (
     <MainWrapper>
       {loading ? (
-        <FullPageLoader />
+        <FullPageLoader role="status" aria-busy="true" />
       ) : (
         <ContentWrapper>
           <Header />
@@ -48,12 +52,12 @@ const MainPage = () => {
             <PullToRefresh
               onRefresh={handleRefresh}
               pullingContent={<span>Pull to refresh...</span>}
-              refreshingContent={<Loader />}
+              refreshingContent={<Loader aria-hidden="true" />}
             >
               {pageContent}
             </PullToRefresh>
           ) : (
-            <>{pageContent}</>
+            pageContent
           )}
           <ContactMeBox />
           <Footer />
@@ -87,9 +91,6 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 
 const ContentWrapper = styled.div`
@@ -97,8 +98,13 @@ const ContentWrapper = styled.div`
   position: relative;
   z-index: 1;
   @media (max-width: 768px) {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0 0.5rem;
   }
 `;
+
+const MainContent = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
+
 export default MainPage;

@@ -8,57 +8,68 @@ import XIcon from "./Icons/Xicon";
 const SMIconsContainer = () => {
   return (
     <GlobalWrapper>
-      <IconList>
-        <IconItem>
-          <IconLink
-            href="https://www.linkedin.com/in/ryangosine/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedInIcon />
-          </IconLink>
-        </IconItem>
+      <nav aria-label="Social media links">
+        <IconList>
+          <IconItem>
+            <IconLink
+              href="https://www.linkedin.com/in/ryangosine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              title="LinkedIn"
+            >
+              <LinkedInIcon />
+            </IconLink>
+          </IconItem>
 
-        <IconItem>
-          <IconLink
-            href="https://github.com/ryangosine"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GitHubIcon />
-          </IconLink>
-        </IconItem>
+          <IconItem>
+            <IconLink
+              href="https://github.com/ryangosine"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+              title="GitHub"
+            >
+              <GitHubIcon />
+            </IconLink>
+          </IconItem>
 
-        <IconItem>
-          <IconLink
-            href="https://x.com/removedfromgame"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <XIcon />
-          </IconLink>
-        </IconItem>
+          <IconItem>
+            <IconLink
+              href="https://x.com/removedfromgame"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter profile"
+              title="Twitter"
+            >
+              <XIcon />
+            </IconLink>
+          </IconItem>
 
-        <IconItem>
-          <IconLink
-            href="https://www.facebook.com/removedfromgame"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaceBookIcon />
-          </IconLink>
-        </IconItem>
+          <IconItem>
+            <IconLink
+              href="https://www.facebook.com/removedfromgame"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook profile"
+              title="Facebook"
+            >
+              <FaceBookIcon />
+            </IconLink>
+          </IconItem>
 
-        <IconItem>
-          <IconLink
-            href="mailto:ryanganeshgosine@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GmailIcon />
-          </IconLink>
-        </IconItem>
-      </IconList>
+          <IconItem>
+            <IconLink
+              href="mailto:ryanganeshgosine@gmail.com"
+              rel="noopener noreferrer"
+              aria-label="Send email to Ryan"
+              title="Email"
+            >
+              <GmailIcon />
+            </IconLink>
+          </IconItem>
+        </IconList>
+      </nav>
     </GlobalWrapper>
   );
 };
@@ -111,7 +122,7 @@ const IconLink = styled.a`
     );
     opacity: 0;
     transition: opacity 0.3s;
-    z-index: 0; /* ✨ stays behind icon and link */
+    z-index: 0;
   }
 
   &:hover::before {

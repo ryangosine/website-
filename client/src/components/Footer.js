@@ -32,6 +32,8 @@ const FooterWrapper = styled.footer`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const InfoText = styled.p`

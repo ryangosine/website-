@@ -5,20 +5,27 @@ import shopCard_500x300 from "../Assets/shopCard_500x300.svg";
 
 const ProjectExperience = () => {
   return (
-    <Container>
-      <Title>Project Experience</Title>
+    <Container role="region" aria-labelledby="project-experience-heading">
+      <Title id="project-experience-heading">Project Experience</Title>
       <CardRow>
         {projectData.map((project, index) => {
           const color = index === 0 ? "#4A90E2" : "#27AE60";
+          const imageSrc = index === 0 ? websiteCardSpace : shopCard_500x300;
+
           return (
             <Card
+              as="a"
               key={project.id}
-              $hoverColor={color}
               href={project.siteUrl || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View project: ${project.name}`}
+              $hoverColor={color}
             >
               <Image
-                src={index === 0 ? websiteCardSpace : shopCard_500x300}
-                alt={project.name}
+                src={imageSrc}
+                alt={project.name || "Project preview"}
+                loading="lazy"
               />
               <TextOverlay $hoverColor={color}>
                 <ProjectName>{project.name}</ProjectName>
@@ -50,16 +57,18 @@ const Container = styled.div`
   flex-direction: column;
   gap: 40px;
   margin: 10rem auto;
+  padding: 0 1rem;
 `;
 
 const Title = styled.h3`
   text-align: center;
-  font-size: 2em;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin: 0;
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 `;
 
 const CardRow = styled.div`
@@ -69,7 +78,7 @@ const CardRow = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.div`
+const Card = styled.a`
   font-family: "Inter", sans-serif;
   position: relative;
   width: 400px;
@@ -79,8 +88,15 @@ const Card = styled.div`
   display: block;
   transition: background-color 0.5s ease;
   background-color: black;
+  text-decoration: none;
+
   &:hover {
     background-color: ${(props) => props.$hoverColor};
+  }
+
+  &:focus {
+    outline: 2px solid ${(props) => props.$hoverColor};
+    outline-offset: 4px;
   }
 
   @media (max-width: 768px) {
@@ -122,12 +138,10 @@ const TextOverlay = styled.div`
 
 const ProjectName = styled.h4`
   margin: 0;
-  color: #fff;
   font-size: 1.4em;
 `;
 
 const Details = styled.div`
-  color: #f0ead6;
   margin-top: 0.5rem;
   line-height: 1.4;
   flex: 1;
@@ -141,9 +155,7 @@ const ActionButton = styled.a`
   background-color: transparent;
   text-decoration: none;
   font-family: "Inter", sans-serif;
-  color: white;
   font-size: 1rem;
-  cursor: pointer;
   border-radius: 999px;
   align-self: flex-start;
   transition: background-color 0.3s, color 0.3s;
@@ -151,6 +163,11 @@ const ActionButton = styled.a`
   &:hover {
     background-color: black;
     color: white;
+  }
+
+  &:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
   }
 `;
 

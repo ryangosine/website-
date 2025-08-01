@@ -1,83 +1,65 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 
 const ContactMeBox = () => {
-  const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <GlobalWrapper>
-      <Content>
-        <Title>Let's Work Together!</Title>
-        <Blurb>
-          Have an idea for a project?
-          <br />
-          <br />
-          Send me an e-mail and together we'll make something beautiful!
-        </Blurb>
-        <ContactMeButton onClick={() => navigate("/contact")}>
-          Contact Me
-        </ContactMeButton>
-      </Content>
-    </GlobalWrapper>
+    <Section aria-labelledby="contact-title">
+      <BoxWrapper
+        initial={{ opacity: 0, y: 50 }}
+        animate={!shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <Title id="contact-title">Let’s work together</Title>
+        <Text>
+          I’m currently open to new opportunities and collaborations.
+          <br /> Feel free to reach out and let’s build something great.
+        </Text>
+      </BoxWrapper>
+    </Section>
   );
 };
 
-const GlobalWrapper = styled.div`
+const Section = styled.section`
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: 4px solid skyblue;
-  padding: 3rem;
-  width: 85vw;
-  margin: 0 auto 8rem;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(135, 206, 235, 0.3);
-  background-color: #0f1115; /* Optional: dark background for white text */
 `;
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: row; /* ✅ Horizontal layout */
-  align-items: center;
-  gap: 9rem; /* ✅ More spacing between items */
+const BoxWrapper = styled(motion.div)`
+  background-color: #111;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  margin: 6rem auto;
+  max-width: 800px;
+  text-align: center;
+  box-sizing: border-box;
+  color: #fff;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
+    padding: 2rem 1rem;
+    margin: 4rem 1rem;
   }
 `;
 
-const Title = styled.h4`
-  font-size: 2rem;
-  color: white;
-  margin: 0;
+const Title = styled.h1`
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
   font-family: "Montserrat", sans-serif;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #d8f0fa, #84acf7, #719aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 `;
 
-const Blurb = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: white;
-  max-width: 300px;
-  margin: 0;
+const Text = styled.p`
+  font-size: clamp(1rem, 4vw, 1.25rem);
   font-family: "Inter", sans-serif;
-`;
-
-const ContactMeButton = styled.button`
-  padding: 0.6rem 1.4rem;
-  border: 2px solid white;
-  background-color: transparent;
-  color: white; /* ✅ White text by default */
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: background-color 0.3s, color 0.3s;
-
-  &:hover {
-    background-color: white;
-    color: black;
-  }
+  line-height: 1.6;
+  color: #eee;
 `;
 
 export default ContactMeBox;

@@ -8,9 +8,13 @@ const Header = () => {
   return (
     <HeaderWrapper $onContactPage={onContactPage}>
       {onContactPage ? (
-        <ButtonLink to="/">← Back</ButtonLink>
+        <ButtonLink to="/" aria-label="Go back to homepage">
+          ← Back
+        </ButtonLink>
       ) : (
-        <ButtonLink to="/contact">Contact</ButtonLink>
+        <ButtonLink to="/contact" aria-label="Go to contact page">
+          Contact
+        </ButtonLink>
       )}
     </HeaderWrapper>
   );
@@ -26,28 +30,27 @@ const HeaderWrapper = styled.header`
   background: transparent;
   color: white;
   z-index: 999;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1rem;
   }
 `;
 
 const ButtonLink = styled(Link)`
   position: relative;
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 0.6rem 1.4rem;
   background-color: transparent;
   color: white;
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
   border: 2px solid white;
   border-radius: 999px;
   text-decoration: none;
   overflow: hidden;
-  z-index: 1;
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
 
   &::before {
@@ -79,8 +82,8 @@ const ButtonLink = styled(Link)`
     position: relative;
     z-index: 2;
   }
+
   @media (max-width: 768px) {
-    font-size: 14px;
     padding: 0.5rem 1rem;
   }
 `;

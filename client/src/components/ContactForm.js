@@ -1,29 +1,33 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import styled from "styled-components";
 
 const ContactForm = () => {
   const form = useRef();
+  const [isSending, setIsSending] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setIsSending(true);
+    setFeedbackMsg("");
 
     emailjs
       .sendForm(
-        "service_1p6rm9p",
-        "template_lymxoua",
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         form.current,
-        "jIB_akGKjqDkK0fOE"
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
-        alert("Message sent successfully!");
+        setFeedbackMsg("✅ Message sent successfully!");
+        form.current?.reset();
       })
       .catch((error) => {
-        alert("Failed to send message.");
+        setFeedbackMsg("❌ Failed to send message. Please try again.");
         console.error("EmailJS error:", error);
-      });
-
-    e.target.reset();
+      })
+      .finally(() => setIsSending(false));
   };
 
   return (
@@ -32,11 +36,39 @@ const ContactForm = () => {
       <Subtext>
         Have a question or project in mind? Send a message below.
       </Subtext>
-      <Form ref={form} onSubmit={sendEmail}>
-        <Input type="text" name="name" placeholder="Your Name" required />
-        <Input type="email" name="email" placeholder="Your Email" required />
-        <TextArea name="message" placeholder="Your Message" rows="5" required />
-        <Button type="submit">Send Message</Button>
+      <Form ref={form} onSubmit={sendEmail} noValidate>
+        <Label htmlFor="name">Your Name</Label>
+        <Input
+          id="name"
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+        />
+
+        <Label htmlFor="email">Your Email</Label>
+        <Input
+          id="email"
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+        />
+
+        <Label htmlFor="message">Your Message</Label>
+        <TextArea
+          id="message"
+          name="message"
+          placeholder="Let's talk about it..."
+          rows="5"
+          required
+        />
+
+        <Button type="submit" disabled={isSending}>
+          {isSending ? "Sending..." : "Send Message"}
+        </Button>
+
+        {feedbackMsg && <Feedback>{feedbackMsg}</Feedback>}
       </Form>
     </Container>
   );
@@ -52,6 +84,11 @@ const Container = styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 4rem 1rem;
+  }
 `;
 
 const Header = styled.h2`
@@ -68,10 +105,17 @@ const Subtext = styled.p`
   font-family: "Inter", sans-serif;
 `;
 
+const Label = styled.label`
+  text-align: left;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: "Inter", sans-serif;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 `;
 
 const Input = styled.input`
@@ -127,6 +171,18 @@ const Button = styled.button`
     background-color: white;
     color: black;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const Feedback = styled.p`
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
+  color: #0cdcf7;
 `;
 
 export default ContactForm;
