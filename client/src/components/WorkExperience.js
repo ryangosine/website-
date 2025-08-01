@@ -33,7 +33,7 @@ const WorkExperience = () => {
               onClick={() => handleToggle(job.id)}
               $isExpanded={isExpanded}
             >
-              <Placeholder>{job.company}</Placeholder>
+              <Placeholder $isExpanded={isExpanded}>{job.company}</Placeholder>
               <TextOverlay $isExpanded={isExpanded}>
                 <JobTitle>{job.jobTitle}</JobTitle>
                 <Details>
@@ -123,7 +123,8 @@ const Placeholder = styled.div`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    opacity: ${(props) => (props.$isExpanded ? 0 : 1)};
+    pointer-events: ${(props) => (props.$isExpanded ? "none" : "auto")};
   }
 `;
 
@@ -146,9 +147,10 @@ const TextOverlay = styled.div`
 
   @media (max-width: 768px) {
     position: relative;
-    opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
     background-color: ${darkMauve};
-    pointer-events: auto;
+    opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
+    height: 300px;
+    pointer-events: ${(props) => (props.$isExpanded ? "auto" : "none")};
   }
 `;
 

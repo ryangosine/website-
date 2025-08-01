@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.87fb9ede.css",
-    "main.js": "/static/js/main.37b37cff.js",
+    "main.js": "/static/js/main.07158bf4.js",
     "static/media/WebsiteCardSpace.svg": "/static/media/WebsiteCardSpace.0004faaceefa9c0b16164cdd6224a75c.svg",
     "static/media/shopCard_500x300.svg": "/static/media/shopCard_500x300.f0d3c0033312b8f5dfbf2637c1f6df44.svg",
     "index.html": "/index.html",
     "main.87fb9ede.css.map": "/static/css/main.87fb9ede.css.map",
-    "main.37b37cff.js.map": "/static/js/main.37b37cff.js.map"
+    "main.07158bf4.js.map": "/static/js/main.07158bf4.js.map"
   },
   "entrypoints": [
     "static/css/main.87fb9ede.css",
-    "static/js/main.37b37cff.js"
+    "static/js/main.07158bf4.js"
   ]
 }
