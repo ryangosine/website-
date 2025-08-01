@@ -39,6 +39,7 @@ const ContentWrapper = styled.div`
 const InfoText = styled.p`
   margin: 15px;
   font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
 `;
 const Red = styled.span`
   color: red;
