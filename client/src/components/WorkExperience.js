@@ -23,30 +23,49 @@ const WorkExperience = () => {
   return (
     <Section role="region" aria-labelledby="work-experience-heading">
       <Title id="work-experience-heading">Current Client(s)</Title>
+
       <CardRow>
         {workExperienceData.map((job) => {
           const isExpanded = expandedId === job.id;
+
+          const onKeyDown = (e) => {
+            if (!isMobile) return;
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleToggle(job.id);
+            }
+          };
 
           return (
             <CardContainer
               key={job.id}
               onClick={() => handleToggle(job.id)}
+              onKeyDown={onKeyDown}
               $isExpanded={isExpanded}
+              role="button"
+              tabIndex={0}
+              aria-expanded={isExpanded}
+              aria-label={`${job.company} details`}
             >
+              {/* Mobile: visible by default; fades out when expanded */}
               <Placeholder $isExpanded={isExpanded}>{job.company}</Placeholder>
+
+              {/* Mobile: hidden by default; fades in when expanded */}
               <TextOverlay $isExpanded={isExpanded}>
                 <JobTitle>{job.jobTitle}</JobTitle>
+
                 <Details>
                   {job.description.split("\n").map((line, idx) => (
                     <p key={idx}>{line.trim() || "\u00A0"}</p>
                   ))}
                 </Details>
+
                 {job.companyUrl && isExpanded && (
                   <ActionButton
                     href={job.companyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()} // keep taps from closing the card
                   >
                     Visit Site
                   </ActionButton>
@@ -95,16 +114,20 @@ const CardContainer = styled.div`
   cursor: pointer;
   transition: background-color 0.5s ease;
 
-  &:hover {
-    background-color: ${darkMauve};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${darkMauve};
+    }
   }
 
   @media (max-width: 768px) {
-    height: auto;
+    height: 300px;
   }
 `;
 
 const Placeholder = styled.div`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   background-color: black;
@@ -118,8 +141,14 @@ const Placeholder = styled.div`
   z-index: 1;
   font-family: "Montserrat", sans-serif;
 
-  ${CardContainer}:hover & {
+  /* ${CardContainer}:hover & {
     opacity: 0;
+  } */
+
+  @media (hover: hover) {
+    ${CardContainer}:hover & {
+      opacity: 0;
+    }
   }
 
   @media (max-width: 768px) {
@@ -140,17 +169,20 @@ const TextOverlay = styled.div`
   z-index: 2;
   pointer-events: none;
 
-  ${CardContainer}:hover & {
-    opacity: 1;
-    pointer-events: auto;
+  @media (hover: hover) {
+    ${CardContainer}:hover & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   @media (max-width: 768px) {
-    position: relative;
     background-color: ${darkMauve};
     opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
-    height: 300px;
     pointer-events: ${(props) => (props.$isExpanded ? "auto" : "none")};
+
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -168,7 +200,7 @@ const Details = styled.div`
   font-family: "Inter", sans-serif;
 
   @media (max-width: 768px) {
-    max-height: none;
+    max-height: calc(300px - 1.5rem - 1.5rem - 28px);
   }
 `;
 

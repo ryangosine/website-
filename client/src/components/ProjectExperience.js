@@ -36,7 +36,12 @@ const ProjectExperience = () => {
               $hoverColor={color}
               $isExpanded={isExpanded}
             >
-              <Image src={imageSrc} alt={project.name} loading="lazy" />
+              <Image
+                src={imageSrc}
+                alt={project.name}
+                loading="lazy"
+                $isExpanded={isExpanded}
+              />
               <TextOverlay $hoverColor={color} $isExpanded={isExpanded}>
                 <ProjectName>{project.name}</ProjectName>
                 <Details>
@@ -90,7 +95,7 @@ const CardRow = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  width: 400px;
+  width: clamp(280px, 90vw, 500px);
   height: 300px;
   border-radius: 8px;
   overflow: hidden;
@@ -99,29 +104,36 @@ const CardContainer = styled.div`
   font-family: "Inter", sans-serif;
   cursor: pointer;
 
-  &:hover {
-    background-color: ${(props) => props.$hoverColor};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${(props) => props.$hoverColor};
+    }
   }
 
   @media (max-width: 768px) {
-    width: 90%;
-    height: auto;
+    width: clamp(280px, 90vw, 500px);
+    height: 300px;
   }
 `;
 
 const Image = styled.img`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: opacity 0.5s ease;
   z-index: 1;
 
-  ${CardContainer}:hover & {
-    opacity: 0;
+  @media (hover: hover) {
+    ${CardContainer}:hover & {
+      opacity: 0;
+    }
   }
 
   @media (max-width: 768px) {
     opacity: ${(props) => (props.$isExpanded ? 0 : 1)};
+    pointer-events: ${(props) => (props.$isExpanded ? "none" : "auto")};
   }
 `;
 
@@ -137,15 +149,18 @@ const TextOverlay = styled.div`
   z-index: 2;
   pointer-events: none;
 
-  ${CardContainer}:hover & {
-    opacity: 1;
-    pointer-events: auto;
+  @media (hover: hover) {
+    ${CardContainer}:hover & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   @media (max-width: 768px) {
-    position: relative;
     opacity: ${(props) => (props.$isExpanded ? 1 : 0)};
-    pointer-events: auto;
+    pointer-events: ${(props) => (props.$isExpanded ? "auto" : "none")};
+    width: 100%;
+    height: 100%;
   }
 
   * {
@@ -164,6 +179,10 @@ const Details = styled.div`
   flex: 1;
   overflow-y: auto;
   font-size: 0.9rem;
+  @media (max-width: 768px) {
+    /* leave room for padding + title; tweak as needed */
+    max-height: calc(300px - 1.5rem - 1.5rem - 28px);
+  }
 `;
 
 const ActionButton = styled.a`

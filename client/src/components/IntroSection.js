@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import Selfie from "../Assets/website_photo_self.svg";
 
 const IntroSection = () => {
   return (
     <Section id="intro-section" aria-labelledby="intro-heading">
       <ProfileImage
-        src="/images/ryan-profile.jpg"
+        src={Selfie}
         alt="Portrait of Ryan, the web developer"
         loading="lazy"
       />
@@ -55,8 +56,8 @@ const Section = styled.section`
 `;
 
 const ProfileImage = styled.img`
-  border: 1px solid white;
-  border-radius: 10%;
+  border: 1px solid black;
+  border-radius: 50%;
   width: 400px;
   height: 400px;
   object-fit: cover;
