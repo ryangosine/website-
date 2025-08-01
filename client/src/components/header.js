@@ -14,7 +14,7 @@ const Header = () => {
       ) : (
         <>
           <ResumeLink
-            href="/Ryan_Gosine_Resume.pdf"
+            href="/Ryan_Gosine_Resume_.pdf"
             download
             aria-label="Download résumé (PDF)"
             title="Download résumé (PDF)"

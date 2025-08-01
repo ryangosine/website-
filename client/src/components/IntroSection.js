@@ -17,7 +17,7 @@ const IntroSection = () => {
         <BlurbContainer>
           <Heading id="intro-heading">Meet Ryan</Heading>
           <Blurb as="article">
-            <p>Hey everyone! I’m Ryan.</p>
+            <p>Hey everyone!</p>
 
             <p>
               I’m a full-stack web developer trained at Concordia University’s
