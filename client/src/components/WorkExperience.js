@@ -23,7 +23,7 @@ const WorkExperience = () => {
   return (
     <Section role="region" aria-labelledby="work-experience-heading">
       <Title id="work-experience-heading">Current Client(s)</Title>
-
+      <MobileHint>try clicking the card</MobileHint>
       <CardRow>
         {workExperienceData.map((job) => {
           const isExpanded = expandedId === job.id;
@@ -101,6 +101,17 @@ const CardRow = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+`;
+
+const MobileHint = styled.p`
+  font-size: 0.85rem;
+  color: #cfcfcf;
+  text-align: center;
+  margin: -0.5rem 0 0;
+  font-family: "Inter", sans-serif;
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 const CardContainer = styled.div`

@@ -23,6 +23,7 @@ const ProjectExperience = () => {
   return (
     <Container role="region" aria-labelledby="project-experience-heading">
       <Title id="project-experience-heading">Project Experience</Title>
+      <MobileHint>try clicking the card</MobileHint>
       <CardRow>
         {projectData.map((project, index) => {
           const color = index === 0 ? "#4A90E2" : "#27AE60";
@@ -91,6 +92,17 @@ const CardRow = styled.div`
   gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const MobileHint = styled.p`
+  font-size: 0.85rem;
+  color: #cfcfcf;
+  text-align: center;
+  margin: -0.5rem 0 0;
+  font-family: "Inter", sans-serif;
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 const CardContainer = styled.div`
