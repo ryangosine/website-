@@ -52,7 +52,7 @@ const ProjectExperience = () => {
                       <p key={idx}>{line.trim() || "\u00A0"}</p>
                     ))}
                   </Details>
-                  {project.siteUrl && isExpanded && (
+                  {project.siteUrl && (isExpanded || !isMobile) && (
                     <ActionButton
                       href={project.siteUrl}
                       target="_blank"
