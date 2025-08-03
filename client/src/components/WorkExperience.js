@@ -64,7 +64,7 @@ const WorkExperience = () => {
                     ))}
                   </Details>
 
-                  {job.companyUrl && isExpanded && (
+                  {job.companyUrl && (isExpanded || !isMobile) && (
                     <ActionButton
                       href={job.companyUrl}
                       target="_blank"
