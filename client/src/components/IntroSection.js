@@ -23,15 +23,49 @@ const IntroSection = () => {
               I’m a full-stack web developer trained at Concordia University’s
               Web Development Program. I build clean, functional websites and
               applications with a focus on design, readability, and
-              accessibility. I’m eager to keep learning and grow with every
-              project!
+              accessibility. I’m eager to keep learning and growing with every
+              project.
             </p>
 
             <p>
               My background as a Behaviour Specialist with the English Montreal
               School Board taught me to solve problems creatively and think
-              outside the box. I now apply those skills to delivering smart,
-              effective digital solutions.
+              outside the box—skills I now apply to delivering smart, effective
+              digital solutions.
+            </p>
+
+            <p>Here’s how I can help bring your project to life:</p>
+            <ul>
+              <li>
+                <strong>Architecture & Planning</strong> – structuring websites
+                and apps for scalability, performance, and usability
+              </li>
+              <li>
+                <strong>Content Support</strong> – assisting with content
+                selection and strategy to ensure clarity and impact
+              </li>
+              <li>
+                <strong>Multilingual Solutions</strong> – providing translation
+                services in French for broader accessibility
+              </li>
+              <li>
+                <strong>Design & Development</strong> – crafting intuitive
+                interfaces backed by clean, maintainable code
+              </li>
+              <li>
+                <strong>Launch & Promotion</strong> – guiding deployment and
+                boosting visibility through social media
+              </li>
+              <li>
+                <strong>Maintenance & Support</strong> – keeping sites secure,
+                updated, and optimized over time
+              </li>
+            </ul>
+
+            <p>
+              Whether you’re looking for a reliable freelancer or a dedicated
+              full-stack developer for your team, I bring creativity, technical
+              expertise, and a solutions-oriented mindset to every project.
             </p>
           </Blurb>
         </BlurbContainer>
